@@ -1,0 +1,77 @@
+{include file="Com/header.html" title="--博客"}
+<hr style="background-color:#aaa;"/>
+<div class="content details_content">
+    <div class="left">
+        <div class="breadcrumbs"> <a href="https://cuiqingcai.com/category/technique">{$smarty.get.category}</a> <small>&gt;</small> <a href="https://cuiqingcai.com/category/technique/python">{$row.c_c_name}</a> <small>&gt;</small> <span class="muted">{$row.title}</span>
+        </div>
+        <header class="article-header">
+        <h1 class="article-title"></h1>
+            <div class="meta">
+            <span class="muted"><i class="fa fa-user"></i>{$row.u_nickname}</span>
+            <time class="muted"><i class="fa fa-clock-o"></i> {date("Y-m-d H:i", $row.post_date)}</time>
+            <span class="muted"><i class="fa fa-eye"></i> {$row.view_times}浏览</span>
+            <span class="muted"><i class="fa fa-comments-o"></i> <a href="#comments">5评论</a></span>
+            </div>
+        </header>
+        <article class="article-content">
+        {htmlspecialchars_decode($row.content)}
+        </article>
+        <div class="#commets">
+            <a id="comments"></a>
+            <div class="comments-area space-top-3x">
+                <a id="comment"></a>
+                <h4 class="comments-count">共有{$comRowCount.count_num|default:0}条评论</h4>
+
+                <!-- Comment -->
+                <div class="comment">
+                  {foreach from=$comRows item="row" name="f_com"}
+                  <div style='padding-left: {$row.level * 20}px;'>
+                  <div class="comment-meta">
+                  {if $smarty.foreach.f_com.iteration == count($comRows)}
+                    <a id="comment{count($comRows)}"></a>
+                  {/if}
+                    <div class="column">
+                      <span class="comment-autor"><i class="icon-head"></i><a href="#">{$row.u_nickname}</a></span>
+                    </div>
+                    <div class="column">
+                      <span class="comment-date">{$row.post_date|date_format:"%Y %m %d %H:%M"}</span>
+                    </div>
+                  </div><!-- .comment-meta -->
+                  <div class="comment-body">
+                    <p>{htmlspecialchars_decode($row.content)}</p><hr/>
+                  </div><!-- .comment-body -->
+                  </div>
+                  {foreachelse}
+                    <h3>没有内容</h3>
+                  {/foreach}
+                </div><!-- .comment -->
+
+                <!-- Comment Form -->
+                <div class="comment-respond">
+                  <h4 class="comment-reply-title">发布新评论</h4>
+                  <form method="post" id="comment-form" class="comment-form" action="{C('URL')}?p=home&c=blog&a=addComment&last={count($comRows)}">
+                    <input type="hidden" name="cat_title" value="{$row.title}"/>
+                    <input type="hidden" name="id" value="{$row.id}"/>
+                    <div class="form-group">
+                      <label for="cf_comment" class="sr-only">Comment</label>
+                      <textarea name="comment" id="cf_comment" class="form-control input-alt" rows="7" placeholder="输入您的评论"></textarea>
+                    </div>
+                    <p class="form-submit">
+                    <!-- 如果用户登录后才允许发表 -->
+                    {if isset($smarty.session.user) }
+                        <input name="submit" type="submit" id="submit" class="btn btn-primary btn-block" value="发布">
+                    {else}
+                        您尚未登录！
+                      {/if}
+                    </p>
+                  </form>
+                </div><!-- .comment-respond -->
+            </div><!-- .comments-area -->
+        </div>
+    </div>
+</div>
+
+
+{include file="Com/footer.html"}
+</body>
+</html>

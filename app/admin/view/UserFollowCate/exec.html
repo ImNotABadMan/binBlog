@@ -1,0 +1,13 @@
+<!-- id  | name | sex | age | learn  | salary | extramoney | nativeplace -->
+<div class="h4">更新数据--{$row.id}</div>
+<form action="{C('URL')}/index.php?p=admin&m=cate&a=upd&&id={$row.id}" method="post" class="form-horizontal">
+    <div class="form-group">
+        <label for="name" class="control-label col-xs-2">Name:</label>
+        <div class="col-xs-6">
+            <input id="name" type="text" name="name" class="form-control" value="{$row.name}" />
+        </div>
+    </div>
+    <div class="form-group">
+        <input type="submit" class="btn btn-primary col-xs-offset-1" value="更新" />
+    </div>
+</form>

@@ -1,0 +1,97 @@
+<script type="text/javascript" charset="utf-8" src="{C('URL')}/public/plugins/ueditor/ueditor.config.js"></script>
+<script type="text/javascript" charset="utf-8" src="{C('URL')}/public/plugins/ueditor/ueditor.all.min.js"></script>
+
+<button class="btn btn-primary" data-toggle="modal" data-target="#myModal">添加博客</button>
+<!-- Modal -->
+<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+  <div class="modal-dialog" style="width: 1000px;">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+        <h4 class="modal-title" id="myModalLabel">新增</h4>
+      </div>
+      <div class="modal-body">
+        <!-- id  | name | sex | age | learn  | salary | extramoney | nativeplace -->
+        <form action="{C('URL')}/index.php?p=admin&m=blog&stitle={$stitle}&sc_id={$sc_id}&su_nickname={$su_nickname}&a=add&page={$page}" method="post" class="form-horizontal" name="insert" enctype="multipart/form-data">
+            <div class="form-group">
+                <label for="cover_img" class="control-label col-xs-2">cover_img:</label>
+                <div class="col-xs-6">
+                    <input id="cover_img" type="file" name="cover_img" accept="image/jpeg, image/png,image/gif,image/jpg" class="form-inline" />
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="title" class="control-label col-xs-2">title:</label>
+                <div class="col-xs-6">
+                    <input id="title" type="text" name="title" class="form-control" value="" />
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="intro" class="control-label col-xs-2">intro:</label>
+                <div class="col-xs-6">
+                    <textarea id="intro" name="intro" class="form-control" value="" ></textarea>
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="u_id_and_name" class="control-label col-xs-2">u_nickname:</label>
+                <div class="col-xs-6">
+                    <select name="u_id_and_name" id="u_id_and_name" class="form-control"class="form-control">
+                        {foreach from=$users item="user"}
+                        <option value="{$user.id}-{$user.nickname}">{$user.nickname}</option>
+                        {/foreach}
+                    </select>
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="c_id_and_name" class="control-label col-xs-2">c_name:</label>
+                <div class="col-xs-6">
+                    <select name="c_id_and_name" id="c_id_and_name" class="form-control"class="form-control">
+                        {foreach from=$tree item="node"}
+                        <option value="{$node.id}-{$node.name}">{"--"|str_repeat:$node.level}{$node.name}</option>
+                        {/foreach}
+                    </select>
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="content" class="control-label col-xs-2">content:</label>
+                <div class="col-xs-10">
+                    <textarea id="content" type="text" name="content"></textarea>
+                </div>
+            </div>
+            <!-- <div class="form-group">
+                <input type="submit" class="btn btn-primary" value="{$subVal}" />
+            </div> -->
+        </form>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
+        <button id="btn" type="submit" class="btn btn-primary">新增</button>
+      </div>
+    </div><!-- /.modal-content -->
+  </div><!-- /.modal-dialog -->
+</div><!-- /.modal -->
+<script type="text/javascript" charset="utf-8" src="{C('URL')}/public/plugins/ueditor/ueditor.config.js"></script>
+<script type="text/javascript" charset="utf-8" src="{C('URL')}/public/plugins/ueditor/ueditor.all.min.js"></script>
+<script>
+    var ue = UE.getEditor('content',{
+        initialFrameWidth: 750, //初始化编辑器宽度,默认1000
+        initialFrameHeight: 320,  //初始化编辑器高度,默认320
+        toolbars: [[
+            'fullscreen', 'source', '|', 'undo', 'redo', '|',
+            'bold', 'italic', 'underline', 'fontborder', 'strikethrough', 'superscript', 'subscript', 'removeformat', 'formatmatch', 'autotypeset', 'blockquote', 'pasteplain', '|', 'forecolor', 'backcolor', 'insertorderedlist', 'insertunorderedlist', 'selectall', 'cleardoc', '|',
+            'rowspacingtop', 'rowspacingbottom', 'lineheight', '|',
+            'customstyle', 'paragraph', 'fontfamily', 'fontsize', '|',
+            'directionalityltr', 'directionalityrtl', 'indent', '|',
+            'justifyleft', 'justifycenter', 'justifyright', 'justifyjustify', '|', 'touppercase', 'tolowercase', '|',
+            'link', 'unlink', 'anchor', '|', 'imagenone', 'imageleft', 'imageright', 'imagecenter', '|',
+            'simpleupload', 'insertimage', 'emotion', 'scrawl', 'insertvideo', 'music', 'attachment', 'map', 'gmap', 'insertframe', 'insertcode', 'webapp', 'pagebreak', 'template', 'background', '|',
+            'horizontal', 'date', 'time', 'spechars', 'snapscreen', 'wordimage', '|',
+            'inserttable', 'deletetable', 'insertparagraphbeforetable', 'insertrow', 'deleterow', 'insertcol', 'deletecol', 'mergecells', 'mergeright', 'mergedown', 'splittocells', 'splittorows', 'splittocols', 'charts', '|',
+            'print', 'preview', 'searchreplace', 'help', 'drafts'
+        ]]
+    });
+
+     var btn = document.getElementById("btn");
+     btn.onclick = function(){
+        document.forms.insert.submit();
+     }
+</script>

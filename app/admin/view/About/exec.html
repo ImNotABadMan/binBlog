@@ -1,0 +1,39 @@
+<!-- id  | name | sex | age | learn  | salary | extramoney | nativeplace -->
+<div class="h4">更新数据--{$upData.id}</div>
+<form action="{C('URL')}/index.php?p=admin&m=About&a=upd&page={$page}&id={$upData.id}" method="post" class="form-horizontal">
+    <div class="form-group">
+        <label for="title" class="control-label col-xs-2">title:</label>
+        <div class="col-xs-6">
+            <input id="title" type="text" name="title" class="form-control" value="{$upData.title|default:''}" />
+        </div>
+    </div>
+    <div class="form-group">
+        <label for="intro" class="control-label col-xs-2">intro:</label>
+        <div class="col-xs-6">
+            <input id="intro" type="text" name="intro" class="form-control" value="{$upData.intro|default:''}" />
+        </div>
+    </div>
+    <div class="form-group">
+        <label for="content" class="control-label col-xs-2">content:</label>
+        <div class="col-xs-6">
+            <!-- <input id="content" type="text" name="content" class="form-control" value="{$upData.content|default:0}" /> -->
+			<textarea id="content" name="content" class="form-control" rows=10>{$upData.content|default:0}</textarea>
+        </div>
+    </div>
+    <div class="form-group">
+        <label for="design_cont" class="control-label col-xs-2">design_cont:</label>
+        <div class="col-xs-6">
+            <!-- <input id="design_cont" type="text" name="design_cont" class="form-control" value="{$upData.design_cont|default:''}" /> -->
+			<textarea id="design_cont" name="design_cont" class="form-control" value="" rows=3>{$upData.design_cont|default:''}</textarea>
+        </div>
+    </div>
+    <div class="form-group">
+        <label for="our_ability" class="control-label col-xs-2">our_ability:</label>
+        <div class="col-xs-6">
+            <input id="our_ability" type="text" name="our_ability" class="form-control" value="{$upData.our_ability|default:0}" />
+        </div>
+    </div>
+    <div class="form-group">
+        <input type="submit" class="btn btn-primary" value="更新" />
+    </div>
+</form>

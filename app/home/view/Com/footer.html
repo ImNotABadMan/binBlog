@@ -1,0 +1,30 @@
+<div class="clearfix"></div>
+
+<footer class="footer">
+    <div class="container">
+        <div class="top">
+
+            <figure>
+                <h4> 订阅快讯</h4>
+                <form  method="post" action="{C('URL')}/index.php?p=home&m=contant&a=User_email">
+                    <div>
+                        <input type="hidden" name="type" value="About"/>
+                        <input  id="input" type="email" name="S_email" placeholder="请输入你的邮箱">
+                        <button type="submit" id="inputbtn"></button>
+                    </div>
+                </form>
+            </figure>
+            <div class="clearfix"></div>
+        </div>
+    </div>
+
+    <div class="container">
+        <div class="bottom">
+            <p>Bin客美食 -- 粤ICP备 18001110</p>
+        </div>
+    </div>
+</footer>
+
+
+<script src='{C('URL')}/public/home/js/jQuery.js'></script>
+<script src='{C('URL')}/public/home/js/pro_city.js'></script>

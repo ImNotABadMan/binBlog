@@ -1,0 +1,34 @@
+<!-- id  | name | sex | age | learn  | salary | extramoney | nativeplace -->
+<div class="h4">更新数据--{$row.id}</div>
+<form action="{C('URL')}/index.php?p=admin&m=user&a=upd&&id={$row.id}&page={$page}" method="post" class="form-horizontal">
+    <div class="form-group">
+        <label for="nickname" class="control-label col-xs-2">Nickname:</label>
+            <div class="col-xs-6">
+                <input id="nickname" type="text" name="nickname" class="form-control" value="{$row.nickname}" />
+            </div>
+        </div>
+        <div class="form-group">
+            <label for="email" class="control-label col-xs-2">Email:</label>
+            <div class="col-xs-6">
+                <input id="email" type="text" name="email" class="form-control" value="{$row.email}" />
+            </div>
+        </div>
+        <div class="form-group">
+            <label for="is_admin" class="control-label col-xs-2">Is_admin:</label>
+            <div class="col-xs-6">
+                <select id="is_admin" type="text" name="is_admin" class="form-control" value="{$row.email}" >
+                    <option value="1" {if $row.is_admin==1} selected {/if}>Yes</option>
+                    <option value="0" {if $row.is_admin==0} selected {/if}>No</option>
+                </select>
+            </div>
+        </div>
+        <div class="form-group">
+            <label for="pwd" class="control-label col-xs-2">Password:</label>
+            <div class="col-xs-6">
+                <input id="pwd" type="password" name="pwd" class="form-control" value="" />
+            </div>
+        </div>
+    <div class="form-group">
+        <input type="submit" class="btn btn-primary col-xs-offset-1" value="更新" />
+    </div>
+</form>

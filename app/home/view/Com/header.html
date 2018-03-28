@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+<head>
+    <meta charset="UTF-8">
+    <title>Bin客美食</title>
+    <link rel="stylesheet" href="{C('URL')}/public/home/css/basic.css">
+    <link rel="stylesheet" href="{C('URL')}/public/home/css/style2.css">
+    <link rel="stylesheet" href="{C('URL')}/public/home/css/pro_city.css" />
+    <link rel="stylesheet" href="{C('URL')}/public/home/css/blog.css">
+    <!-- 主页样式 -->
+    {if !empty($flag)&&$flag==1}
+    <link rel="stylesheet" href="{C('URL')}/public/home/css/style.css">
+    {/if}
+</head>
+<body>
+<header>
+    <div class="tel">
+        <div class="container" style="position: relative;">
+            <div class="logo">
+                <img src="{C('URL')}/public/home/images/logo1.png">
+            </div>
+            <p>
+                <ul class='login'>
+                    <li class='login'><a href="{C('URL')}/index.php?p=home&m=public&a=register">注册</a></li>
+                    <li class='login'><a href="{C('URL')}/index.php?p=home&m=public&a=login">登录</a></li>
+                </ul>
+                <ul class='city'>
+                    {if isset($city) }
+                        {$city.name}
+                    {else}
+                        {$smarty.cookies.city|default:''}
+                    {/if}
+                </ul>
+                <ul class='province'>
+                    {if isset($province) }
+                        {$province.name}
+                    {else}
+                        {$smarty.cookies.province|default:''}
+                    {/if}
+                </ul>
+            </p>
+            <div class="clearfix"></div>
+        </div>
+        <div class='province-box'></div><div class='city-box'></div>
+    </div>
+    <nav class="nav">
+        <div class="container">
+            <div class="link">
+                <ul>
+                    <li><a href="{C('URL')}/index.php?p=home&m=index&a=showList">主页</a></li>
+                    <!--<li><a href="###">技术服务</a></li>-->
+                    {foreach from=$navs item="nav" key="index"}
+                    <li><a href="{C('URL')}/index.php?p=home&m=blog&a=showBlog&index={$index + 1}&category={$nav.name}&ccid={$nav.id}">{$nav.name}</a></li>
+                    {/foreach}
+                </ul>
+            </div>
+        </div>
+    </nav>
+    <script>
+        var index = {$smarty.get.index|default:0};
+        document.querySelectorAll(".link ul li")[index].className = "nav active";
+    </script>
+    <div class="clearfix"></div>
+   <!--  <div class="red" >
+        <div class="button">
+        </div>
+        <div class="sub">
+        </div> -->
+        <!--<div class="clearfix"></div>-->
+    <!-- </div> -->
+
+</header>

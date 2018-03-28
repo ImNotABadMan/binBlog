@@ -1,0 +1,47 @@
+{include file="Com/header.html" title="--联系"}
+<section class="contant_section">
+    <div class="container">
+        <h2>联系我们</h2>
+        <div class="contant_img">
+            <img src="{C('URL')}/public/home/images/c1.jpg" alt="链接超时">
+        </div>
+        <div class="contant_list">
+            <h4>以下类型</h4>
+
+            <div>
+                <form method="post" action="{C('URL')}/index.php?p=home&m=contant&a=Cont_deal">
+                    <input class="below" type="text" placeholder="您的昵称" name="name" value="">
+                    <input class="below"type="email" placeholder="您的邮件" name="email" value="">
+                    <input class="below" type="text" placeholder="菜式主题" name="theme" value="">
+					<input type="hidden" name="type" value="Info"/>
+                    <br>
+                    <textarea class="area" placeholder="内容" name="content" value=""></textarea>
+					<!-- <textarea class="st-forminput ckeditor" placeholder="内容" name="content" value=""></textarea> -->
+					<!-- <script>CKEDITOR.replace('content');</script> -->
+                   <button class="send" onclick="send()">发送信息</button>
+					<!-- <input class="send" type="submit" value="发送信息"/> -->
+                </form>
+            </div>
+        </div>
+        <div class="contant_aside">
+            <h4>地址</h4>
+            <div>
+                <ul>
+                    <li> email : <span>zhanghj@itcate.cn</span></li>
+                    <li> phone : 400-167-94167</li>
+                    <li> 北京喘窒食客教育科技有限公司</li>
+                    <li>北京市那个区这条路某办公楼X层</li>
+                </ul>
+            </div>
+        </div>
+        <div class="clearfix"></div>
+    </div>
+</section>
+{include file="Com/footer.html"}
+<script type="text/javascript">
+        function send(){
+            alert("发送成功!");
+        }
+    </script>
+</body>
+</html>

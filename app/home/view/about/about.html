@@ -1,0 +1,76 @@
+{include file="Com/header.html" title="--关于"}
+<section id="section">
+    <div class="container">
+        <div class="about_top">
+            <h2>关于</h2>
+            <div>
+                <div class="text">
+				{foreach from=$rows item='row'}
+                    <h5>{$row.title}</h5>
+                    <p>{$row.intro}</p>
+                    <p>{$row.content}</p>
+				{/foreach}
+                </div>
+					<img src="{C('URL')}/public/home/images/koushuiji.jpg" width="350">
+					<div class="clearfix"></div>
+				</div>
+        </div>
+        <div class="about_middle">
+            <h2>小吃设计</h2>
+            <div class="middle_left">
+                <figure>
+                    <img src="{C('URL')}/public/home/images/xiaochi1.jpg" width="330">
+					<style>{literal}#design_link:hover{color:red;}#design_link{color:blue;}{/literal}</style>
+                    <p><a href="http://www.xiachufang.com/recipe/100537748/" id="design_link" target="_blank">{$rows1.design_cont}</a></p>
+                </figure>
+				<figure>
+                    <img src="{C('URL')}/public/home/images/xiaochi2.jpg" width="330">
+					<style>{literal}#design_link:hover{color:red;}#design_link{color:blue;}{/literal}</style>
+                    <p><a href="http://www.xiachufang.com/recipe/101885804/" id="design_link" target="_blank">{$rows2.design_cont}</a></p>
+                </figure>
+                <div class="clearfix"></div>
+            </div>
+            <div class="middle_right">
+                <h4>我们的能力</h4>
+                <ul>
+					{foreach from=$abilitys item='row'}
+                    <li><img src="{C('URL')}/public/home/images/cir.png"><a href="###">{$row.our_ability}</a></li>
+					{/foreach}
+                </ul>
+            </div>
+            <div class="clearfix"></div>
+        </div>
+        <div class="about_footer">
+                <h2>我们的团队</h2>
+            <div class="footer_team">
+                <div class="team-img">
+                    <img src="{C('URL')}/public/home/images/01.jpg">
+                    <div class="team-text">
+						<style>{literal}#man:hover{color:black;}#man{color:white;}{/literal}</style>
+                        <div class="text-title"><a href="https://baike.baidu.com/item/%E8%B4%9D%E5%B0%94%C2%B7%E6%A0%BC%E9%87%8C%E5%B0%94%E6%96%AF/4647767?fr=aladdin&fromid=1631086&fromtitle=%E8%B4%9D%E7%88%B7" id="man" target="_blank">贝尔格里尔斯</a></div>
+                        <div class="text-content">站在食物链顶端的男人</div>
+                    </div>
+                </div>
+                <div class="team-img">
+                    <img src="{C('URL')}/public/home/images/02.jpg">
+                    <div class="team-text">
+                        <div class="text-title"><a href="https://baike.baidu.com/item/%E5%AD%A4%E7%8B%AC%E7%9A%84%E7%BE%8E%E9%A3%9F%E5%AE%B6/43833?fr=aladdin" id="man" target="_blank">井之头五郎</a></div>
+                        <div class="text-content">孤独的美食家</div>
+                    </div>
+                </div>
+                <div class="team-img">
+                    <img src="{C('URL')}/public/home/images/03.jpg">
+                    <div class="team-text">
+                        <div class="text-title"><a href="https://baike.baidu.com/item/%E4%B8%AD%E5%8D%8E%E5%B0%8F%E5%BD%93%E5%AE%B6/45391?fr=aladdin" id="man" target="_blank">刘昴星</a></div>
+                        <div class="text-content">中国四川省最年轻的特级厨师</div>
+                    </div>
+                </div>
+                <div class="clearfix"></div>
+            </div>
+        </div>
+    </div>
+</section>
+{include file="Com/footer.html"}
+
+</body>
+</html>

@@ -1,0 +1,35 @@
+<div class="alert alert-success fade in" style="text-align: center;{if {$smarty.get.re|default:0} == '0'} display: none; {/if}">
+    {if !empty($smarty.get.re)&&$smarty.get.re == 11}
+        新增成功
+    {elseif !empty($smarty.get.re)&&$smarty.get.re == 10}
+        新增失败
+    {elseif !empty($smarty.get.re)&&$smarty.get.re == 22}
+        更新成功
+    {elseif !empty($smarty.get.re)&&$smarty.get.re == 20}
+        更新失败
+    {elseif !empty($smarty.get.re)&&$smarty.get.re == 33}
+        删除成功
+    {elseif !empty($smarty.get.re)&&$smarty.get.re == 30}
+        删除失败
+    {else}
+        {$smarty.get.re}
+    {/if}
+    <a data-dismiss="alert" class="close" href="javascript:close();" aria-hidden="true">&times;</a>
+</div>
+<div class="col-xs-offset-10 h5">
+    <!-- <span class="btn btn-default">{$smarty.session.user.nickname}</span> -->
+    <a class="btn btn-default" href="{C('URL')}/index.php?p=admin&m=privilege&a=logout">用户：{$smarty.session.admin.nickname}--退出登录</a>
+</div>
+<div class="left list-group">
+    <div id="sidebar" style="margin-top: 55px;">
+        <a href="{C('URL')}/index.php?p=admin&m=blog&a=showList" class="list-group-item side">博客管理</a>
+        <a href="{C('URL')}/index.php?p=admin&m=cate&a=showList" class="list-group-item side">城市管理</a>
+        <a href="{C('URL')}/index.php?p=admin&m=ccate&a=showList" class="list-group-item side">分类管理</a>
+        <a href="{C('URL')}/index.php?p=admin&m=about&a=showAbout" class="list-group-item side">关于管理</a>
+        <a href="{C('URL')}/index.php?p=admin&m=user&a=showList" class="list-group-item side">用户管理</a>
+        <a href="{C('URL')}/index.php?p=admin&m=userFollow&a=showList" class="list-group-item side">关注管理</a>
+        <a href="{C('URL')}/index.php?p=admin&m=collectArticle&a=showList" class="list-group-item side">收藏管理</a>
+        <a href="{C('URL')}/index.php?p=admin&m=userFollowCate&a=showList" class="list-group-item side">收藏分类管理</a>
+    </div>
+
+</div>

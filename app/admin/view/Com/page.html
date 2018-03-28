@@ -1,0 +1,54 @@
+{if !empty($is_page)&&$is_page=="1"}
+<script>
+    function isDel(id){
+        if(confirm("是否删除？")){
+            var page = {$page|default:1};
+            //判断整一个页面是否是有条数据，一条数据包含一个class为del的a标签
+            if(document.getElementsByClassName("del").length == 1){
+                page -= 1;
+            }
+            location.href = "{C('URL')}/index.php?p=admin&m={$m}&a=del&page=" + page + "&id=" + id;
+            return true;
+        }else{
+            return false;
+        }
+    }
+    //bootstrap的关闭提示的js
+    function close(){
+        $(".alert").alert('close');
+    }
+
+    var pre = document.getElementById("pre");
+    var next = document.getElementById("next");
+    if(pre != null){
+        pre.onclick = function(){
+            var page = {$page|default:1};
+            this.innerHTML = "";
+            for(var i = 2; i < page - 2; i++){
+                var a = document.createElement("a");
+                a.className = "btn btn-primary btn-xs pageshow";
+                a.innerHTML = i;
+                a.href = "{C('URL')}?p=admin&m={$m}&a=showList&page=" + i;
+                this.appendChild(a);
+            }
+            this.onclick = function(){};
+        }
+    }
+
+    if(next != null){
+        next.onclick = function(){
+            var page = {$page|default:1};
+            var pageCount = {$pageCount|default:1};
+            this.innerHTML = "";
+            for(var i = page + 3; i < pageCount; i++){
+                var a = document.createElement("a");
+                a.className = "btn btn-primary btn-xs pageshow";
+                a.innerHTML = i;
+                a.href = "{C('URL')}?p=admin&m={$m}&a=showList&page=" + i;
+                this.appendChild(a);
+            }
+            this.onclick = function(){};
+        }
+    }
+</script>
+{/if}

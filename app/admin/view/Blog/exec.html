@@ -1,0 +1,82 @@
+<!-- id  | name | sex | age | learn  | salary | extramoney | nativeplace -->
+<div class="h4 col-xs-offset-1">更新数据--{$row.id}</div>
+<form action="{C('URL')}/index.php?p=admin&m=blog&a=upd&stitle={$stitle}&sc_id={$sc_id}&su_nickname={$su_nickname}&page={$page}&id={$row.id}" method="post" class="form-horizontal" enctype="multipart/form-data">
+    <div class="form-group">
+        <label for="cover_img_up" class="control-label col-xs-2">cover_img:</label>
+        <div class="col-xs-6">
+            <input id="cover_img_up" type="file" name="cover_img"  class="form-inline"/>
+            <div class="col-xs-12">
+                <span>原图：</span><img src='{C('URL')}/{$row.cover_img}' style="width: 300px;" />
+            </div>
+        </div>
+    </div>
+    <div class="form-group">
+        <label for="title_up" class="control-label col-xs-2">title:</label>
+        <div class="col-xs-6">
+            <input id="title_up" type="text" name="title" class="form-control" value="{$row.title}" />
+        </div>
+    </div>
+    <div class="form-group">
+        <label for="intro_up" class="control-label col-xs-2">intro:</label>
+        <div class="col-xs-6">
+            <textarea id="intro_up" name="intro" class="form-control">{$row.intro}</textarea>
+        </div>
+    </div>
+    <div class="form-group">
+        <label for="u_id_and_name" class="control-label col-xs-2">u_nickname:</label>
+        <div class="col-xs-6">
+            <select name="u_id_and_name" id="u_id_and_name" class="form-control"class="form-control">
+                {foreach from=$users item="user"}
+                <option value="{$user.id}-{$user.nickname}">{$user.nickname}</option>
+                {/foreach}
+            </select>
+        </div>
+    </div>
+    <div class="form-group">
+        <label for="c_id_and_name_up" class="control-label col-xs-2">c_name:</label>
+        <div class="col-xs-6">
+            <select name="c_id_and_name" id="c_id_and_name_up" class="form-control"class="form-control">
+                {foreach from=$tree item="node"}
+                <option value="{$node.id}-{$node.name}" {if $node.id==$row.c_id} selected {/if}>{"--"|str_repeat:$node.level}{$node.name}</option>
+                {/foreach}
+            </select>
+        </div>
+    </div>
+    <div class="form-group">
+        <label for="content_up" class="control-label col-xs-2">content:</label>
+        <div class="col-xs-10">
+            <textarea id="content_up" type="text" name="content">{$row.content}</textarea>
+        </div>
+    </div>
+    <div class="form-group">
+        <input type="submit" class="btn btn-primary col-xs-offset-1" value="更新" />
+    </div>
+</form>
+
+<script>
+
+// var a = document.getElementById("cover_img");
+// a.onchange = function(){
+//     alert(a.files);
+// }
+    // document.getElementById("cover_img").onchange = function(){
+    //     document.getElementById("imgUp").src = document.getElementById("cover_img").value;
+    // }
+ var ue = UE.getEditor('content_up',{
+    initialFrameWidth: 750, //初始化编辑器宽度,默认1000
+    initialFrameHeight: 320,  //初始化编辑器高度,默认320
+    toolbars: [[
+        'fullscreen', 'source', '|', 'undo', 'redo', '|',
+        'bold', 'italic', 'underline', 'fontborder', 'strikethrough', 'superscript', 'subscript', 'removeformat', 'formatmatch', 'autotypeset', 'blockquote', 'pasteplain', '|', 'forecolor', 'backcolor', 'insertorderedlist', 'insertunorderedlist', 'selectall', 'cleardoc', '|',
+        'rowspacingtop', 'rowspacingbottom', 'lineheight', '|',
+        'customstyle', 'paragraph', 'fontfamily', 'fontsize', '|',
+        'directionalityltr', 'directionalityrtl', 'indent', '|',
+        'justifyleft', 'justifycenter', 'justifyright', 'justifyjustify', '|', 'touppercase', 'tolowercase', '|',
+        'link', 'unlink', 'anchor', '|', 'imagenone', 'imageleft', 'imageright', 'imagecenter', '|',
+        'simpleupload', 'insertimage', 'emotion', 'scrawl', 'insertvideo', 'music', 'attachment', 'map', 'gmap', 'insertframe', 'insertcode', 'webapp', 'pagebreak', 'template', 'background', '|',
+        'horizontal', 'date', 'time', 'spechars', 'snapscreen', 'wordimage', '|',
+        'inserttable', 'deletetable', 'insertparagraphbeforetable', 'insertrow', 'deleterow', 'insertcol', 'deletecol', 'mergecells', 'mergeright', 'mergedown', 'splittocells', 'splittorows', 'splittocols', 'charts', '|',
+        'print', 'preview', 'searchreplace', 'help', 'drafts'
+    ]]
+});
+</script>

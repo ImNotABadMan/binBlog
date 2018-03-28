@@ -1,0 +1,45 @@
+/*
+* @Author: anchen
+* @Date:   2017-12-02 14:24:52
+* @Last Modified by:   anchen
+* @Last Modified time: 2018-01-19 17:01:13
+*/
+#pre,#next{
+    cursor: pointer;
+}
+.left{
+    position: fixed;
+    left: 0px;
+    top: 0px;
+    width: 4%;
+    min-width: 30px;
+    height: 100%;
+    background-color: #0165ad;
+    transition-duration: 0.8s;
+    z-index: 1;
+}
+.left:hover{
+    width: 140px;
+}
+#sidebar .side{
+    text-indent: -115px;
+    transition-duration: 0.7s;
+    border: 0px;
+    background-color: #0165ad;
+    color: #fff;
+    font-size: 16px;
+}
+.left:hover #sidebar .side{
+    text-indent: 10px;
+    text-overflow: ellipsis;
+    overflow: hidden;
+}
+.pageshow{
+    animation-duration: 1s;
+    animation-fill-mode: forwards;
+    animation-name: sh;
+}
+@-webkit-keyframes sh{
+    from{ margin-left: 0px; }
+    to{ margin-left: 2px; }
+}

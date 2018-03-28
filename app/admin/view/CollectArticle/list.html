@@ -1,0 +1,38 @@
+{include file="Com/header.html" is_page="1" module="关注"}
+    <body>
+        {include file="Com/fixedbar.html"}
+        <div class="container" style="margin-bottom: 50px;">
+            <div class="h5">
+                <!-- <a href="http://www.smarty.com/stuMajor/tree.php?page={$page}&flag=1">添加学生</a> -->
+            </div>
+            <table class="table table-hover table-striped">
+                <tr>
+                    <td>序号</td>
+                    <!-- PHP column -->
+                        <td>用户</td>
+                        <td>文章</td>
+                        <td>文章所属用户</td>
+                        <td>文章所属分类</td>
+                    <td>操作</td>
+                </tr>
+                <!-- tree row -->
+                {foreach from=$rows key="key" item="row" name="f_row"}
+                    <tr>
+                        <td>{$smarty.foreach.f_row.iteration}</td>
+                        <td>{$row.u_nickname}</td>
+                        <td>{$row.title}</td>
+                        <td>{$row.b_name}</td>
+                        <td>{$row.c_name}</td>
+                        <td><a id="del" href="javascript:isDel({$row.id})">删除</a></td>
+                    </tr>
+                {/foreach}
+            </table>
+
+            {if !empty($flag)&&$flag == 2}
+                <hr />
+                {include file="Cate/exec.html"}
+            {/if}
+        </div>
+    </body>
+    {include file="Com/page.html" is_page="1" m="collectArticle"}
+</html>

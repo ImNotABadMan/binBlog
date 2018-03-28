@@ -1,0 +1,46 @@
+{include file="Com/header.html" is_page="1" module="用户"}
+    <body>
+        {include file="Com/fixedbar.html"}
+        <div class="container" style="margin-bottom: 50px;">
+            <div class="h5">
+                <!-- <a href="http://www.smarty.com/stuMajor/tree.php?page={$page}&flag=1">添加学生</a> -->
+                {include file="User/insert.html"}
+            </div>
+            <table class="table table-hover table-striped">
+                <tr>
+                    <td>序号</td>
+                    <!-- PHP column -->
+                        <td>{$cols[0].name}</td>
+                        <td>{$cols[1].name}</td>
+                        <td>{$cols[2].name}</td>
+                        <td>{$cols[3].name}</td>
+                        <td>{$cols[4].name}</td>
+                        <td>{$cols[5].name}</td>
+                        <td>{$cols[6].name}</td>
+                    <td>操作</td>
+                </tr>
+                <!-- tree row -->
+                {foreach from=$rows key="key" item="row" name="f_row"}
+                    <tr>
+                        <td>{$smarty.foreach.f_row.iteration}</td>
+                        <td>{$row.id}</td>
+                        <td>{$row.acc}</td>
+                        <td>{$row.pwd}</td>
+                        <td>{$row.nickname}</td>
+                        <td>{$row.email}</td>
+                        <td>{$row.register_date|date_format:"%Y-%m-%d %H:%M"}</td>
+                        <td>{if $row.is_admin} <font color="red">Yes</font>{else} No {/if}</td>
+                        <td><a href="{C('URL')}/index.php?p=admin&m=user&a=showUpd&id={$row.id}&page={$page}">编辑</a>&nbsp;&nbsp;<a id="del" href="javascript:isDel({$row.id})">删除</a></td>
+                    </tr>
+                {/foreach}
+            </table>
+            <div style="text-align: center;">{$pageHtml}</div>
+
+            {if !empty($flag)&&$flag == 2}
+                <hr />
+                {include file="User/exec.html"}
+            {/if}
+        </div>
+    </body>
+    {include file="Com/page.html" is_page="1" m="user"}
+</html>

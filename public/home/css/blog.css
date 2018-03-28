@@ -1,0 +1,263 @@
+/*
+* @Author: anchen
+* @Date:   2018-02-03 21:35:12
+* @Last Modified by:   anchen
+* @Last Modified time: 2018-02-21 11:27:39
+*/
+.blog-container, .details_content{
+    width: 90%;
+    min-width: 900px;
+    margin: 0 auto;
+    min-height: 450px;
+}
+
+.details_content{
+    padding: 50px 0px;
+}
+
+.details_content .left{
+    width: 80%;
+}
+
+.details_content .left img{
+    max-width: 100%;
+    max-height: 100%;
+}
+
+/*comment start*/
+
+.comments-area h4 {
+  margin-bottom: 33px !important;
+}
+
+.comment {
+  margin-bottom: 36px;
+}
+
+.comment.depth-2 {
+  margin-top: 28px;
+  padding-left: 90px;
+}
+
+.comment .comment-body {
+  border-bottom: 1px solid #d9d9d9;
+}
+
+.comment .comment-meta {
+  display: table;
+  width: 100%;
+  font-size: 14px;
+  color: #808080;
+  margin-bottom: 20px;
+}
+
+.comment .comment-meta .column {
+  display: table-cell;
+  vertical-align: middle;
+}
+
+.comment .comment-meta .column:last-child {
+  text-align: right;
+}
+
+.comment .comment-meta .comment-autor,
+.comment .comment-meta .comment-date,
+.comment .comment-meta .comment-reply {
+  display: inline-block;
+  font-size: 14px;
+  margin-right: 18px;
+}
+
+.comment .comment-meta .comment-autor > i,
+.comment .comment-meta .comment-date > i,
+.comment .comment-meta .comment-reply > i {
+  display: inline-block;
+  vertical-align: middle;
+  font-size: 11px;
+  color: #2895f1;
+  margin-top: -5px;
+  margin-right: 4px;
+}
+
+.comment .comment-meta .comment-autor > i.icon-reply,
+.comment .comment-meta .comment-date > i.icon-reply,
+.comment .comment-meta .comment-reply > i.icon-reply {
+  font-size: 13px;
+}
+
+.comment .comment-meta .comment-date {
+  margin-right: 0;
+}
+
+@media screen and (max-width: 600px) {
+  .comment.depth-2 {
+    padding-left: 25px;
+  }
+}
+
+.comment-respond {
+  padding: 24px;
+  border: 1px solid #d9d9d9;
+  margin-top: 60px;
+}
+
+.comment-respond .logged-in-as {
+  font-size: 12px;
+  padding-bottom: 10px;
+}
+
+.comment-respond .form-submit {
+  margin-bottom: 0;
+}
+
+.comment-respond .form-submit > .btn {
+  margin-bottom: 0;
+}
+
+.comment-reply-title small {
+  font-size: 12px;
+  font-style: normal;
+}
+
+.comment-navigation a,
+.comment-navigation span {
+  font-size: 12px;
+  text-transform: uppercase;
+  text-decoration: none;
+  margin-right: 8px;
+}
+
+.comment-navigation span {
+  color: #2895f1;
+  font-weight: bold;
+}
+.form-control {
+  font-size: 14px;
+  height: 69px;
+  padding-left: 45px;
+  margin-bottom: 0;
+  border: none;
+  background-color: #e7f3fd;
+}
+.form-control,
+textarea,
+select,
+input[type=text],
+input[type=email],
+input[type=password],
+input[type=number],
+input[type=url],
+input[type=time],
+input[type=tel],
+input[type=search] {
+  display: block;
+  width: 100%;
+  line-height: 1.5;
+  height: 48px;
+  font-size: 16px;
+  color: #333;
+  text-transform: none;
+  border: 1px solid #d9d9d9;
+  background-color: #fff;
+  padding: 0 20px;
+  margin-bottom: 24px;
+  -webkit-appearance: none;
+  border-radius: 0;
+  -webkit-transition: all 0.3s;
+  -o-transition: all 0.3s;
+  transition: all 0.3s;
+}
+.form-control:focus,
+textarea:focus,
+select:focus,
+input[type=text]:focus,
+input[type=email]:focus,
+input[type=password]:focus,
+input[type=number]:focus,
+input[type=url]:focus,
+input[type=time]:focus,
+input[type=tel]:focus,
+input[type=search]:focus {
+  background-color: #faffbd;
+  outline: none;
+}
+
+.form-control::-moz-placeholder,
+textarea::-moz-placeholder,
+select::-moz-placeholder,
+input[type=text]::-moz-placeholder,
+input[type=email]::-moz-placeholder,
+input[type=password]::-moz-placeholder,
+input[type=number]::-moz-placeholder,
+input[type=url]::-moz-placeholder,
+input[type=time]::-moz-placeholder,
+input[type=tel]::-moz-placeholder,
+input[type=search]::-moz-placeholder {
+  color: #666;
+  opacity: 1;
+}
+
+.form-control:-ms-input-placeholder,
+textarea:-ms-input-placeholder,
+select:-ms-input-placeholder,
+input[type=text]:-ms-input-placeholder,
+input[type=email]:-ms-input-placeholder,
+input[type=password]:-ms-input-placeholder,
+input[type=number]:-ms-input-placeholder,
+input[type=url]:-ms-input-placeholder,
+input[type=time]:-ms-input-placeholder,
+input[type=tel]:-ms-input-placeholder,
+input[type=search]:-ms-input-placeholder {
+  color: #666;
+}
+
+.form-control::-webkit-input-placeholder,
+textarea::-webkit-input-placeholder,
+select::-webkit-input-placeholder,
+input[type=text]::-webkit-input-placeholder,
+input[type=email]::-webkit-input-placeholder,
+input[type=password]::-webkit-input-placeholder,
+input[type=number]::-webkit-input-placeholder,
+input[type=url]::-webkit-input-placeholder,
+input[type=time]::-webkit-input-placeholder,
+input[type=tel]::-webkit-input-placeholder,
+input[type=search]::-webkit-input-placeholder {
+  color: #666;
+}
+
+.form-control.placeholder,
+textarea.placeholder,
+select.placeholder,
+input[type=text].placeholder,
+input[type=email].placeholder,
+input[type=password].placeholder,
+input[type=number].placeholder,
+input[type=url].placeholder,
+input[type=time].placeholder,
+input[type=tel].placeholder,
+input[type=search].placeholder {
+  color: #666;
+}
+
+.form-control.input-sm,
+textarea.input-sm,
+select.input-sm,
+input[type=text].input-sm,
+input[type=email].input-sm,
+input[type=password].input-sm,
+input[type=number].input-sm,
+input[type=url].input-sm,
+input[type=time].input-sm,
+input[type=tel].input-sm,
+input[type=search].input-sm {
+  height: 36px;
+  font-size: 14px;
+}
+
+textarea {
+  height: auto !important;
+  padding: 15px 20px !important;
+}
+
+
+/*comment end*/

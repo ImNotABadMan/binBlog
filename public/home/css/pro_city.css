@@ -1,0 +1,50 @@
+/*
+* @Author: anchen
+* @Date:   2018-01-24 08:39:52
+* @Last Modified by:   anchen
+* @Last Modified time: 2018-01-27 17:39:30
+*/
+
+/***********省市联动头部**************/
+
+
+.province, .city{
+    color: #fff;
+    float: right;
+    width: 20%;
+    cursor: pointer;
+    text-align: center;
+}
+.province:hover, .city:hover{
+    background-color: #666;
+    box-shadow: #000 0px 0px 10px;
+}
+
+.city-box, .province-box{
+    background-color: rgba(66,66,66,0.8);
+    position: absolute;
+    z-index: 999;
+    color: #fff;
+    display:none;
+    width: 100%;
+}
+
+.province-item, .city-item{
+    color: #fff;
+    padding: 5px 0px;
+    width: 103.5px;
+    float: left;
+    cursor: pointer;
+    text-align: center;
+}
+.province-item:hover, .city-item:hover{
+    background-color: rgba(66,66,66,1);
+    box-shadow: #000 0px 0px 10px;
+}
+.city{
+
+}
+
+.province{
+
+}

@@ -1,0 +1,62 @@
+<button class="btn btn-primary" data-toggle="modal" data-target="#myModal">新增信息</button>
+<!-- Modal -->
+<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+        <h4 class="modal-title" id="myModalLabel">新增</h4>
+      </div>
+      <div class="modal-body">
+        <!-- id  | name | sex | age | learn  | salary | extramoney | nativeplace -->
+        <form action="{C('URL')}/index.php?p=admin&m=about&a=add&page={$page}" method="post" class="form-horizontal" name="insert">
+            <div class="form-group">
+                <label for="title" class="control-label col-xs-2">标题:</label>
+                <div class="col-xs-6">
+                    <input id="title" type="text" name="title" class="form-control" value="" />
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="intro" class="control-label col-xs-2">简介:</label>
+                <div class="col-xs-6">
+                    <input id="intro" type="text" name="intro" class="form-control" value="" />
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="content" class="control-label col-xs-2">内容:</label>
+                <div class="col-xs-6">
+                    <textarea name="content" class="form-control" rows=10 cols=20></textarea>
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="design_cont" class="control-label col-xs-2">设计内容:</label>
+                <div class="col-xs-6">
+                    <!-- <input id="design_cont" type="text" name="design_cont" class="form-control" value="" /> -->
+					<textarea id="design_cont" name="design_cont" class="form-control" value=""></textarea>
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="our_ability" class="control-label col-xs-2">我们能力:</label>
+                <div class="col-xs-6">
+                    <input id="our_ability" type="text" name="our_ability" class="form-control" value="" />
+                </div>
+            </div>
+            <!-- <div class="form-group">
+                <input type="submit" class="btn btn-primary" value="{$subVal}" />
+            </div> -->
+        </form>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
+        <button id="btn" type="button" class="btn btn-primary">新增</button>
+      </div>
+    </div><!-- /.modal-content -->
+  </div><!-- /.modal-dialog -->
+</div><!-- /.modal -->
+
+<script>
+     var btn = document.getElementById("btn");
+     btn.onclick = function(){
+        document.forms.insert.submit();
+     }
+</script>
