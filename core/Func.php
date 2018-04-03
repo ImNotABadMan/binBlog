@@ -32,3 +32,54 @@ function V($str){
 function ajaxJson($data){
     return json_encode($data);
 }
+
+function pr($obj){
+    echo "<pre>";
+    print_r($obj);
+}
+
+// 生成url地址
+function U($args = '', $args1 = []){
+    // 分割字符串
+    $items  = explode('/', $args);
+    $plat   = $GLOBALS['plat'];
+    $module = $GLOBALS['module'];
+    $action = $GLOBALS['action'];
+    if($args != ''){
+        switch(count($items)){
+            case 1:
+                $url = C('URL') . "/index.php?p={$plat}&m={$module}&a={$items[0]}";
+                break;
+            case 2:
+                $url = C('URL') . "/index.php?p={$plat}&m={$items[0]}&a={$items[1]}";
+                break;
+            case 3:
+                $url = C('URL') . "/index.php?p={$items[0]}&m={$items[1]}&a={$items[2]}";
+                break;
+        }
+    }else{
+        $url = C('URL') . "/index.php?p={$plat}&m={$module}&a={$action}";
+    }
+
+
+    foreach ($args1 as $key => $val) {
+        $url .= "&{$key}={$val}";
+    }
+    return $url;
+}
+
+
+// 设置或者获得session
+function session($name, $value = ''){
+    @session_start();
+    if($value == ''){
+        if( isset($_SESSION[$name]) ){
+            return $_SESSION[$name];
+        }else{
+            return '';
+        }
+    }
+
+    $_SESSION[$name] = $value;
+    return true;
+}

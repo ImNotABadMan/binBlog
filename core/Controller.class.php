@@ -35,12 +35,21 @@ class Controller extends \Smarty{
     }
 
     public function checkLogin(){
+        // 后台
         @session_start();
         if(!isset($_SESSION['admin'])&&$GLOBALS['module']!='Privilege'&&$GLOBALS['plat']=='admin'&&$GLOBALS['module']!='APITest'){
             echo'请先登陆!';
             $url=C('URL').'/index.php?p=admin&m=privilege&a=showLogin';
             header('Refresh:2;url='.$url);
             exit;
+        }
+
+        // 前台
+        if( $GLOBALS['plat'] == 'home' ){
+            if( $GLOBALS['module'] == 'user' && session('user') == '' ){
+                echo '请先登录';
+                header( 'Refresh:2; url=' . U('public/login') );
+            }
         }
     }
 

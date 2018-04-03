@@ -15,7 +15,8 @@ $conf = array(
     ),
 
     #当前网站的域名
-    'URL' => 'https://www.bingeblog.xin/binBlog',
+    // 'URL' => 'https://www.bingeblog.xin/binBlog', // 线上
+    'URL' => 'http://www.binblog.com',
     // 'URL' => 'http://www.bin.com/pro1',
 
     #验证码相关配置
@@ -34,5 +35,6 @@ $conf = array(
         'a'=>'showList'
     ),
 
-    "pageRowsCount" => 10
+    "pageRowsCount" => 10,
+    'VAR_CAPTCHA'   => 'code', //验证码变量名字
 );

@@ -1,17 +1,17 @@
 <?php
-/* Smarty version 3.1.29, created on 2018-02-23 21:04:09
+/* Smarty version 3.1.29, created on 2018-04-02 17:31:02
   from "D:\Apache24\htdocs\binBlog\app\home\view\Com\header.html" */
 
 if ($_smarty_tpl->smarty->ext->_validateCompiled->decodeProperties($_smarty_tpl, array (
   'has_nocache_code' => false,
   'version' => '3.1.29',
-  'unifunc' => 'content_5a901149ee4325_40381613',
+  'unifunc' => 'content_5ac1f85690b4c9_70114915',
   'file_dependency' => 
   array (
     '9ef883f35072725697cade9805ea0334864e4851' => 
     array (
       0 => 'D:\\Apache24\\htdocs\\binBlog\\app\\home\\view\\Com\\header.html',
-      1 => 1519391018,
+      1 => 1522661420,
       2 => 'file',
     ),
   ),
@@ -19,7 +19,7 @@ if ($_smarty_tpl->smarty->ext->_validateCompiled->decodeProperties($_smarty_tpl,
   array (
   ),
 ),false)) {
-function content_5a901149ee4325_40381613 ($_smarty_tpl) {
+function content_5ac1f85690b4c9_70114915 ($_smarty_tpl) {
 ?>
 <!DOCTYPE html>
 <html lang="zh-cn">
@@ -50,10 +50,18 @@ function content_5a901149ee4325_40381613 ($_smarty_tpl) {
             </div>
             <p>
                 <ul class='login'>
+                    <?php if (!session('user')) {?>
                     <li class='login'><a href="<?php echo C('URL');?>
 /index.php?p=home&m=public&a=register">注册</a></li>
                     <li class='login'><a href="<?php echo C('URL');?>
 /index.php?p=home&m=public&a=login">登录</a></li>
+                    <?php } else { ?>
+                    <li class='login'><a href="<?php echo C('URL');?>
+/index.php?p=home&m=public&a=logout">退出</a></li>
+                    <li class='login'><a href="<?php echo U('User/index');?>
+"><?php echo $_SESSION['user']['nickname'];?>
+</a></li>
+                    <?php }?>
                 </ul>
                 <ul class='city'>
                     <?php if (isset($_smarty_tpl->tpl_vars['city']->value)) {?>

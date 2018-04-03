@@ -1,17 +1,17 @@
 <?php
-/* Smarty version 3.1.29, created on 2018-02-18 10:39:00
+/* Smarty version 3.1.29, created on 2018-04-02 16:27:41
   from "D:\Apache24\htdocs\binBlog\app\Home\view\index\index.html" */
 
 if ($_smarty_tpl->smarty->ext->_validateCompiled->decodeProperties($_smarty_tpl, array (
   'has_nocache_code' => false,
   'version' => '3.1.29',
-  'unifunc' => 'content_5a88e744736c89_83983354',
+  'unifunc' => 'content_5ac1e97daaf807_98670379',
   'file_dependency' => 
   array (
     'e559eedc344648d7e206ee6e4a79e9bea7489388' => 
     array (
       0 => 'D:\\Apache24\\htdocs\\binBlog\\app\\Home\\view\\index\\index.html',
-      1 => 1518921501,
+      1 => 1522205756,
       2 => 'file',
     ),
   ),
@@ -21,7 +21,7 @@ if ($_smarty_tpl->smarty->ext->_validateCompiled->decodeProperties($_smarty_tpl,
     'file:Com/footer.html' => 1,
   ),
 ),false)) {
-function content_5a88e744736c89_83983354 ($_smarty_tpl) {
+function content_5ac1e97daaf807_98670379 ($_smarty_tpl) {
 $_smarty_tpl->smarty->ext->_subtemplate->render($_smarty_tpl, "file:Com/header.html", $_smarty_tpl->cache_id, $_smarty_tpl->compile_id, 0, $_smarty_tpl->cache_lifetime, array('title'=>"--主页",'flag'=>1), 0, false);
 ?>
 
@@ -132,10 +132,11 @@ $_smarty_tpl->tpl_vars['row'] = $__foreach_f_row_0_saved_item;
 </body>
 <!-- 首页js 轮播  -->
 <?php echo '<script'; ?>
- type="text/javascript" src="/public/home/js/index.js"><?php echo '</script'; ?>
+ type="text/javascript" src="<?php echo C('URL');?>
+/public/home/js/index.js"><?php echo '</script'; ?>
 >
 <?php echo '<script'; ?>
- type="text/javascript" src="http://api.map.baidu.com/api?v=2.0&ak=v8uxmcbjK7Q6BUIptI7pN9bvPO08V4qW"><?php echo '</script'; ?>
+ type="text/javascript" src="https://api.map.baidu.com/api?v=2.0&ak=v8uxmcbjK7Q6BUIptI7pN9bvPO08V4qW"><?php echo '</script'; ?>
 >
 <?php echo '<script'; ?>
  type="text/javascript" >

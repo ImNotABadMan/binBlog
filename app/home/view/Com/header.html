@@ -21,8 +21,13 @@
             </div>
             <p>
                 <ul class='login'>
+                    {if !session('user')}
                     <li class='login'><a href="{C('URL')}/index.php?p=home&m=public&a=register">注册</a></li>
                     <li class='login'><a href="{C('URL')}/index.php?p=home&m=public&a=login">登录</a></li>
+                    {else}
+                    <li class='login'><a href="{C('URL')}/index.php?p=home&m=public&a=logout">退出</a></li>
+                    <li class='login'><a href="{U('User/index')}">{$smarty.session.user.nickname}</a></li>
+                    {/if}
                 </ul>
                 <ul class='city'>
                     {if isset($city) }

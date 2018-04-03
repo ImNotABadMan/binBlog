@@ -8,7 +8,6 @@ class PrivilegeController extends Controller{
 		$this->display('Privilege/login.html');
 	}
 	public function captcha(){
-
 		M('\\plugins\\CaptchaTool')->outputImg();
 	}
 	public function loginh(){

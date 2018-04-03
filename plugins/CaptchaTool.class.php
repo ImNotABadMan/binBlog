@@ -102,3 +102,5 @@ class CaptchaTool{
         session(C('VAR_CAPTCHA'), $this->randStr);
     }
 }
+
+

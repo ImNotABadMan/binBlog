@@ -22,3 +22,8 @@ define('ROOT_APP_HOME_CON_PATH', ROOT_APP_HOME_PATH . 'controller/');//    binBl
 define('ROOT_APP_HOME_VIEW_PATH', ROOT_APP_HOME_PATH . 'view/');//    binBlog/app/home/view/
 
 define('SMARTY_DIR', ROOT_PLU_PATH.'smarty/');//     binBlog/plugins/smarty/
+
+// 判断请求方式
+define('IS_POST', strtolower($_SERVER['REQUEST_METHOD']) == 'post');
+define('IS_GET', strtolower($_SERVER['REQUEST_METHOD']) == 'get');
+define('IS_AJAX', strtolower($_SERVER['HTTP_X_REQUESTED_WITH']) == 'xmlhttprequest');
