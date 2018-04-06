@@ -21,9 +21,16 @@ define('ROOT_APP_ADMIN_VIEW_PATH', ROOT_APP_ADMIN_PATH . 'view/');//    binBlog/
 define('ROOT_APP_HOME_CON_PATH', ROOT_APP_HOME_PATH . 'controller/');//    binBlog/app/home/controller/
 define('ROOT_APP_HOME_VIEW_PATH', ROOT_APP_HOME_PATH . 'view/');//    binBlog/app/home/view/
 
+define('ROOT_APP_WECHAT_PATH', ROOT_APP_PATH . 'wechat/'); // binBlog/app/wechat
+
+
 define('SMARTY_DIR', ROOT_PLU_PATH.'smarty/');//     binBlog/plugins/smarty/
 
 // 判断请求方式
 define('IS_POST', strtolower($_SERVER['REQUEST_METHOD']) == 'post');
 define('IS_GET', strtolower($_SERVER['REQUEST_METHOD']) == 'get');
 define('IS_AJAX', strtolower($_SERVER['HTTP_X_REQUESTED_WITH']) == 'xmlhttprequest');
+
+# 微信接口回调地址的认证
+define("TOKEN", "weixin");
+

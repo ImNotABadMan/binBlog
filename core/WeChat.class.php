@@ -1,4 +1,6 @@
 <?php
+namespace core;
+
 class WeChat
 {
 	//客户端的openId
@@ -19,12 +21,13 @@ class WeChat
 	protected $lng;
 	protected $time;
 	public function CurlRequest($url,$data=null){
+
 	}
 	public function GetAccessToken(){
 	}
 	//自动回复(此方法必须覆盖)
 	public function responseMsg(){
-		$dataFromClient = $GLOBALS["HTTP_RAW_POST_DATA"];
+        $dataFromClient = isset($GLOBALS["HTTP_RAW_POST_DATA"]) ? $GLOBALS['HTTP_RAW_POST_DATA'] : file_get_contents("php://input");
 		if (!empty($dataFromClient)){
 			$postObj = simplexml_load_string($dataFromClient, 'SimpleXMLElement', LIBXML_NOCDATA);
             $this -> fromUsername = $postObj->FromUserName;
@@ -32,17 +35,17 @@ class WeChat
             $this -> keyword = trim($postObj->Content);
             $this -> sendType = trim($postObj->MsgType);
             $this -> Event = trim($postObj->MsgType)=='event' ? $postObj->Event : '';
-                     
+
             $this -> Recognition = trim($postObj->MsgType)=='voice' ? $postObj->Recognition : '语音内容无法识别';
             $this -> EventKey = $postObj->Event=='CLICK' ? $postObj->EventKey : '';
    			$this -> lat = trim($postObj->MsgType)=='location' ? $postObj->Location_X : '';
-     		$this -> lng = trim($postObj->MsgType)=='location' ? $postObj->Location_Y : ''; 
+     		$this -> lng = trim($postObj->MsgType)=='location' ? $postObj->Location_Y : '';
             $this -> time = time();
 		}
 	}
 	protected function reText( $contentStr ){
 		$resultStr = sprintf(WeChatApi::getMsgTpl('text'), $this->fromUsername, $this->toUsername, $this->time, 'text', $contentStr);
-		echo $resultStr;	
+		echo $resultStr;
 	}
 	protected function reImage( $MediaId ){
 		$resultStr = sprintf(WeChatApi::getMsgTpl('image'), $this->fromUsername, $this->toUsername, $this->time, 'image', $MediaId );
@@ -54,7 +57,7 @@ class WeChat
 	}
     protected function reVideo($MediaId,$title,$desc){
         $resultStr = sprintf(WeChatApi::getMsgTpl('video'), $this->fromUsername, $this->toUsername, $this->time, 'video', $MediaId,$title,$desc);
-        echo $resultStr;      
+        echo $resultStr;
     }
 	protected function reNews($items){
 		$count = count( $items );
@@ -65,11 +68,11 @@ class WeChat
 	private function createNewsItems($items){
 		foreach ($items as $data ) {
 			$item .= "<item>
-			<Title><![CDATA[{$data['Title']}]]></Title> 
+			<Title><![CDATA[{$data['Title']}]]></Title>
 			<Description><![CDATA[{$data['Desc']}]]></Description>
 			<PicUrl><![CDATA[{$data['PicUrl']}]]></PicUrl>
 			<Url><![CDATA[{$data['Url']}]]></Url>
-			</item>";			
+			</item>";
 		}
 		return $item;
 	}
@@ -79,7 +82,7 @@ class WeChat
     private function checkSignature(){
         $signature = $_GET["signature"];
         $timestamp = $_GET["timestamp"];
-        $nonce = $_GET["nonce"];	
+        $nonce = $_GET["nonce"];
 		$token = TOKEN;
 		$tmpArr = array($token, $timestamp, $nonce);
 		sort($tmpArr);
@@ -113,7 +116,7 @@ class WeChat
      	$access_token = $this -> GetAccessToken();
     	$fromUsername = $this -> fromUsername;
     	$url = WeChatApi::getApiUrl('api_customer_send');
-    	$url .= $access_token; 
+    	$url .= $access_token;
     	$set = array();
         foreach ($ImgText as $rs){
             $content = null;
@@ -122,8 +125,8 @@ class WeChat
                 "description"=>urlencode($rs['desc']),
                 "url"=>$rs['url'],
                 "picurl"=>$rs['picurl'],
-            );          
-            $set[] = $content;           
+            );
+            $set[] = $content;
         }
         $data = array(
             "touser"=>"{$fromUsername}",
@@ -132,10 +135,10 @@ class WeChat
                 "articles" => $set,
             ),
         );
-        $data = json_encode($data);   
-        $data = urldecode($data);    
+        $data = json_encode($data);
+        $data = urldecode($data);
         $this -> CurlRequest( $url , $data );
-        exit();     	
+        exit();
     }
     public function codeTransAccessInfo($code=null){
     	if( isset($code) ){

@@ -3,7 +3,7 @@
  * @Author: anchen
  * @Date:   2018-02-23 20:38:23
  * @Last Modified by:   anchen
- * @Last Modified time: 2018-04-02 16:29:56
+ * @Last Modified time: 2018-04-06 09:52:38
  */
 namespace home\controller;
 use \home\controller\CommonController as Controller;
@@ -33,7 +33,7 @@ class PublicController extends Controller{
                 exit;
             }
 
-            $user = M("\\model\\UserModel")->getRow('*', 'bl_user', "acc = '{$username}' and pwd = '{$pwd}' and is_amdin = 0");
+            $user = M("\\model\\UserModel")->getRow('*', 'bl_user', "acc = '{$username}' and pwd = '{$pwd}' and is_admin = 0");
 
             if(!$user){
                 echo "<script>alert('账号或者密码不对');history.back();</script>";

@@ -37,6 +37,10 @@ class App{
         }elseif( substr($cname, -4)=='Tool' ){// 如果截取尾部4个字符为Tool，则说明这是一个工具类
             $path = ROOT_PLU_PATH . $cname . '.class.php';
             include $path;// 引入工具类文件
+        }elseif( substr($cname, -5) == 'WxApi'){
+            $path = ROOT_APP_WECHAT_PATH . $cname . '.class.php';
+            $path = str_replace('\\', '/', $path);
+            include $path;
         }elseif( substr($cname, -3) == 'Api' ){
             $path = ROOT_APP_API_PATH . $cname . '.class.php';
             $path = str_replace('\\', '/', $path);
@@ -62,6 +66,8 @@ class App{
 
         if($plat == 'api'){
             $className = '\\' . $plat . '\\' . $module . 'Api';
+        }elseif($plat == 'wechat' ){
+            $className = $module;
         }else{
             $className = '\\' . $plat . '\\controller\\' . $module . 'Controller';
         }
