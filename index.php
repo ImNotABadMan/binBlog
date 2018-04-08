@@ -12,12 +12,14 @@ include './config/init.php';
 
 # 如果是微信请求，跳转到微信方法里面
 $dataFromClient = isset($GLOBALS["HTTP_RAW_POST_DATA"]) ? $GLOBALS['HTTP_RAW_POST_DATA'] : file_get_contents("php://input");
-if(simplexml_load_string($dataFromClient, 'SimpleXMLElement', LIBXML_NOCDATA)){
-    $conf['index'] = array(
-        'p'=>'wechat',
-        'm'=>'WxApi',
-        'a'=>'responseMsg'
-    );
+if(substr($dataFromClient, 1, 3) == 'xml'){
+    if(simplexml_load_string($dataFromClient, 'SimpleXMLElement', LIBXML_NOCDATA)){
+        $conf['index'] = array(
+            'p'=>'wechat',
+            'm'=>'WxApi',
+            'a'=>'responseMsg'
+        );
+    }
 }
 
 
