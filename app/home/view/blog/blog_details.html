@@ -2,7 +2,7 @@
 <hr style="background-color:#aaa;"/>
 <div class="content details_content">
     <div class="left">
-        <div class="breadcrumbs"> <a href="https://cuiqingcai.com/category/technique">{$smarty.get.category}</a> <small>&gt;</small> <a href="https://cuiqingcai.com/category/technique/python">{$row.c_c_name}</a> <small>&gt;</small> <span class="muted">{$row.title}</span>
+        <div class="breadcrumbs"> <a href="https://cuiqingcai.com/category/technique">{$smarty.get.category}</a> <small>&gt;</small> <a href="https://cuiqingcai.com/category/technique/python">{$row.c_c_name}</a> <small>&gt;</small> <span class="muted a-title">{$row.title}</span>
         </div>
         <header class="article-header">
         <h1 class="article-title"></h1>
@@ -27,6 +27,7 @@
                   {foreach from=$comRows item="row" name="f_com"}
                   <div style='padding-left: {$row.level * 20}px;'>
                   <div class="comment-meta">
+                  <!-- 最后一条评论用于提交后关显示当前scroll -->
                   {if $smarty.foreach.f_com.iteration == count($comRows)}
                     <a id="comment{count($comRows)}"></a>
                   {/if}
@@ -38,7 +39,12 @@
                     </div>
                   </div><!-- .comment-meta -->
                   <div class="comment-body">
-                    <p>{htmlspecialchars_decode($row.content)}</p><hr/>
+                    <p>{htmlspecialchars_decode($row.content)}</p>
+
+                    <div><p class="answer" data-id="{$smarty.foreach.f_com.iteration}">回复</p></div>
+                    <div style="display: none;" class="div-answer div-answer{$smarty.foreach.f_com.iteration}" ><textarea id='anwertext{$smarty.foreach.f_com.iteration}' class='anwer-texteare'></textarea><button class="btn-answer" data-id="{$row.id}" data-index="{$smarty.foreach.f_com.iteration}" >提交</button></div>
+
+                    <br /><hr/>
                   </div><!-- .comment-body -->
                   </div>
                   {foreachelse}
@@ -49,7 +55,7 @@
                 <!-- Comment Form -->
                 <div class="comment-respond">
                   <h4 class="comment-reply-title">发布新评论</h4>
-                  <form method="post" id="comment-form" class="comment-form" action="{C('URL')}?p=home&c=blog&a=addComment&last={count($comRows)}">
+                  <form method="post" id="comment-form" class="comment-form" action="{C('URL')}?p=home&m=comment&a=addComment&last={count($comRows)}">
                     <input type="hidden" name="cat_title" value="{$row.title}"/>
                     <input type="hidden" name="id" value="{$row.id}"/>
                     <div class="form-group">
@@ -59,7 +65,7 @@
                     <p class="form-submit">
                     <!-- 如果用户登录后才允许发表 -->
                     {if isset($smarty.session.user) }
-                        <input name="submit" type="submit" id="submit" class="btn btn-primary btn-block" value="发布">
+                        <input name="submit" type="submit" id="submit" class="btn" value="发布">
                     {else}
                         您尚未登录！
                       {/if}
@@ -74,4 +80,61 @@
 
 {include file="Com/footer.html"}
 </body>
+<script src="{C('URL')}/public/plugins/ueditor/ueditor.config.js"></script>
+<script src="{C('URL')}/public/plugins/ueditor/ueditor.all.js"></script>
+<script>
+  var ue;
+    $('.btn-answer').click(function(e){
+        if( '{$smarty.session.user.acc}' == '' ){
+            alert('请先登录');
+        }
+        var id = $(this).data('id');
+        var aid = $(this).data('aid');
+        $.ajax({
+            url: '{U("Comment/addAnswer")}',
+            type: 'POST',
+            data: { 'text':  ue.getContent(), id:  id, aid: $('input[name=id]').val() },
+            dataType: 'json',
+            success: function (res) {
+              if(res.code == 0){
+                window.location.reload();
+              }else if(res.code == 1){
+                alert('回复失败');
+              }
+
+            }
+        });
+    });
+
+$('.answer').click(function(e){
+
+  // 是否已经登录
+  if( '{$smarty.session.user.acc}' == '' ){
+    if( window.confirm( '请登录' )){
+      window.location.href = '{U("Public/login")}';
+    }
+    return false;
+  }
+
+  var id = $(this).data('id');
+
+  // 已经显示就隐藏
+  if( $(".div-answer" + id).css('display') == 'inline-block' ){
+    $(".div-answer" + id).css('display', 'none');
+    return false;
+  }
+  $('.div-answer').css('display', 'none');
+  $(".div-answer" + id).css('display', 'inline-block');
+
+  ue = UE.getEditor('anwertext' + id,{
+    initialFrameWidth: 800, //初始化编辑器宽度,默认1000
+    initialFrameHeight: 320,  //初始化编辑器高度,默认320
+    toolbars: [[
+        'bold', 'italic', 'underline', 'strikethrough', 'superscript', 'subscript', '|', 'forecolor', '|','rowspacingtop', 'rowspacingbottom', 'lineheight', '|',, 'fontfamily', 'fontsize', 'indent', '|','justifyleft', 'justifycenter', 'justifyright', 'justifyjustify', '|','horizontal', 'date', 'time'
+    ]],
+    wordCount:true,          //是否开启字数统计
+    elementPathEnabled : false,
+  });
+});
+</script>
 </html>

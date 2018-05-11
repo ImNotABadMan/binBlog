@@ -1,17 +1,17 @@
 <?php
-/* Smarty version 3.1.29, created on 2018-02-21 09:54:31
+/* Smarty version 3.1.29, created on 2018-05-10 22:59:23
   from "D:\Apache24\htdocs\binBlog\app\home\view\blog\blog.html" */
 
 if ($_smarty_tpl->smarty->ext->_validateCompiled->decodeProperties($_smarty_tpl, array (
   'has_nocache_code' => false,
   'version' => '3.1.29',
-  'unifunc' => 'content_5a8cd157dd9d12_22633604',
+  'unifunc' => 'content_5af45e4b5d3ae8_90815664',
   'file_dependency' => 
   array (
     '6537e6b1626193487da106546855613206a94dfc' => 
     array (
       0 => 'D:\\Apache24\\htdocs\\binBlog\\app\\home\\view\\blog\\blog.html',
-      1 => 1519178067,
+      1 => 1525964361,
       2 => 'file',
     ),
   ),
@@ -21,7 +21,7 @@ if ($_smarty_tpl->smarty->ext->_validateCompiled->decodeProperties($_smarty_tpl,
     'file:Com/footer.html' => 1,
   ),
 ),false)) {
-function content_5a8cd157dd9d12_22633604 ($_smarty_tpl) {
+function content_5af45e4b5d3ae8_90815664 ($_smarty_tpl) {
 if (!is_callable('smarty_modifier_date_format')) require_once 'D:\\Apache24\\htdocs\\binBlog/plugins/smarty/plugins\\modifier.date_format.php';
 $_smarty_tpl->smarty->ext->_subtemplate->render($_smarty_tpl, "file:Com/header.html", $_smarty_tpl->cache_id, $_smarty_tpl->compile_id, 0, $_smarty_tpl->cache_lifetime, array('title'=>"--博客"), 0, false);
 ?>
@@ -71,9 +71,43 @@ $__foreach_row_0_saved_local_item = $_smarty_tpl->tpl_vars['row'];
                         <li><img src="<?php echo C('URL');?>
 /public/home/images/h2.png"><?php echo smarty_modifier_date_format($_smarty_tpl->tpl_vars['row']->value['post_date'],"%Y-%m-%d %H:%M");?>
 </li>
-                        <li><a href="###"><img src="<?php echo C('URL');?>
+                        <li><a ><img src="<?php echo C('URL');?>
 /public/home/images/h3.png"><?php echo $_smarty_tpl->tpl_vars['row']->value['u_nickname'];?>
 </a></li>
+                        <li class='collect'><a style="cursor: pointer;" data-id="<?php echo $_smarty_tpl->tpl_vars['row']->value['id'];?>
+">
+                            <?php if (count($_smarty_tpl->tpl_vars['collects']->value) > 0) {?>
+                                <?php
+$_from = $_smarty_tpl->tpl_vars['collects']->value;
+if (!is_array($_from) && !is_object($_from)) {
+settype($_from, 'array');
+}
+$__foreach_collect_1_saved_item = isset($_smarty_tpl->tpl_vars['collect']) ? $_smarty_tpl->tpl_vars['collect'] : false;
+$_smarty_tpl->tpl_vars['collect'] = new Smarty_Variable();
+$_smarty_tpl->tpl_vars['collect']->_loop = false;
+foreach ($_from as $_smarty_tpl->tpl_vars['collect']->value) {
+$_smarty_tpl->tpl_vars['collect']->_loop = true;
+$__foreach_collect_1_saved_local_item = $_smarty_tpl->tpl_vars['collect'];
+?>
+                                <?php if ($_smarty_tpl->tpl_vars['row']->value['id'] == $_smarty_tpl->tpl_vars['collect']->value['a_id']) {?>
+                                    <img src="<?php echo C('URL');?>
+/public/home/images/iscollect.jpg">
+                                <?php } else { ?>
+                                    <img src="<?php echo C('URL');?>
+/public/home/images/collect.jpg">
+                                <?php }?>
+                                <?php
+$_smarty_tpl->tpl_vars['collect'] = $__foreach_collect_1_saved_local_item;
+}
+if ($__foreach_collect_1_saved_item) {
+$_smarty_tpl->tpl_vars['collect'] = $__foreach_collect_1_saved_item;
+}
+?>
+                            <?php } else { ?>
+                                    <img src="<?php echo C('URL');?>
+/public/home/images/collect.jpg">
+                            <?php }?>
+                        收藏</a></li>
                     </ul>
                 </div>
             </div>
@@ -100,12 +134,12 @@ $_from = $_smarty_tpl->tpl_vars['cate']->value;
 if (!is_array($_from) && !is_object($_from)) {
 settype($_from, 'array');
 }
-$__foreach_node_1_saved_item = isset($_smarty_tpl->tpl_vars['node']) ? $_smarty_tpl->tpl_vars['node'] : false;
+$__foreach_node_2_saved_item = isset($_smarty_tpl->tpl_vars['node']) ? $_smarty_tpl->tpl_vars['node'] : false;
 $_smarty_tpl->tpl_vars['node'] = new Smarty_Variable();
 $_smarty_tpl->tpl_vars['node']->_loop = false;
 foreach ($_from as $_smarty_tpl->tpl_vars['node']->value) {
 $_smarty_tpl->tpl_vars['node']->_loop = true;
-$__foreach_node_1_saved_local_item = $_smarty_tpl->tpl_vars['node'];
+$__foreach_node_2_saved_local_item = $_smarty_tpl->tpl_vars['node'];
 ?>
                     <li><a href="<?php echo C('URL');?>
 /index.php?p=home&m=blog&a=showBlog&category=<?php echo $_GET['category'];?>
@@ -114,10 +148,10 @@ $__foreach_node_1_saved_local_item = $_smarty_tpl->tpl_vars['node'];
 echo $_smarty_tpl->tpl_vars['node']->value['name'];?>
 </a></li>
                     <?php
-$_smarty_tpl->tpl_vars['node'] = $__foreach_node_1_saved_local_item;
+$_smarty_tpl->tpl_vars['node'] = $__foreach_node_2_saved_local_item;
 }
-if ($__foreach_node_1_saved_item) {
-$_smarty_tpl->tpl_vars['node'] = $__foreach_node_1_saved_item;
+if ($__foreach_node_2_saved_item) {
+$_smarty_tpl->tpl_vars['node'] = $__foreach_node_2_saved_item;
 }
 ?>
                 </ul>
@@ -181,6 +215,32 @@ $_smarty_tpl->tpl_vars['node'] = $__foreach_node_1_saved_item;
 /?p=home&m=blog&a=showBlog&c_id=<?php echo $_smarty_tpl->tpl_vars['c_id']->value;?>
 &page=" + nextPage;
     }
+
+    $('.collect a').click(function(e){
+        e.preventDefault();
+        var id = $(this).data('id');
+        var _this = $(this);
+        $.ajax({
+            url: '<?php echo U("blog/collect");?>
+',
+            data: { id: id },
+            type: 'POST',
+            dataType: 'json',
+            success: function(res){
+                if( res.code == 0 ){
+                    // 收藏
+                    _this.children('img').attr('src', "<?php echo C('URL');?>
+/public/home/images/iscollect.jpg");
+                }else if( res.code == 1){
+                    _this.children('img').attr('src', "<?php echo C('URL');?>
+/public/home/images/collect.jpg");
+                }else{
+                    alert(res.msg);
+                }
+            }
+        });
+
+    });
 <?php echo '</script'; ?>
 >
 </body>

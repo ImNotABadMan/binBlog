@@ -1,17 +1,17 @@
 <?php
-/* Smarty version 3.1.29, created on 2018-02-13 21:28:05
+/* Smarty version 3.1.29, created on 2018-04-17 22:42:11
   from "D:\Apache24\htdocs\binBlog\app\home\view\Com\footer.html" */
 
 if ($_smarty_tpl->smarty->ext->_validateCompiled->decodeProperties($_smarty_tpl, array (
   'has_nocache_code' => false,
   'version' => '3.1.29',
-  'unifunc' => 'content_5a82e7e5d205b1_56086234',
+  'unifunc' => 'content_5ad607c3adb8d0_17450477',
   'file_dependency' => 
   array (
     '0d471e87bb104fd0b3b592682be1f1ce772f9dfe' => 
     array (
       0 => 'D:\\Apache24\\htdocs\\binBlog\\app\\home\\view\\Com\\footer.html',
-      1 => 1518528483,
+      1 => 1523976120,
       2 => 'file',
     ),
   ),
@@ -19,7 +19,7 @@ if ($_smarty_tpl->smarty->ext->_validateCompiled->decodeProperties($_smarty_tpl,
   array (
   ),
 ),false)) {
-function content_5a82e7e5d205b1_56086234 ($_smarty_tpl) {
+function content_5ad607c3adb8d0_17450477 ($_smarty_tpl) {
 ?>
 <div class="clearfix"></div>
 

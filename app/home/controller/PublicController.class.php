@@ -3,7 +3,7 @@
  * @Author: anchen
  * @Date:   2018-02-23 20:38:23
  * @Last Modified by:   anchen
- * @Last Modified time: 2018-04-06 09:52:38
+ * @Last Modified time: 2018-05-09 22:08:06
  */
 namespace home\controller;
 use \home\controller\CommonController as Controller;
@@ -57,6 +57,10 @@ class PublicController extends Controller{
 
     public function code(){
         M("\\plugins\\CaptchaTool")->outputImg();
+    }
+
+    public function register(){
+        $this->display('');
     }
 }
 

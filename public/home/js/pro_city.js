@@ -2,7 +2,7 @@
 * @Author: anchen
 * @Date:   2018-01-24 08:56:42
 * @Last Modified by:   anchen
-* @Last Modified time: 2018-02-05 18:11:01
+* @Last Modified time: 2018-04-17 20:36:10
 */
 
 'use strict';
@@ -39,7 +39,7 @@ $('.city').click(function(){
 
 var province = '';
 
-$.get('/binBlog/index.php?p=api&m=city&a=getProvince', {}, function(data){
+$.get('/index.php?p=api&m=city&a=getProvince', {}, function(data){
     if(data.errCode != 0){
         return false;
     }
@@ -65,9 +65,9 @@ $.get('/binBlog/index.php?p=api&m=city&a=getProvince', {}, function(data){
 }, 'json');
 
 function getCity(city){
-    var url = '/binBlog/index.php?p=api&m=city&a=getCity';
+    var url = '/index.php?p=api&m=city&a=getCity';
     if(typeof city == 'string'){
-        url = '/binBlog/index.php?p=api&m=city&a=getCityByProvince';
+        url = '/index.php?p=api&m=city&a=getCityByProvince';
     }
     $.get(url, {
             province_id : city
@@ -78,7 +78,7 @@ function getCity(city){
             $('.city-box').html('');
             var html = `<ul>`;
             $(data.msg).each(function(key,val){
-                html += `<a class='city-item' href="/binBlog/index.php?p=home&m=index&a=showList&province=${city}&city=${val.name}"><li class='city-item' data-index='${val.id}'>${val.name}</li></a>`;
+                html += `<a class='city-item' href="/index.php?p=home&m=index&a=showList&province=${city}&city=${val.name}"><li class='city-item' data-index='${val.id}'>${val.name}</li></a>`;
             });
             html += `</ul>`;
             $('.city-box').html(html);

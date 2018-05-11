@@ -1,17 +1,17 @@
 <?php
-/* Smarty version 3.1.29, created on 2018-04-02 15:54:52
+/* Smarty version 3.1.29, created on 2018-05-07 22:37:20
   from "D:\Apache24\htdocs\binBlog\app\home\view\public\login.html" */
 
 if ($_smarty_tpl->smarty->ext->_validateCompiled->decodeProperties($_smarty_tpl, array (
   'has_nocache_code' => false,
   'version' => '3.1.29',
-  'unifunc' => 'content_5ac1e1cc855cf9_39402245',
+  'unifunc' => 'content_5af064a00efb37_71598761',
   'file_dependency' => 
   array (
     'de6e0a663974d1b7a58f265a46dfb12caee3a475' => 
     array (
       0 => 'D:\\Apache24\\htdocs\\binBlog\\app\\home\\view\\public\\login.html',
-      1 => 1522655680,
+      1 => 1525703837,
       2 => 'file',
     ),
   ),
@@ -19,7 +19,7 @@ if ($_smarty_tpl->smarty->ext->_validateCompiled->decodeProperties($_smarty_tpl,
   array (
   ),
 ),false)) {
-function content_5ac1e1cc855cf9_39402245 ($_smarty_tpl) {
+function content_5af064a00efb37_71598761 ($_smarty_tpl) {
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -44,10 +44,14 @@ function content_5ac1e1cc855cf9_39402245 ($_smarty_tpl) {
 /index.php?p=admin&m=privilege&a=captcha" id="img" width="300" height="170"></div>
             <input name="code" type="text" class="login-input-user" id="textfield" value=""/>
             <label class="log-lab" style=""><input type="checkbox" style="" name="rm7" value="yes"> 7天内自动登录</label>
-        <input type="submit" name="button" id="button" value="登录" class="button" style="background-color: #0165ad;"/>
+            <input type="submit" name="button" id="button" value="登录" class="button" style="background-color: #0165ad;"/>
       </form>
     </div>
 </div>
+<?php echo '<script'; ?>
+ src="<?php echo C('URL');?>
+/public/home/js/jQuery.js"><?php echo '</script'; ?>
+>
 <?php echo '<script'; ?>
  type="text/javascript">
 document.getElementById('img').onclick = function (){
@@ -56,6 +60,24 @@ document.getElementById('img').onclick = function (){
 /index.php?p=home&m=public&a=code&n="+Math.random();
 };
 
+document.getElementById('button').onclick = function(e){
+    e.preventDefault();
+    if( $('input[name=code]').val().trim() == '' ){
+        alert('请输入验证码');
+        return false;
+    }
+
+    if( $('input[name=username]').val().trim() == '' ){
+        alert('请输入账号');
+        return false;
+    }
+    if( $('input[name=pwd]').val().trim() == '' ){
+        alert('请输入密码');
+        return false;
+    }
+
+    $('#form1').submit();
+}
 <?php echo '</script'; ?>
 >
 </body>

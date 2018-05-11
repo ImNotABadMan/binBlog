@@ -11,6 +11,9 @@
     {if !empty($flag)&&$flag==1}
     <link rel="stylesheet" href="{C('URL')}/public/home/css/style.css">
     {/if}
+    {if $smarty.get.m == 'blog' && $smarty.get.a == 'showDetails'}
+    <link rel="stylesheet" href="{C('URL')}/public/home/css/comment.css" />
+    {/if}
 </head>
 <body>
 <header>

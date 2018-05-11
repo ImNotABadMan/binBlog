@@ -1,8 +1,8 @@
  <?php
 include "Common.php";
-include LIB."WeChatApi.class.php";
-include LIB."WeChat.class.php";
-$WeChat = new WeChat();
+include LIB."/WeChatApi.class.php";
+include LIB."/WeChat.class.php";
+$WeChat = new \core\WeChat();
 $access_token = $WeChat -> GetAccessToken();
 $data = '{
 		"button":[
@@ -33,12 +33,12 @@ $data = '{
 							"type":"view",
 							"name":"子菜单3",
 							"url":"http://www.qq.com"
-						}					
+						}
 				]
 			}
 		]
 }';
-$url = WeChatApi::getApiUrl('api_create_menus');
+$url = \core\WeChatApi::getApiUrl('api_create_menus');
 $url .= $access_token;
 $str = $WeChat -> CurlRequest( $url,$data );
 $json = json_decode($str,true);

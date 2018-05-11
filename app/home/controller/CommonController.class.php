@@ -3,7 +3,7 @@
  * @Author: anchen
  * @Date:   2018-01-25 10:29:04
  * @Last Modified by:   anchen
- * @Last Modified time: 2018-02-24 09:45:31
+ * @Last Modified time: 2018-04-17 21:49:02
  */
 namespace home\controller;
 use \core\Controller;
@@ -12,6 +12,11 @@ class CommonController extends Controller{
 
     public function __construct(){
         parent::__construct();
+
+        $navs = M("\\model\\CCateModel")->getRows('*', 'bl_cate_category', "parent_id = 0");
+
+        $this->assign("navs", $navs);
+
         $this->checkCookie();
     }
 

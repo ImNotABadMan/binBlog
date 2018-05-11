@@ -1,17 +1,17 @@
 <?php
-/* Smarty version 3.1.29, created on 2018-04-02 17:30:51
+/* Smarty version 3.1.29, created on 2018-04-17 21:05:57
   from "D:\Apache24\htdocs\binBlog\app\Home\view\Com\header.html" */
 
 if ($_smarty_tpl->smarty->ext->_validateCompiled->decodeProperties($_smarty_tpl, array (
   'has_nocache_code' => false,
   'version' => '3.1.29',
-  'unifunc' => 'content_5ac1f84b9eb049_09026789',
+  'unifunc' => 'content_5ad5f13586fc86_07015993',
   'file_dependency' => 
   array (
     'b3b5aa033a87a2193dcac6be13e819524762f447' => 
     array (
       0 => 'D:\\Apache24\\htdocs\\binBlog\\app\\Home\\view\\Com\\header.html',
-      1 => 1522661420,
+      1 => 1523967965,
       2 => 'file',
     ),
   ),
@@ -19,7 +19,7 @@ if ($_smarty_tpl->smarty->ext->_validateCompiled->decodeProperties($_smarty_tpl,
   array (
   ),
 ),false)) {
-function content_5ac1f84b9eb049_09026789 ($_smarty_tpl) {
+function content_5ad5f13586fc86_07015993 ($_smarty_tpl) {
 ?>
 <!DOCTYPE html>
 <html lang="zh-cn">
@@ -38,6 +38,10 @@ function content_5ac1f84b9eb049_09026789 ($_smarty_tpl) {
     <?php if (!empty($_smarty_tpl->tpl_vars['flag']->value) && $_smarty_tpl->tpl_vars['flag']->value == 1) {?>
     <link rel="stylesheet" href="<?php echo C('URL');?>
 /public/home/css/style.css">
+    <?php }?>
+    <?php if ($_GET['m'] == 'blog' && $_GET['a'] == 'showDetails') {?>
+    <link rel="stylesheet" href="<?php echo C('URL');?>
+/public/home/css/comment.css" />
     <?php }?>
 </head>
 <body>

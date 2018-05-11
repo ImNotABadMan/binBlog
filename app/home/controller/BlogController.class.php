@@ -3,7 +3,7 @@
  * @Author: anchen
  * @Date:   2017-12-02 08:51:15
  * @Last Modified by:   anchen
- * @Last Modified time: 2018-02-21 11:33:01
+ * @Last Modified time: 2018-05-10 22:53:00
  */
 namespace home\controller;
 use \home\controller\CommonController as Controller;
@@ -13,10 +13,6 @@ class BlogController extends Controller{
 
     public function __construct(){
         parent::__construct();
-
-        $navs = M("\\model\\CCateModel")->getRows('*', 'bl_cate_category', "parent_id = 0");
-
-        $this->assign("navs", $navs);
     }
 
 
@@ -56,6 +52,10 @@ class BlogController extends Controller{
         $tree = array();
         $cate = M("\\model\\CCateModel")->recursive($tree, $cates);
 
+        $condition = ['u_id' => session('user')['id']];
+        $collects = M('\\model\\CollectArticleModel')->table('bl_user_collect_article')->select($condition);
+        $this->assign("collects", $collects);
+
         $this->assign("pageHtml", $pageHtml);//分页
         $this->assign("page", $page);
         $this->assign("pageCount", $pageCount);
@@ -84,6 +84,37 @@ class BlogController extends Controller{
         $this->assign("comRows", $comRows);
 
         $this->display("blog/blog_details.html");
+    }
+
+    public function collect(){
+        $id = isset($_POST['id']) ? $_POST['id'] : 0;
+        if( !$id ){
+            echo json_encode(['code' => 2, 'msg' => '无效id']);die;
+        }
+
+        $user = session('user');
+        if( !$user ){
+            echo json_encode(['code' => 2, 'msg' => '请登录']);die;
+        }
+
+        $model = M('\\model\\CollectArticleModel')->table('bl_user_collect_article');
+        $condition = [
+            'a_id' => $id,
+            'u_id' => $user['id']
+        ];
+        $info = $model->find($condition);
+        if( $info ){
+            $model->delete($condition);
+            echo json_encode(['code' => 1, 'msg' => '已取消收藏']);die;
+        }
+        $data = [
+            'u_id' => $user['id'],
+            'u_nickname' => $user['nickname'],
+            'a_id' => $id,
+            'collected_at' => time()
+        ];
+        $model->insert($data);
+        echo json_encode(['code' => 0, 'msg' => '收藏成功']);die;
     }
 }
 
