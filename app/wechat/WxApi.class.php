@@ -9,8 +9,12 @@ class WxApi extends \core\Wechat
 		if( !empty( $this->keyword ) ){
 			$this -> reText('欢迎使用微信公众平台开发API');
 		}
-
 	}
+	
+	private function login()
+    {
+
+    }
 
     // public function responseMsg(){
     //     $this->valid();
