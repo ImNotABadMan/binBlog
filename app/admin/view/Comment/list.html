@@ -1,0 +1,67 @@
+{include file="Com/header.html" is_page="1" module="分类"}
+    <body>
+        {include file="Com/fixedbar.html"}
+        <div class="container" style="margin-bottom: 50px;">
+            <div class="h5">
+                <!-- <a href="http://www.smarty.com/stuMajor/tree.php?page={$page}&flag=1">添加学生</a> -->
+            </div>
+            <table class="table table-hover table-striped">
+                <tr>
+                    <td>序号</td>
+                    <!-- PHP column -->
+                    <td>ID</td>
+                    <td>评论内容</td>
+                    <td>评论文章</td>
+                    <td>用户</td>
+                    <td>父评论</td>
+                    <td>评论时间</td>
+                    <td>操作</td>
+                </tr>
+                <!-- tree row -->
+                {foreach from=$tree key="key" item="row" name="f_row"}
+                    <tr>
+                        <td>{$smarty.foreach.f_row.iteration}</td>
+                        <td>{$row.id}</td>
+                        <td>{$row.content}</td>
+                        <td>{$row.cat_title}</td>
+                        <td>{$row.u_nickname}</td>
+                        <td>{$row.p_id}</td>
+                        <td>{date('Y-m-d H:i:s', $row.post_date)}</td>
+                        <td><a class="release" style="cursor: pointer;" data-id="{$row.id}">
+                            {if $row['is_release'] == 1}
+                                不发布
+                            {else}
+                                发布
+                            {/if}
+                        </a>
+                    </tr>
+                {/foreach}
+            </table>
+            <div style="text-align: center;">{$pageHtml}</div>
+            {include file="Com/page.html" is_page="1" m="comment"}
+        </div>
+    </body>
+<script src="{C('URL')}/public/home/js/jQuery.js"></script>
+<script>
+$('.release').click(function (e) {
+   e.preventDefault();
+   var _this = $(this);
+   $.ajax({
+       url: "{C('URL')}/index.php?p=admin&m=comment&a=release",
+       data: {
+           id: _this.data('id')
+       },
+       type: 'POST',
+       dataType: 'json',
+       success: function (res) {
+           if(res.code == 0){
+               window.location.reload();
+           }else{
+               alert(res.msg);
+           }
+       }
+   });
+});
+</script>
+    {include file="Com/page.html" is_page="1" m="cate"}
+</html>
