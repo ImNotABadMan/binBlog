@@ -1,0 +1,30 @@
+/*
+* @Author: anchen
+* @Date:   2018-04-17 20:23:54
+* @Last Modified by:   anchen
+* @Last Modified time: 2018-04-17 21:55:53
+*/
+.answer{
+    padding: 4px 8px;
+    background-color: #3879d9;
+    display: inline-block;
+    border: 1px solid #3819d9;
+    border-radius: 5px;
+    cursor: pointer;
+}
+.btn-answer{
+    padding: 4px 8px;
+    background-color: #007400;
+    display: inline-block;
+    border: 1px solid #007400;
+    border-radius: 5px;
+}
+.btn{
+    padding: 5px 10px;
+    font-size: 18px;
+    background-color: #3879d9;
+    border: 1px solid #3819d9;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
