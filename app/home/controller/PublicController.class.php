@@ -60,7 +60,13 @@ class PublicController extends Controller{
     }
 
     public function register(){
-        $this->display('');
+        if( IS_POST ){
+            $acc = isset($_POST['username']) ? $_POST['username'] : '';
+            $pwd = isset($_POST['pwd']) ? $_POST['pwd'] : '';
+            $email = isset($_POST['email']) ? $_POST['email'] : '';
+        }
+
+        $this->display('public/register.html');
     }
 }
 
