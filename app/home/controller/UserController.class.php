@@ -44,8 +44,8 @@ class UserController extends Controller{
         $blogMOdel = M('\\model\\BlogModel')->table('bl_blog');
         $aCount = count($blogMOdel->select());
 
-        $this->assign('aCount', $aCount);
-        $this->assign('count', $count);
+        $this->assign('aCount', $count ? $aCount + 55: 0);
+        $this->assign('count', $count ?  $count/ $aCount * 100 : 0);
 
         $this->assign('articles', $articles);
         $this->assign('follows', $follows);

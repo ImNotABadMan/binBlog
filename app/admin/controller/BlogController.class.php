@@ -81,7 +81,7 @@ class BlogController extends Controller{
         //搜索
         $this->assign("stitle", $stitle);
         $this->assign("sc_id", $sc_id);
-        $this->assign("su_nickname", $su_nickname);-
+        $this->assign("su_nickname", $su_nickname);
 
         //测试上万数据的查询速度
         // var_dump(date("H:i:s", $t), date("H:i:s", $t1));

@@ -89,14 +89,14 @@
 
                         // for (var i = 1; i <= 3; i++) {
                             var child = document.getElementById('circles-' + 1),
-                                percentage = 55 + {$aCount};
+                                percentage = {$aCount};
 
                             Circles.create({
                                 id: child.id,
                                 percentage: percentage,
                                 radius: 80,
                                 width: 18,
-                                number: {($count / $aCount) * 100},
+                                number: {$count},
                                 text: '%',
                                 colors: colors[0]
                             });

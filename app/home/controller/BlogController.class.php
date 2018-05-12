@@ -72,7 +72,7 @@ class BlogController extends Controller{
 
         M('\\model\\BlogModel')->table('bl_blog')->update(['view_times' => $row['view_times'] + 1], ['id' => $row['id']]);
 
-        $where = "article_id = {$id}";
+        $where = "article_id = {$id} and is_release = 1";
         $comRowCount = M("\\model\\CommentModel")->getRow("count(*) as count_num", "bl_comment", $where);
         $comRowsArr = M("\\model\\CommentModel")->order('post_date desc')->getRows('*', 'bl_comment', $where);
         $comRows = [];

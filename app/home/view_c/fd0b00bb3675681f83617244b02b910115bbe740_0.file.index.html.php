@@ -1,17 +1,17 @@
 <?php
-/* Smarty version 3.1.29, created on 2018-04-26 11:51:35
+/* Smarty version 3.1.29, created on 2018-05-12 16:01:19
   from "D:\Apache24\htdocs\binBlog\app\Home\view\User\index.html" */
 
 if ($_smarty_tpl->smarty->ext->_validateCompiled->decodeProperties($_smarty_tpl, array (
   'has_nocache_code' => false,
   'version' => '3.1.29',
-  'unifunc' => 'content_5ae14cc7cffb07_67798741',
+  'unifunc' => 'content_5af69f4f975928_28964387',
   'file_dependency' => 
   array (
     'fd0b00bb3675681f83617244b02b910115bbe740' => 
     array (
       0 => 'D:\\Apache24\\htdocs\\binBlog\\app\\Home\\view\\User\\index.html',
-      1 => 1524714693,
+      1 => 1526112050,
       2 => 'file',
     ),
   ),
@@ -21,7 +21,7 @@ if ($_smarty_tpl->smarty->ext->_validateCompiled->decodeProperties($_smarty_tpl,
     'file:Com/footer.html' => 1,
   ),
 ),false)) {
-function content_5ae14cc7cffb07_67798741 ($_smarty_tpl) {
+function content_5af69f4f975928_28964387 ($_smarty_tpl) {
 $_smarty_tpl->smarty->ext->_subtemplate->render($_smarty_tpl, "file:Com/header.html", $_smarty_tpl->cache_id, $_smarty_tpl->compile_id, 0, $_smarty_tpl->cache_lifetime, array(), 0, false);
 ?>
 
@@ -62,44 +62,54 @@ $_smarty_tpl->smarty->ext->_subtemplate->render($_smarty_tpl, "file:Com/header.h
         <div class="sap_tabs">
             <div id="horizontalTab" style="display: block; width: 100%; margin: 0px;">
                 <ul class="resp-tabs-list">
-                    <li class="resp-tab-item" aria-controls="tab_item-0" role="tab"><span>About Product</span></li>
-                    <li class="resp-tab-item" aria-controls="tab_item-1" role="tab"><span>Product sales</span></li>
-                    <li class="resp-tab-item" aria-controls="tab_item-2" role="tab"><span>Reviews</span></li>
+                    <li class="resp-tab-item" aria-controls="tab_item-0" role="tab"><span style="color: #666;font-size: 16px;">收藏文章</span></li>
+                    <!--<li class="resp-tab-item" aria-controls="tab_item-1" role="tab"><span>收藏分类</span></li>-->
                     <div class="clear"></div>
                 </ul>
                 <div class="resp-tabs-container">
-                    <div class="tab-1 resp-tab-content" aria-labelledby="tab_item-0">
+                    <div class="tab-0" aria-labelledby="tab_item-0">
                         <div class="facts">
                             <ul class="tab_list">
-                                <li><a href="#">Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam
-                                    nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat. Ut
-                                    wisi enim ad minim veniam, quis nostrud exerci tation ullamcorper suscipit lobortis
-                                    nisl ut aliquip ex ea commodo consequat</a></li>
-                                <li><a href="#">augue duis dolore te feugait nulla facilisi. Nam liber tempor cum soluta
-                                    nobis eleifend option congue nihil imperdiet doming id quod mazim placerat facer
-                                    possim assum. Typi non habent claritatem insitam; est usus legentis in iis qui facit
-                                    eorum claritatem. Investigatione</a></li>
-                                <li><a href="#">claritatem insitam; est usus legentis in iis qui facit eorum claritatem.
-                                    Investigationes demonstraverunt lectores legere me lius quod ii legunt saepius.
-                                    Claritas est etiam processus dynamicus, qui sequitur mutationem consuetudium
-                                    lectorum. Mirum est notare quam littera gothica</a></li>
+                                <?php
+$_from = $_smarty_tpl->tpl_vars['articles']->value;
+if (!is_array($_from) && !is_object($_from)) {
+settype($_from, 'array');
+}
+$__foreach_article_0_saved_item = isset($_smarty_tpl->tpl_vars['article']) ? $_smarty_tpl->tpl_vars['article'] : false;
+$_smarty_tpl->tpl_vars['article'] = new Smarty_Variable();
+$_smarty_tpl->tpl_vars['article']->_loop = false;
+foreach ($_from as $_smarty_tpl->tpl_vars['article']->value) {
+$_smarty_tpl->tpl_vars['article']->_loop = true;
+$__foreach_article_0_saved_local_item = $_smarty_tpl->tpl_vars['article'];
+?>
+                                <li><a target="_blank" href="<?php echo U('blog/showDetails',array('id'=>$_smarty_tpl->tpl_vars['article']->value['id']));?>
+"><?php echo $_smarty_tpl->tpl_vars['article']->value['title'];?>
+ ------ <?php echo $_smarty_tpl->tpl_vars['article']->value['u_nickname'];?>
+</a></li>
+                                <?php
+$_smarty_tpl->tpl_vars['article'] = $__foreach_article_0_saved_local_item;
+}
+if ($__foreach_article_0_saved_item) {
+$_smarty_tpl->tpl_vars['article'] = $__foreach_article_0_saved_item;
+}
+?>
                             </ul>
                         </div>
                     </div>
                 </div>
             </div>
-            <?php echo '<script'; ?>
+            <!-- <?php echo '<script'; ?>
  src="<?php echo C('URL');?>
 /public/home/js/easyResponsiveTabs.js" type="text/javascript"><?php echo '</script'; ?>
->
+> -->
             <?php echo '<script'; ?>
  type="text/javascript">
                 $(document).ready(function () {
-                    $('#horizontalTab').easyResponsiveTabs({
-                        type: 'default', //Types: default, vertical, accordion
-                        width: 'auto', //auto or any width like 600px
-                        fit: true   // 100% fit in a container
-                    });
+                    // $('#horizontalTab').easyResponsiveTabs({
+                    //     type: 'default', //Types: default, vertical, accordion
+                    //     width: 'auto', //auto or any width like 600px
+                    //     fit: true   // 100% fit in a container
+                    // });
                 });
             <?php echo '</script'; ?>
 >
@@ -128,19 +138,7 @@ $_smarty_tpl->smarty->ext->_subtemplate->render($_smarty_tpl, "file:Com/header.h
                         <div class="grid-1">
                             <div class="skill-grid">
                                 <div class="circle" id="circles-1"></div>
-                                <h5 class="web"><p>Phasellus ultrices nulla </p></h5>
-                            </div>
-                        </div>
-                        <div class="grid-2">
-                            <div class="skill-grid">
-                                <div class="circle" id="circles-2"></div>
-                                <h5 class="web"><p>Donec conse ctetuer ligu</p></h5>
-                            </div>
-                        </div>
-                        <div class="grid-3">
-                            <div class="skill-grid">
-                                <div class="circle" id="circles-3"></div>
-                                <h5 class="web"><p>Nunc tellus ante lorem</p></h5>
+                                <h5 class="web"><p>收藏文章数量</p></h5>
                             </div>
                         </div>
                         <div class="clear"></div>
@@ -152,22 +150,25 @@ $_smarty_tpl->smarty->ext->_subtemplate->render($_smarty_tpl, "file:Com/header.h
                     <?php echo '<script'; ?>
 >
                         var colors = [
-                            ['#202835', '#00ae55'], ['#202835', '#00ae55'], ['#202835', '#00ae55'], ['#202835', '#00ae55']
+                            ['#202835', '#00ae55']
                         ];
-                        for (var i = 1; i <= 5; i++) {
-                            var child = document.getElementById('circles-' + i),
-                                percentage = 50 + (i * 10);
+
+                        // for (var i = 1; i <= 3; i++) {
+                            var child = document.getElementById('circles-' + 1),
+                                percentage = <?php echo $_smarty_tpl->tpl_vars['aCount']->value;?>
+;
 
                             Circles.create({
                                 id: child.id,
                                 percentage: percentage,
                                 radius: 80,
                                 width: 18,
-                                number: percentage / 10,
+                                number: <?php echo $_smarty_tpl->tpl_vars['count']->value;?>
+,
                                 text: '%',
-                                colors: colors[i - 1]
+                                colors: colors[0]
                             });
-                        }
+                        // }
 
                     <?php echo '</script'; ?>
 >
@@ -188,15 +189,6 @@ $_smarty_tpl->smarty->ext->_subtemplate->render($_smarty_tpl, "file:Com/header.h
         <?php echo '<script'; ?>
  src="<?php echo C('URL');?>
 /public/home/js/classie.js"><?php echo '</script'; ?>
->
-        <?php echo '<script'; ?>
- src="<?php echo C('URL');?>
-/public/home/js/uisearch.js"><?php echo '</script'; ?>
->
-        <?php echo '<script'; ?>
->
-            new UISearch(document.getElementById('sb-search'));
-        <?php echo '</script'; ?>
 >
     </div>
     <!-- 第三块 -->

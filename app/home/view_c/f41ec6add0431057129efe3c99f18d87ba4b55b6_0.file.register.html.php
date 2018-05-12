@@ -1,17 +1,17 @@
 <?php
-/* Smarty version 3.1.29, created on 2018-05-12 15:03:37
+/* Smarty version 3.1.29, created on 2018-05-12 15:40:24
   from "D:\Apache24\htdocs\binBlog\app\home\view\public\register.html" */
 
 if ($_smarty_tpl->smarty->ext->_validateCompiled->decodeProperties($_smarty_tpl, array (
   'has_nocache_code' => false,
   'version' => '3.1.29',
-  'unifunc' => 'content_5af691c96340a8_02764915',
+  'unifunc' => 'content_5af69a6834cae0_86486446',
   'file_dependency' => 
   array (
     'f41ec6add0431057129efe3c99f18d87ba4b55b6' => 
     array (
       0 => 'D:\\Apache24\\htdocs\\binBlog\\app\\home\\view\\public\\register.html',
-      1 => 1526108614,
+      1 => 1526110790,
       2 => 'file',
     ),
   ),
@@ -19,7 +19,7 @@ if ($_smarty_tpl->smarty->ext->_validateCompiled->decodeProperties($_smarty_tpl,
   array (
   ),
 ),false)) {
-function content_5af691c96340a8_02764915 ($_smarty_tpl) {
+function content_5af69a6834cae0_86486446 ($_smarty_tpl) {
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -38,7 +38,9 @@ function content_5af691c96340a8_02764915 ($_smarty_tpl) {
             <label class="log-lab">账号</label>
             <input name="username" type="text" class="login-input-user" style="background-color: #fff;"  id="textfield1" value=""/>
             <label class="log-lab">邮箱</label>
-            <input name="username" type="text" class="login-input-user" style="background-color: #fff;"  id="textfield2" value=""/>
+            <input name="email" type="text" class="login-input-user" style="background-color: #fff;"  id="textfield2" value=""/>
+            <label class="log-lab">昵称</label>
+            <input name="nickname" type="text" class="login-input-user" style="background-color: #fff;"  id="textfield5" value=""/>
             <label class="log-lab">密码</label>
             <input name="pwd" type="password" style="background-color: #fff;"  class="login-input-pass" id="textfield3" value=""/>
             <label class="log-lab">确认密码</label>
@@ -61,11 +63,17 @@ function content_5af691c96340a8_02764915 ($_smarty_tpl) {
             alert('请输入账号');
             return false;
         }
+
         
-        var reg = /^[A-Za-z0-9]+\@([A-Za-z]{2,8}\.){1,3}[A-Za-z]{2,8}$/;
+        var reg = /^[A-Za-z0-9]+\@([A-Za-z0-9]{2,8}\.){1,3}[A-Za-z]{2,8}$/;
         
-        if( !reg.test( $('input[name=eamil]').val().trim() ) ){
+        if( !reg.test( $('input[name=email]').val().trim() ) ){
             alert('邮箱不正确');
+            return false;
+        }
+
+        if( $('input[name=nickname]').val().trim() == '' ){
+            alert('请输入昵称');
             return false;
         }
 

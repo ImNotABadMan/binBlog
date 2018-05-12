@@ -1,17 +1,17 @@
 <?php
-/* Smarty version 3.1.29, created on 2018-02-03 21:16:55
+/* Smarty version 3.1.29, created on 2018-05-12 16:54:08
   from "D:\Apache24\htdocs\binBlog\app\admin\view\Com\fixedbar.html" */
 
 if ($_smarty_tpl->smarty->ext->_validateCompiled->decodeProperties($_smarty_tpl, array (
   'has_nocache_code' => false,
   'version' => '3.1.29',
-  'unifunc' => 'content_5a75b647a16ef5_31456109',
+  'unifunc' => 'content_5af6abb0a67707_68963709',
   'file_dependency' => 
   array (
     '32646d2148932bfb9fc68377ded4e1d1e3b1f92f' => 
     array (
       0 => 'D:\\Apache24\\htdocs\\binBlog\\app\\admin\\view\\Com\\fixedbar.html',
-      1 => 1517410547,
+      1 => 1526115238,
       2 => 'file',
     ),
   ),
@@ -19,7 +19,7 @@ if ($_smarty_tpl->smarty->ext->_validateCompiled->decodeProperties($_smarty_tpl,
   array (
   ),
 ),false)) {
-function content_5a75b647a16ef5_31456109 ($_smarty_tpl) {
+function content_5af6abb0a67707_68963709 ($_smarty_tpl) {
 ?>
 <div class="alert alert-success fade in" style="text-align: center;<?php ob_start();
 echo (($tmp = @$_GET['re'])===null||$tmp==='' ? 0 : $tmp);
@@ -54,6 +54,8 @@ if ($_tmp1 == '0') {?> display: none; <?php }?>">
     <div id="sidebar" style="margin-top: 55px;">
         <a href="<?php echo C('URL');?>
 /index.php?p=admin&m=blog&a=showList" class="list-group-item side">博客管理</a>
+        <a href="<?php echo C('URL');?>
+/index.php?p=admin&m=comment&a=showList" class="list-group-item side">评论管理</a>
         <a href="<?php echo C('URL');?>
 /index.php?p=admin&m=cate&a=showList" class="list-group-item side">城市管理</a>
         <a href="<?php echo C('URL');?>

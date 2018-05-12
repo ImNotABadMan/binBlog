@@ -1,17 +1,17 @@
 <?php
-/* Smarty version 3.1.29, created on 2018-05-12 10:35:02
+/* Smarty version 3.1.29, created on 2018-05-12 15:54:58
   from "D:\Apache24\htdocs\binBlog\app\home\view\User\index.html" */
 
 if ($_smarty_tpl->smarty->ext->_validateCompiled->decodeProperties($_smarty_tpl, array (
   'has_nocache_code' => false,
   'version' => '3.1.29',
-  'unifunc' => 'content_5af652d6f327e9_95744440',
+  'unifunc' => 'content_5af69dd2d74b50_39378521',
   'file_dependency' => 
   array (
     '8cb389ee5637d95318d4026b77480aa314d121a1' => 
     array (
       0 => 'D:\\Apache24\\htdocs\\binBlog\\app\\home\\view\\User\\index.html',
-      1 => 1526092500,
+      1 => 1526111697,
       2 => 'file',
     ),
   ),
@@ -21,7 +21,7 @@ if ($_smarty_tpl->smarty->ext->_validateCompiled->decodeProperties($_smarty_tpl,
     'file:Com/footer.html' => 1,
   ),
 ),false)) {
-function content_5af652d6f327e9_95744440 ($_smarty_tpl) {
+function content_5af69dd2d74b50_39378521 ($_smarty_tpl) {
 $_smarty_tpl->smarty->ext->_subtemplate->render($_smarty_tpl, "file:Com/header.html", $_smarty_tpl->cache_id, $_smarty_tpl->compile_id, 0, $_smarty_tpl->cache_lifetime, array(), 0, false);
 ?>
 
@@ -163,8 +163,7 @@ $_smarty_tpl->tpl_vars['article'] = $__foreach_article_0_saved_item;
                                 percentage: percentage,
                                 radius: 80,
                                 width: 18,
-                                number: <?php echo ($_smarty_tpl->tpl_vars['count']->value/$_smarty_tpl->tpl_vars['aCount']->value)*100;?>
-,
+                                number: { isset($count) ? ($count / $aCount) * 100 : 0},
                                 text: '%',
                                 colors: colors[0]
                             });
