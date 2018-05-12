@@ -53,6 +53,7 @@ class Model{
 
     //错误信息输出方法
     private function errMsg($err){
+        echo 'SQL语句：' . $this->_sql . "<br />";
         echo '错误信息为：' . $err->getMessage() . '<br/>';
         echo '出错的文件：' . $err->getFile() . '<br/>';
         echo '在文件中出错的位置：' . $err->getLine();

@@ -1,17 +1,17 @@
 <?php
-/* Smarty version 3.1.29, created on 2018-05-10 22:59:23
+/* Smarty version 3.1.29, created on 2018-05-12 10:39:20
   from "D:\Apache24\htdocs\binBlog\app\home\view\blog\blog.html" */
 
 if ($_smarty_tpl->smarty->ext->_validateCompiled->decodeProperties($_smarty_tpl, array (
   'has_nocache_code' => false,
   'version' => '3.1.29',
-  'unifunc' => 'content_5af45e4b5d3ae8_90815664',
+  'unifunc' => 'content_5af653d8871708_25167338',
   'file_dependency' => 
   array (
     '6537e6b1626193487da106546855613206a94dfc' => 
     array (
       0 => 'D:\\Apache24\\htdocs\\binBlog\\app\\home\\view\\blog\\blog.html',
-      1 => 1525964361,
+      1 => 1526092754,
       2 => 'file',
     ),
   ),
@@ -21,7 +21,7 @@ if ($_smarty_tpl->smarty->ext->_validateCompiled->decodeProperties($_smarty_tpl,
     'file:Com/footer.html' => 1,
   ),
 ),false)) {
-function content_5af45e4b5d3ae8_90815664 ($_smarty_tpl) {
+function content_5af653d8871708_25167338 ($_smarty_tpl) {
 if (!is_callable('smarty_modifier_date_format')) require_once 'D:\\Apache24\\htdocs\\binBlog/plugins/smarty/plugins\\modifier.date_format.php';
 $_smarty_tpl->smarty->ext->_subtemplate->render($_smarty_tpl, "file:Com/header.html", $_smarty_tpl->cache_id, $_smarty_tpl->compile_id, 0, $_smarty_tpl->cache_lifetime, array('title'=>"--博客"), 0, false);
 ?>
@@ -74,6 +74,8 @@ $__foreach_row_0_saved_local_item = $_smarty_tpl->tpl_vars['row'];
                         <li><a ><img src="<?php echo C('URL');?>
 /public/home/images/h3.png"><?php echo $_smarty_tpl->tpl_vars['row']->value['u_nickname'];?>
 </a></li>
+                        <li><a ><?php echo $_smarty_tpl->tpl_vars['row']->value['view_times'];?>
+ 浏览</a></li>
                         <li class='collect'><a style="cursor: pointer;" data-id="<?php echo $_smarty_tpl->tpl_vars['row']->value['id'];?>
 ">
                             <?php if (count($_smarty_tpl->tpl_vars['collects']->value) > 0) {?>

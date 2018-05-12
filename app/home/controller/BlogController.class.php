@@ -3,7 +3,7 @@
  * @Author: anchen
  * @Date:   2017-12-02 08:51:15
  * @Last Modified by:   anchen
- * @Last Modified time: 2018-05-10 22:53:00
+ * @Last Modified time: 2018-05-12 09:14:00
  */
 namespace home\controller;
 use \home\controller\CommonController as Controller;
@@ -15,9 +15,7 @@ class BlogController extends Controller{
         parent::__construct();
     }
 
-
     public function showBlog(){
-
 
         $c_c_c_id = isset($_GET["c_id"]) ? V($_GET["c_id"]) : "";//搜索分类
         $c_c_id = isset($_GET['ccid']) ? V($_GET['ccid']) : "";//所属分类
@@ -42,7 +40,7 @@ class BlogController extends Controller{
         }
 
         // var_dump($sql);die;
-        $rows = M("\\model\\BlogModel")->getRows("id,cover_img,title,u_nickname,post_date,c_name,intro", "bl_blog", $sql);
+        $rows = M("\\model\\BlogModel")->getRows("id,cover_img,title,u_nickname,post_date,c_name,intro,view_times", "bl_blog", $sql);
 
         $pageHtml = PageTool::pageHtml($page, $pageCount, C("URL") . "?p=admin&m=blog&a=showList&c_c_id={$c_c_id}&c_c_c_id={$c_c_c_id}&page");
         /****************************博客******************************/
@@ -52,9 +50,11 @@ class BlogController extends Controller{
         $tree = array();
         $cate = M("\\model\\CCateModel")->recursive($tree, $cates);
 
-        $condition = ['u_id' => session('user')['id']];
-        $collects = M('\\model\\CollectArticleModel')->table('bl_user_collect_article')->select($condition);
-        $this->assign("collects", $collects);
+        if(session('user') ) {
+            $condition = ['u_id' => session('user')['id']];
+            $collects = M('\\model\\CollectArticleModel')->table('bl_user_collect_article')->select($condition);
+            $this->assign("collects", $collects);
+        }
 
         $this->assign("pageHtml", $pageHtml);//分页
         $this->assign("page", $page);
@@ -70,11 +70,21 @@ class BlogController extends Controller{
 
         $row = M("\\model\\BlogModel")->getRow("*", "bl_blog", "id={$id}");
 
+        M('\\model\\BlogModel')->table('bl_blog')->update(['view_times' => $row['view_times'] + 1], ['id' => $row['id']]);
+
         $where = "article_id = {$id}";
         $comRowCount = M("\\model\\CommentModel")->getRow("count(*) as count_num", "bl_comment", $where);
         $comRowsArr = M("\\model\\CommentModel")->order('post_date desc')->getRows('*', 'bl_comment', $where);
         $comRows = [];
         M("\\model\\CommentModel")->recursive($comRows, $comRowsArr);
+        if( session('user') ) {
+            $condition = [
+                'u_id' => session('user')['id']
+            ];
+            $collect = M('\\model\\CollectArticleModel')->table('bl_user_collect_article')->select($condition);
+            $this->assign('collect', $collect[0]);
+        }
+
         // echo "<pre>";
         // print_r($comRowsArr);
         // print_r($comRows);die;

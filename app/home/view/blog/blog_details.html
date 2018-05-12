@@ -1,8 +1,18 @@
 {include file="Com/header.html" title="--博客"}
+<style>
+    .breadcrumbs{
+        padding: 20px;
+        font-size: 16px;
+    }
+    .meta, .comment, .comments-count, .article-content{
+        padding: 20px;
+    }
+
+</style>
 <hr style="background-color:#aaa;"/>
 <div class="content details_content">
     <div class="left">
-        <div class="breadcrumbs"> <a href="https://cuiqingcai.com/category/technique">{$smarty.get.category}</a> <small>&gt;</small> <a href="https://cuiqingcai.com/category/technique/python">{$row.c_c_name}</a> <small>&gt;</small> <span class="muted a-title">{$row.title}</span>
+        <div class="breadcrumbs"> <a href="#">{$smarty.get.category}</a> <small>&gt;</small> <a href="#">{$row.c_c_name}</a> <small>&gt;</small> <span class="muted a-title">{$row.title}</span>
         </div>
         <header class="article-header">
         <h1 class="article-title"></h1>
@@ -10,7 +20,14 @@
             <span class="muted"><i class="fa fa-user"></i>{$row.u_nickname}</span>
             <time class="muted"><i class="fa fa-clock-o"></i> {date("Y-m-d H:i", $row.post_date)}</time>
             <span class="muted"><i class="fa fa-eye"></i> {$row.view_times}浏览</span>
-            <span class="muted"><i class="fa fa-comments-o"></i> <a href="#comments">5评论</a></span>
+                <span class="muted"><i class="fa fa-comments-o"></i> <a href="#comments">5评论</a></span>
+                <span class='collect'><a style="cursor: pointer;" data-id="{$row.id}">
+                    {if $row['id'] == $collect['a_id']}
+                    <img src="{C('URL')}/public/home/images/iscollect.jpg">
+                    {else}
+                    <img src="{C('URL')}/public/home/images/collect.jpg">
+                    {/if}
+                    收藏</a></span>
             </div>
         </header>
         <article class="article-content">
@@ -83,6 +100,28 @@
 <script src="{C('URL')}/public/plugins/ueditor/ueditor.config.js"></script>
 <script src="{C('URL')}/public/plugins/ueditor/ueditor.all.js"></script>
 <script>
+    $('.collect a').click(function(e){
+        e.preventDefault();
+        var id = $(this).data('id');
+        var _this = $(this);
+        $.ajax({
+            url: '{U("blog/collect")}',
+            data: { id: id },
+            type: 'POST',
+            dataType: 'json',
+            success: function(res){
+                if( res.code == 0 ){
+                    // 收藏
+                    _this.children('img').attr('src', "{C('URL')}/public/home/images/iscollect.jpg");
+                }else if( res.code == 1){
+                    _this.children('img').attr('src', "{C('URL')}/public/home/images/collect.jpg");
+                }else{
+                    alert(res.msg);
+                }
+            }
+        });
+
+    });
   var ue;
     $('.btn-answer').click(function(e){
         if( '{$smarty.session.user.acc}' == '' ){
