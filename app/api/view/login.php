@@ -1,23 +1,6 @@
 <?php
-/**
- * @Author: anchen
- * @Date:   2018-02-07 21:23:43
- * @Last Modified by:   anchen
- * @Last Modified time: 2018-02-07 22:57:03
- */
-define("TOKEN", "weixin");
-include dirname(dirname(dirname(__FILE__)))."/core/WeChatApi.class.php";
-include dirname(dirname(dirname(__FILE__)))."/core/WeChat.class.php";
-
-$WeChat = new WeChat();
-$url = "https://www.bingeblog.xin/wechat/userinfo.php";
-$url = WeChatApi::setAccess($url);
-
-// $code = $_GET['code'];
-
-echo $url;
+var_dump( $_GET );
 ?>
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
