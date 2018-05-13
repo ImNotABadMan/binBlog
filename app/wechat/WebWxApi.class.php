@@ -46,6 +46,7 @@ class WebWxApi extends Controller
             if( !$res ){
                 echo json_encode(['code' => 2, 'msg' => '绑定失败']);die;
             }
+
             echo json_encode(['code' => 0, 'msg' => '绑定成功']);die;
 
         }
