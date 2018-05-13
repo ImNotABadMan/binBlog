@@ -80,7 +80,7 @@
             <div class="input-contain clearfix">
                 <span>密码：</span><input type="text" name="pwd" class="input">
             </div>
-            <div style="text-align: center;"><input type="submit" class="sub" value="登录"></div>
+            <div style="text-align: center;"><input type="button" class="sub" value="登录"></div>
         </form>
     </div>
 </main>
@@ -116,7 +116,6 @@
     }
     $('.sub').click(function(e){
         e.preventDefault();
-        alert("{U('wechat/webWxApi/success')}");
         if( !checkData() ){
             return false;
         }
