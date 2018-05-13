@@ -1,11 +1,4 @@
--- phpMyAdmin SQL Dump
--- version 4.7.9
--- https://www.phpmyadmin.net/
---
--- Host: www.phpmyadmin.com
--- Generation Time: 2018-05-12 14:57:31
--- 服务器版本： 5.5.28
--- PHP Version: 5.6.33
+
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET AUTOCOMMIT = 0;
@@ -327,7 +320,7 @@ INSERT INTO `bl_blog` (`id`, `cover_img`, `title`, `u_id`, `u_nickname`, `post_d
 (242, 'public/admin/blogImages/_blog_img5a23a234b9dad20171203150524687.jpg', '的去外地无情的完全带我去', 0, '', 0, '&lt;p&gt;带我去完全我的钱的&lt;img alt=&quot;&quot; src=&quot;/Upload/ckfinder/images/2017/12/03/201712031505216291.jpg&quot; style=&quot;height:622px; width:936px&quot; /&gt;&lt;/p&gt;', 1, 'PHP', '本书深入浅出地介绍了ASP.NET Core基础及实战方面方方面面的知识，主要有.NET Core的基础知识及安装、dotnet命令、ASP.NET Core 开发工具操作及使用、ASP.NET Core原理和组件介绍、ASP.NET Core MVC框架学习、ASP.NET Core Web API 学习和扩展Web API输出格式，以及.NET.Core 的单元测试，*后以一个完整的项目结尾，并讲解了项目的发布和部署', 0, '', 0, 0, 0, ''),
 (243, 'public/admin/blogImages/_blog_img5a23f7be3c64e20171203211022460.jpg', 'Python数据爬虫', 1, '小马', 0, '&lt;p&gt;&lt;img alt=&quot;&quot; src=&quot;/Upload/ckfinder/images/2017/12/03/201712032110039262.jpg&quot; style=&quot;height:220px; width:330px&quot;/&gt;&lt;/p&gt;', 5, '宣武区', '本书深入浅出地介绍了ASP.NET Core基础及实战方面方方面面的知识，主要有.NET Core的基础知识及安装、dotnet命令、ASP.NET Core 开发工具操作及使用、ASP.NET Core原理和组件介绍、ASP.NET Core MVC框架学习、ASP.NET Core Web API 学习和扩展Web API输出格式，以及.NET.Core 的单元测试，*后以一个完整的项目结尾，并讲解了项目的发布和部署', 2, '吃货', 0, 0, 0, ''),
 (246, 'public/admin/images/BlogImages/_blog_img5a2646e7b803020171205151239133.png', '布谷鸟的呼唤', 1, '小马', 1512457959, '&lt;ol class=&quot; list-paddingleft-2&quot;&gt;&lt;li&gt;&lt;p&gt;大大道sad撒道&lt;/p&gt;&lt;/li&gt;&lt;/ol&gt;', 1, '北京', 'PHP7内核剖析》有别与市面上的其他PHP技术图书，它不是介绍PHP如何应用，而是深入讲解PHP语言的底层实现原理。它面向的是具备较多PHP项目经验的中高级的开发者。阅读本书可以帮助开发者了解PHP内核实现，对PHP有更深入更全面更清晰的理解，有助于开发者将自身技术水平提升到一个新的层次。', 1, '烹饪', 0, 0, 0, ''),
-(247, 'public/admin/images/BlogImages/_blog_img5a61a7f0f239320180119161024445.jpg', 'PHP7内核分析', 1, '小马', 1516349424, '&lt;p&gt;&lt;img src=&quot;/ueditor/php/upload/image/20180119/1516349409625165.jpg&quot; title=&quot;1516349409625165.jpg&quot; alt=&quot;bk2.jpg&quot;/&gt;adsad&lt;/p&gt;', 15, '大兴区', 'PHP7内核剖析》有别与市面上的其他PHP技术图书，它不是介绍PHP如何应用，而是深入讲解PHP语言的底层实现原理。它面向的是具备较多PHP项目经验的中高级的开发者。阅读本书可以帮助开发者了解PHP内核实现，对PHP有更深入更全面更清晰的理解，有助于开发者将自身技术水平提升到一个新的层次。', 1, '烹饪', 4, 0, 0, '');
+(247, 'public/admin/images/BlogImages/_blog_img5a61a7f0f239320180119161024445.jpg', 'PHP7内核分析', 1, '小马', 1516349424, '&lt;p&gt;&lt;img src=&quot;/ueditor/php/upload/image/20180119/1516349409625165.jpg&quot; title=&quot;1516349409625165.jpg&quot; alt=&quot;bk2.jpg&quot;/&gt;adsad&lt;/p&gt;', 15, '大兴区', 'PHP7内核剖析》有别与市面上的其他PHP技术图书，它不是介绍PHP如何应用，而是深入讲解PHP语言的底层实现原理。它面向的是具备较多PHP项目经验的中高级的开发者。阅读本书可以帮助开发者了解PHP内核实现，对PHP有更深入更全面更清晰的理解，有助于开发者将自身技术水平提升到一个新的层次。', 1, '烹饪', 5, 0, 0, '');
 
 -- --------------------------------------------------------
 
@@ -853,35 +846,36 @@ CREATE TABLE `bl_comment` (
   `u_id` int(10) UNSIGNED NOT NULL DEFAULT '0' COMMENT '所属用户ID',
   `u_nickname` varchar(30) NOT NULL DEFAULT '' COMMENT '所属用户昵称',
   `post_date` int(10) UNSIGNED NOT NULL DEFAULT '0' COMMENT '评论时间',
-  `p_id` int(10) UNSIGNED NOT NULL DEFAULT '0' COMMENT '父评论'
+  `p_id` int(10) UNSIGNED NOT NULL DEFAULT '0' COMMENT '父评论',
+  `is_release` tinyint(4) NOT NULL DEFAULT '1' COMMENT '是否发布，0表示不发布，1表示发布'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
 -- 转存表中的数据 `bl_comment`
 --
 
-INSERT INTO `bl_comment` (`id`, `content`, `article_id`, `cat_title`, `u_id`, `u_nickname`, `post_date`, `p_id`) VALUES
-(2, '哈哈哈哈0', 1, 'ww', 1, 'dsd', 132456, 0),
-(3, '哈哈哈哈0', 247, 'ww', 1, 'dsd', 132456, 0),
-(4, '哈哈哈哈1', 247, 'ww', 1, 'dsd', 132456, 3),
-(6, '哈哈哈哈11', 247, 'ww', 1, 'dsd', 0, 3),
-(7, '哈哈哈哈2', 247, 'ww', 1, 'dsd', 0, 6),
-(138, '哈哈哈哈111', 247, '倒萨', 2, '锕646 ', 123, 6),
-(139, '&lt;p&gt;得到的&lt;/p&gt;', 247, 'PHP7内核分析', 1, '小马', 1525959969, 3),
-(140, '&lt;p&gt;得到的大苏打&lt;/p&gt;', 247, 'PHP7内核分析', 1, '小马', 1525959997, 7),
-(141, '&lt;p&gt;得到&lt;/p&gt;', 247, 'PHP7内核分析', 1, '小马', 1525960030, 140),
-(142, '她她她大神', 247, 'PHP7内核分析', 1, '小马', 1525960867, 0),
-(143, '她她她大神', 247, 'PHP7内核分析', 1, '小马', 1525961174, 0),
-(144, '她她她大神', 247, 'PHP7内核分析', 1, '小马', 1525961190, 0),
-(145, '她她她大神', 247, 'PHP7内核分析', 1, '小马', 1525961199, 0),
-(146, '她她她大神', 247, 'PHP7内核分析', 1, '小马', 1525961238, 0),
-(147, '她她她大神', 247, 'PHP7内核分析', 1, '小马', 1525961270, 0),
-(148, '她她她大神', 247, 'PHP7内核分析', 1, '小马', 1525961271, 0),
-(149, '她她她大神', 247, 'PHP7内核分析', 1, '小马', 1525961271, 0),
-(150, '她她她大神', 247, 'PHP7内核分析', 1, '小马', 1525961272, 0),
-(151, '她她她大神', 247, 'PHP7内核分析', 1, '小马', 1525961273, 0),
-(152, '她她她大神', 247, 'PHP7内核分析', 1, '小马', 1525961364, 0),
-(153, '大大啊啊啊', 247, 'PHP7内核分析', 1, '小马', 1525961374, 0);
+INSERT INTO `bl_comment` (`id`, `content`, `article_id`, `cat_title`, `u_id`, `u_nickname`, `post_date`, `p_id`, `is_release`) VALUES
+(2, '哈哈哈哈0', 1, 'ww', 1, 'dsd', 132456, 0, 1),
+(3, '哈哈哈哈0', 247, 'ww', 1, 'dsd', 132456, 0, 1),
+(4, '哈哈哈哈1', 247, 'ww', 1, 'dsd', 132456, 3, 1),
+(6, '哈哈哈哈11', 247, 'ww', 1, 'dsd', 0, 3, 1),
+(7, '哈哈哈哈2', 247, 'ww', 1, 'dsd', 0, 6, 1),
+(138, '哈哈哈哈111', 247, '倒萨', 2, '锕646 ', 123, 6, 1),
+(139, '&lt;p&gt;得到的&lt;/p&gt;', 247, 'PHP7内核分析', 1, '小马', 1525959969, 3, 1),
+(140, '&lt;p&gt;得到的大苏打&lt;/p&gt;', 247, 'PHP7内核分析', 1, '小马', 1525959997, 7, 0),
+(141, '&lt;p&gt;得到&lt;/p&gt;', 247, 'PHP7内核分析', 1, '小马', 1525960030, 140, 1),
+(142, '她她她大神', 247, 'PHP7内核分析', 1, '小马', 1525960867, 0, 1),
+(143, '她她她大神', 247, 'PHP7内核分析', 1, '小马', 1525961174, 0, 1),
+(144, '她她她大神', 247, 'PHP7内核分析', 1, '小马', 1525961190, 0, 1),
+(145, '她她她大神', 247, 'PHP7内核分析', 1, '小马', 1525961199, 0, 1),
+(146, '她她她大神', 247, 'PHP7内核分析', 1, '小马', 1525961238, 0, 1),
+(147, '她她她大神', 247, 'PHP7内核分析', 1, '小马', 1525961270, 0, 1),
+(148, '她她她大神', 247, 'PHP7内核分析', 1, '小马', 1525961271, 0, 1),
+(149, '她她她大神', 247, 'PHP7内核分析', 1, '小马', 1525961271, 0, 1),
+(150, '她她她大神', 247, 'PHP7内核分析', 1, '小马', 1525961272, 0, 1),
+(151, '她她她大神', 247, 'PHP7内核分析', 1, '小马', 1525961273, 0, 1),
+(152, '她她她大神', 247, 'PHP7内核分析', 1, '小马', 1525961364, 0, 1),
+(153, '大大啊啊啊', 247, 'PHP7内核分析', 1, '小马', 1525961374, 0, 1);
 
 -- --------------------------------------------------------
 
@@ -919,7 +913,13 @@ INSERT INTO `bl_user` (`id`, `acc`, `pwd`, `nickname`, `email`, `register_date`,
 (12, 'cnm', 'e10adc3949ba59abbe56e057f20f883e', '重宁明', '12345@456.com', 1512375898, 0, ''),
 (13, 'wc', 'e10adc3949ba59abbe56e057f20f883e', '无措', '123asd@123.com', 1512376050, 0, ''),
 (15, 'yewen', 'e10adc3949ba59abbe56e057f20f883e', '一个打十个hhh', '123@12356.com', 1512385593, 1, ''),
-(16, 'zxy', 'e10adc3949ba59abbe56e057f20f883e', '张鞋有', '1231@1231.com', 1517410483, 1, '');
+(16, 'zxy', 'e10adc3949ba59abbe56e057f20f883e', '张鞋有', '1231@1231.com', 1517410483, 1, ''),
+(17, 'xxx', '123', '123', '123@123com.com', 0, 0, ''),
+(18, 'xxxss', '123', '123456456', '123456@123com.com', 0, 0, ''),
+(19, 'xiao456', '202cb962ac59075b964b07152d234b70', '123ss', '123@123c.ss', 1526111264, 0, ''),
+(20, 'xiaoss', '202cb962ac59075b964b07152d234b70', '1234568', '123@123com.coms', 1526111389, 0, ''),
+(21, '123456dasd', '202cb962ac59075b964b07152d234b70', '1234567d', '123@123com.comw', 1526111492, 0, ''),
+(22, 'dsawe', '202cb962ac59075b964b07152d234b70', '123dd', '123@123com.comsw', 1526111529, 0, '');
 
 -- --------------------------------------------------------
 
@@ -1085,7 +1085,7 @@ ALTER TABLE `bl_comment`
 -- 使用表AUTO_INCREMENT `bl_user`
 --
 ALTER TABLE `bl_user`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=17;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=23;
 
 --
 -- 使用表AUTO_INCREMENT `bl_user_collect_article`

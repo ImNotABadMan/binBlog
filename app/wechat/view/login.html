@@ -80,7 +80,7 @@
             <div class="input-contain clearfix">
                 <span>密码：</span><input type="text" name="pwd" class="input">
             </div>
-            <div><input type="submit" class="sub" value="登录"></div>
+            <div style="text-align: center;"><input type="submit" class="sub" value="登录"></div>
         </form>
     </div>
 </main>
@@ -122,17 +122,15 @@
         var data = $('form').serializeArray();
 
         $.ajax({
-            url: '{U("index")}',
+            url: '{U("")}',
             data: data,
             type: 'POST',
             dataType: 'json',
             success:function(res){
                 if(res.code == 0){
-                    window.location.href = "{U('')}";
-                }else if(res.code == 1){
-
+                    window.location.href = "{U('webWxApi/success')}";
                 }else{
-
+                    alert('绑定失败，请重新绑定');
                 }
             }
         });
