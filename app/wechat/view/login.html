@@ -115,10 +115,9 @@
         return true;
     }
     $('.sub').click(function(e){
-        e.preventDefault();
-        if( !checkData() ){
-            return false;
-        }
+        // if( !checkData() ){
+        //     return false;
+        // }
         alert('{U("wechat/webWxApi/login")}');
         var data = $('form').serializeArray();
 
