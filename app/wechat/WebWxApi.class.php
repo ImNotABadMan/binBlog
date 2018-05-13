@@ -28,9 +28,9 @@ class WebWxApi extends Controller
 
         $data = $WeChat->codeTransAccessInfo($code);
 
-        $userInfo = $WeChat->getUserInfo($data['access_token'], $data['openid']);
+//        $userInfo = $WeChat->getUserInfo($data['access_token'], $data['openid']);
         var_dump($data);
-        var_dump($userInfo);
+//        var_dump($userInfo);
 
         $this->display('login.html');
     }
