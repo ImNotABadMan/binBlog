@@ -39,7 +39,7 @@ function pr($obj){
 }
 
 // 生成url地址
-function U($args = '', $args1 = []){
+function U($args = '', $args1 = [], $type = 'all'){
     // 分割字符串
     $items  = explode('/', $args);
     $plat   = $GLOBALS['plat'];
@@ -48,13 +48,13 @@ function U($args = '', $args1 = []){
     if($args != ''){
         switch(count($items)){
             case 1:
-                $url = C('URL') . "/index.php?p={$plat}&m={$module}&a={$items[0]}";
+                $url = $type ? C('URL') : '' . "/index.php?p={$plat}&m={$module}&a={$items[0]}";
                 break;
             case 2:
-                $url = C('URL') . "/index.php?p={$plat}&m={$items[0]}&a={$items[1]}";
+                $url = $type ? C('URL') : '' . "/index.php?p={$plat}&m={$items[0]}&a={$items[1]}";
                 break;
             case 3:
-                $url = C('URL') . "/index.php?p={$items[0]}&m={$items[1]}&a={$items[2]}";
+                $url = $type ? C('URL') : '' . "/index.php?p={$items[0]}&m={$items[1]}&a={$items[2]}";
                 break;
         }
     }else{

@@ -73,7 +73,7 @@
         <div class="banner">
             <h3 style="text-align: center;">Bin客绑定</h3>
         </div>
-        <form action="" method="post">
+        <form>
             <div class="input-contain clearfix">
                 <span>账号：</span><input type="text" name="username" class="input">
             </div>
@@ -86,23 +86,23 @@
 </main>
 <!--End main-btn-->
 <!--Start jquery-weui-->
-<script src="{C('URL')}/public/home/js/jQuery.js"></script>
+<script src="/public/home/js/jQuery.js"></script>
 <!--End jquery-weui-->
 
 <script>
-    alert(123);
+    // alert(123);
 
-    var doc = document,
-        win = window,
-        oBody = doc.documentElement || doc.body,
-        resize = "onorientationchange" in win ? "orientationchange" : "resize";
-    rem();
-    addEventListener(resize, rem, false);
-    function rem() {
-        /*doc.body.clientWidth是获取当前的body的宽度，640是我们的移动端的最大宽度，相除就会得出一个比例，在乘以100px，就会得出我们当前的1rem等于多少px*/
-        oBody.style.fontSize = 100 * (doc.body.clientWidth / 640) + "px";
-        //console.log(oBody.style.fontSize);
-    }
+    // var doc = document,
+    //     win = window,
+    //     oBody = doc.documentElement || doc.body,
+    //     resize = "onorientationchange" in win ? "orientationchange" : "resize";
+    // rem();
+    // addEventListener(resize, rem, false);
+    // function rem() {
+    //     /*doc.body.clientWidth是获取当前的body的宽度，640是我们的移动端的最大宽度，相除就会得出一个比例，在乘以100px，就会得出我们当前的1rem等于多少px*/
+    //     oBody.style.fontSize = 100 * (doc.body.clientWidth / 640) + "px";
+    //     //console.log(oBody.style.fontSize);
+    // }
 </script>
 <script>
     function checkData(){
@@ -117,10 +117,10 @@
         return true;
     }
     $('.sub').click(function(e){
+        e.preventDefault();
         if( !checkData() ){
             return false;
         }
-        alert('{U("wechat/webWxApi/login")}');
         var data = {
             username: $('input[name=username]').val(),
             pwd: $('input[name=pwd]').val()
@@ -138,6 +138,9 @@
                 }else{
                     alert('绑定失败，请重新绑定');
                 }
+            },
+            error: function (res) {
+                alert(res);
             }
         });
 

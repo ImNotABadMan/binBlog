@@ -29,7 +29,7 @@ class WebWxApi extends Controller
 
     public function login()
     {
-        if( IS_AJAX || IS_POST ){
+        if( IS_AJAX ){
             $acc = isset($_POST['username']) ? V($_POST['username']) : '';
             $pwd = isset($_POST['pwd']) ? V($_POST['pwd']) : '';
             $openid = session('wxData')['openid'];
