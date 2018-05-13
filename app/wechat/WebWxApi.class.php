@@ -6,8 +6,9 @@
  * Time: 23:12
  */
 
+use \core\Controller as Controller;
 
-class WebWxApi
+class WebWxApi extends Controller
 {
     public function getUrl()
     {
@@ -15,13 +16,21 @@ class WebWxApi
         $WeChat = new \core\WeChat();
         $url = U('wechat/webWxApi/login');
         $url = \core\WeChatApi::setAccess($url);
+        var_dump($url);
+    }
+
+    public function login()
+    {
+        var_dump($_GET);
 
         $code = $_GET['code'];
 
         $data = $WeChat->codeTransAccessInfo($code);
 
         $userInfo = $WeChat->getUserInfo($data['access_token'], $data['openid']);
-        echo $url;
+        var_dump($data);
+        var_dump($userInfo);
 
+        $this->display('login.php');
     }
 }
