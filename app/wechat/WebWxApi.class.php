@@ -14,6 +14,7 @@ class WebWxApi extends Controller
 
     public function __construct()
     {
+        parent::__construct();
         $this->_userModel = M('\\model\\UserModel')->table('bl_users');
     }
 
