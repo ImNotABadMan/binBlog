@@ -62,7 +62,7 @@ class CommentController extends Controller{
         if( !$_GET['wechat'] ){
             header('location: ' . U('blog/showDetails') . "&id={$aid}");
         }else{
-            header('location: ' . U('wechat/webWxApi/blog', [], '') . "&id={$aid}");
+            header('location: ' . U('wechat/webWxApi/blog', ["category" => $_POST['category']], '') . "&id={$aid}");
         }
     }
 
