@@ -55,6 +55,7 @@ class WebWxApi extends Controller
 
         $data = $WeChat->codeTransAccessInfo($code);
         session('wxData', $data);
+        var_dump($data);
         // 获取用户信息
 //        $userInfo = $WeChat->getUserInfo($data['access_token'], $data['openid']);
 
