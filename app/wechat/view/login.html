@@ -46,7 +46,7 @@
             border: 1px solid #ccc;
             outline: none;
         }
-        input[type=submit]{
+        input[type=button]{
             color:#fff;
             background-color: #379812;
             padding: 0.16rem 0.4rem;
@@ -104,7 +104,7 @@
 </script>
 <script>
     function checkData(){
-        if( $('select[name=username]').val() == '' ){
+        if( $('input[name=username]').val() == '' ){
             alert('账号不能为空');
             return false;
         }
@@ -119,6 +119,7 @@
         if( !checkData() ){
             return false;
         }
+        alert('{U("wechat/webWxApi/login")}');
         var data = $('form').serializeArray();
 
         $.ajax({
@@ -127,6 +128,7 @@
             type: 'POST',
             dataType: 'json',
             success:function(res){
+                alert(res);
                 if(res.code == 0){
                     window.location.href = "{U('wechat/webWxApi/success')}";
                 }else{
