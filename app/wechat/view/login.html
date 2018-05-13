@@ -73,7 +73,7 @@
         <div class="banner">
             <h3 style="text-align: center;">Bin客绑定</h3>
         </div>
-        <form action="{U('')}">
+        <form>
             <div class="input-contain clearfix">
                 <span>账号：</span><input type="text" name="username" class="input">
             </div>
@@ -122,7 +122,7 @@
         var data = $('form').serializeArray();
 
         $.ajax({
-            url: '{U("")}',
+            url: '{U("login")}',
             data: data,
             type: 'POST',
             dataType: 'json',
