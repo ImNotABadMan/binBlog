@@ -55,7 +55,6 @@ class WebWxApi extends Controller
 
         $data = $WeChat->codeTransAccessInfo($code);
         session('wxData', $data);
-        var_dump($data);
         // 获取用户信息
 //        $userInfo = $WeChat->getUserInfo($data['access_token'], $data['openid']);
 
@@ -64,6 +63,6 @@ class WebWxApi extends Controller
 
     public function success()
     {
-        echo "<div>绑定成功</div>";
+        echo "<div>绑定成功</div>";die;
     }
 }
