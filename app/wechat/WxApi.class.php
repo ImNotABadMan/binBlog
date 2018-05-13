@@ -8,8 +8,16 @@ class WxApi extends \core\Wechat
 	public function responseMsg(){
 		parent::responseMsg();
         if( $this->keyword == '推荐' ){
-            $send = new WxSendBlogWxApi();
-            $send->sendBlogs();
+            $blogModel = M('\\model\\BlogModel')->table('bl_blog');
+            $blogs = $blogModel->join('bl_category on bl_category.id = bl_blog.c_c_id')->order('post_date desc, view_times desc')->limit('5')->select();
+            foreach ($blogs as $key => $value) {
+                $blogs[$key]['Title'] = $value['title'];
+                $blogs[$key]['Desc'] = htmlspecialchars( $value['intro'] );
+                $blogs[$key]['PicUrl'] = 'https://www.bingeblog.xin/' . $value['cover_img'];
+                $blogs[$key]['Url'] = U('wechat/webWxApi/blog', ['id' => $value['id'], 'category' => $value['name']]);
+            }
+
+            $this->reNews($blogs);
         }
 		if( !empty( $this->keyword ) ){
 			$this -> reText('欢迎使用微信公众平台开发API' . $this->lat . ' - ' . $this->lng);
