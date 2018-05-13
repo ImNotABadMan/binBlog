@@ -20,6 +20,9 @@ if(substr($dataFromClient, 1, 3) == 'xml' && strpos($dataFromClient, 'ToUserName
             'a'=>'responseMsg'
         );
     }
+    if( $xml = simplexml_load_string($dataFromClient, 'SimpleXMLElement', LIBXML_NOCDATA) ){
+        file_put_contents('./location.txt', $xml->Latitude . ' - ' . $xml->Longitude);
+    }
 }
 
 

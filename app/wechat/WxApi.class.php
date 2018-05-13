@@ -7,7 +7,7 @@ class WxApi extends \core\Wechat
 	public function responseMsg(){
 		parent::responseMsg();
 		if( !empty( $this->keyword ) ){
-			$this -> reText('欢迎使用微信公众平台开发API');
+			$this -> reText('欢迎使用微信公众平台开发API' . $this->lat . ' - ' . $this->lng);
 		}
 
         if( $this->sendType == 'location' )
