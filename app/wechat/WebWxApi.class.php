@@ -35,7 +35,7 @@ class WebWxApi extends Controller
             $openid = session('wxData')['openid'];
             $condition = [
                 'acc' => $acc,
-                'pwd' => $pwd
+                'pwd' => md5($pwd)
             ];
             $user = $this->_userModel->select($condition)[0];
             if( !$user ){
