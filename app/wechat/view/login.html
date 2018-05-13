@@ -73,7 +73,7 @@
         <div class="banner">
             <h3 style="text-align: center;">Bin客绑定</h3>
         </div>
-        <form>
+        <form action="" method="post">
             <div class="input-contain clearfix">
                 <span>账号：</span><input type="text" name="username" class="input">
             </div>
@@ -115,26 +115,26 @@
         return true;
     }
     $('.sub').click(function(e){
-        // if( !checkData() ){
-        //     return false;
-        // }
-        alert('{U("wechat/webWxApi/login")}');
-        var data = $('form').serializeArray();
-
-        $.ajax({
-            url: '{U("wechat/webWxApi/login")}',
-            data: data,
-            type: 'POST',
-            dataType: 'json',
-            success:function(res){
-                alert(res);
-                if(res.code == 0){
-                    window.location.href = "{U('wechat/webWxApi/success')}";
-                }else{
-                    alert('绑定失败，请重新绑定');
-                }
-            }
-        });
+        if( !checkData() ){
+            return false;
+        }
+        // alert('{U("wechat/webWxApi/login")}');
+        // var data = $('form').serializeArray();
+        //
+        // $.ajax({
+        //     url: '{U("wechat/webWxApi/login")}',
+        //     data: data,
+        //     type: 'POST',
+        //     dataType: 'json',
+        //     success:function(res){
+        //         alert(res);
+        //         if(res.code == 0){
+        //             window.location.href = "{U('wechat/webWxApi/success')}";
+        //         }else{
+        //             alert('绑定失败，请重新绑定');
+        //         }
+        //     }
+        // });
 
     });
 </script>
