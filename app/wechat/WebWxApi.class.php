@@ -21,16 +21,16 @@ class WebWxApi extends Controller
 
     public function login()
     {
-        var_dump($_GET);
+        if( IS_AJAX ){
 
+        }
         $WeChat = new \core\WeChat();
         $code = $_GET['code'];
 
         $data = $WeChat->codeTransAccessInfo($code);
 
+        // 获取用户信息
 //        $userInfo = $WeChat->getUserInfo($data['access_token'], $data['openid']);
-        var_dump($data);
-//        var_dump($userInfo);
 
         $this->display('login.html');
     }
