@@ -46,7 +46,7 @@
             border: 1px solid #ccc;
             outline: none;
         }
-        input[type=button]{
+        input[type=submit]{
             color:#fff;
             background-color: #379812;
             padding: 0.16rem 0.4rem;
@@ -80,7 +80,7 @@
             <div class="input-contain clearfix">
                 <span>密码：</span><input type="text" name="pwd" class="input">
             </div>
-            <div style="text-align: center;"><input type="submit" class="sub" value="登录"></div>
+            <div style="text-align: center;"><input type="submit" class="sub1" value="登录"></div>
         </form>
     </div>
 </main>
@@ -114,27 +114,30 @@
         }
         return true;
     }
-    $('.sub').click(function(e){
+    $('.sub1').click(function(e){
         if( !checkData() ){
             return false;
         }
-        // alert('{U("wechat/webWxApi/login")}');
-        // var data = $('form').serializeArray();
-        //
-        // $.ajax({
-        //     url: '{U("wechat/webWxApi/login")}',
-        //     data: data,
-        //     type: 'POST',
-        //     dataType: 'json',
-        //     success:function(res){
-        //         alert(res);
-        //         if(res.code == 0){
-        //             window.location.href = "{U('wechat/webWxApi/success')}";
-        //         }else{
-        //             alert('绑定失败，请重新绑定');
-        //         }
-        //     }
-        // });
+        alert('{U("wechat/webWxApi/login")}');
+        var data = {
+            username: $('input[name=username]').val(),
+            pwd: $('input[name=pwd]').val()
+        };
+
+        $.ajax({
+            url: '{U("wechat/webWxApi/login")}',
+            data: data,
+            type: 'POST',
+            dataType: 'json',
+            success:function(res){
+                alert(res);
+                if(res.code == 0){
+                    window.location.href = "{U('wechat/webWxApi/success')}";
+                }else{
+                    alert('绑定失败，请重新绑定');
+                }
+            }
+        });
 
     });
 </script>
