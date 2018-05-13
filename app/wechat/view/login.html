@@ -80,7 +80,7 @@
             <div class="input-contain clearfix">
                 <span>密码：</span><input type="text" name="pwd" class="input">
             </div>
-            <div style="text-align: center;"><input type="submit" class="sub1" value="登录"></div>
+            <div style="text-align: center;"><input type="submit" class="sub" value="登录"></div>
         </form>
     </div>
 </main>
@@ -90,6 +90,8 @@
 <!--End jquery-weui-->
 
 <script>
+    alert($);
+
     var doc = document,
         win = window,
         oBody = doc.documentElement || doc.body,
@@ -114,7 +116,7 @@
         }
         return true;
     }
-    $('.sub1').click(function(e){
+    $('.sub').click(function(e){
         if( !checkData() ){
             return false;
         }
