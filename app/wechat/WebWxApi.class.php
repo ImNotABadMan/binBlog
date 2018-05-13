@@ -15,6 +15,7 @@ class WebWxApi extends Controller
     private $_user_follow;
     private $_user_cate;
     private $_blogModel;
+    private $_openid;
 
     private $rowNum = 5;
 
@@ -31,6 +32,14 @@ class WebWxApi extends Controller
         $this->_user_cate       = M('\\model\\UserFollowCateModel')->table('bl_user_follow_cate');
 
         $this->_blogModel       = M('\\model\\BlogModel')->table('bl_blog');
+
+        // 微信授权
+        $WeChat = new \core\WeChat();
+        $code = $_GET['code'];
+
+        $data = $WeChat->codeTransAccessInfo($code);
+        $this->_openid = $data['openid'];
+        session('wxData', $data);
     }
 
     public function getUrl()
@@ -159,7 +168,9 @@ class WebWxApi extends Controller
 
     public function allBlog()
     {
-        $c_id = session('c_id');
+        $condition = ['openid' => $this->_openid];
+        $user = M('\\model\\UserModel')->table('bl_user')->select($condition)[0];
+        $c_id = session('c_id') ?: $user['c_id'];
         $c_c_id = isset($_GET['c_c_id']) ? $_GET['c_c_id'] : 0;
 
         $this->_showBlog($c_id, $c_c_id);
