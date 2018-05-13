@@ -1,6 +1,6 @@
 <?php
-//include dirname(dirname(dirname(realpath(__FILE__)))) . '/core/WeChatApi.class.php';
-//include dirname(dirname(dirname(realpath(__FILE__)))) . '/core/WeChat.class.php';
+include dirname(dirname(dirname(realpath(__FILE__)))) . '/core/WeChatApi.class.php';
+include dirname(dirname(dirname(realpath(__FILE__)))) . '/core/WeChat.class.php';
 //include dirname(realpath(__FILE__)) . '/WxSendBlogWxApi.class.php';
 
 class WxApi extends \core\Wechat
