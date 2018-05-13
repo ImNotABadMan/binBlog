@@ -57,17 +57,17 @@ $access_token = $WeChat -> GetAccessToken();
 				    {
 				        "type":"view",
                         "name":"烹饪",
-                        "url":"https://www.bingeblog.xin/index.php?p=wechat&m=webWxApi&a=allBlog&c_c_id=1"
+                        "url":"https://www.bingeblog.xin/index.php?p=wechat&m=webWxApi&a=allBlog&c_c_id=1&category=烹饪"
 				    },
 				    {
 				        "type":"view",
                         "name":"吃货",
-                        "url":"https://www.bingeblog.xin/index.php?p=wechat&m=webWxApi&a=allBlog&c_c_id=2"
+                        "url":"https://www.bingeblog.xin/index.php?p=wechat&m=webWxApi&a=allBlog&c_c_id=2&category=吃货"
 				    },
 				    {
 				        "type":"view",
                         "name":"甜点",
-                        "url":"https://www.bingeblog.xin/index.php?p=wechat&m=webWxApi&a=allBlog&c_c_id=3"
+                        "url":"https://www.bingeblog.xin/index.php?p=wechat&m=webWxApi&a=allBlog&c_c_id=3&category=甜点"
 				    }
 				]
 			}

@@ -33,13 +33,28 @@ class WebWxApi extends Controller
 
         $this->_blogModel       = M('\\model\\BlogModel')->table('bl_blog');
 
-        // 微信授权
-        $WeChat = new \core\WeChat();
-        $code = $_GET['code'];
 
-        $data = $WeChat->codeTransAccessInfo($code);
-        $this->_openid = $data['openid'];
-        session('wxData', $data);
+        // 微信授权，获取openid
+        if( IS_GET ) {
+            if (!isset($_GET['code'])) {
+                $uri = '';
+                $isFirst = true;
+                foreach ($_GET as $key => $item) {
+                    if ($isFirst) {
+                        $uri .= "%3F{$key}%3D{$item}";
+                        $isFirst = false;
+                    }
+                    $uri .= "%26{$key}%3D{$item}";
+                }
+                header("location: https://open.weixin.qq.com/connect/oauth2/authorize?appid=wxde85cdb773c8050a&redirect_uri=https%3A%2F%2Fwww.bingeblog.xin%2Findex.php{$uri}&response_type=code&scope=snsapi_base&state=STATE#wechat_redirect");
+            }
+            $WeChat = new \core\WeChat();
+            $code = $_GET['code'];
+
+            $data = $WeChat->codeTransAccessInfo($code);
+            $this->_openid = $data['openid'];
+            session('wxData', $data);
+        }
     }
 
     public function getUrl()
@@ -185,9 +200,9 @@ class WebWxApi extends Controller
                 'c_c_id' => $c_c_id,
                 'c_id'   => $c_id
             ];
-            $blogs = $this->_blogModel->select($condition);
+            $blogs = $this->_blogModel->order('post_date desc')->select($condition);
         }else{
-            $blogs = $this->_blogModel->select(['c_id' => $c_id]);
+            $blogs = $this->_blogModel->order('post_date desc')->select(['c_id' => $c_id]);
         }
 
         /****************************博客******************************/
@@ -198,5 +213,36 @@ class WebWxApi extends Controller
         }
 
         $this->assign('rows', $blogs);
+    }
+
+    public function collect(){
+        $id = isset($_POST['id']) ? $_POST['id'] : 0;
+        if( !$id ){
+            echo json_encode(['code' => 2, 'msg' => '无效id']);die;
+        }
+
+        $user = session('user');
+        if( !$user ){
+            echo json_encode(['code' => 2, 'msg' => '请登录']);die;
+        }
+
+        $model = M('\\model\\CollectArticleModel')->table('bl_user_collect_article');
+        $condition = [
+            'a_id' => $id,
+            'u_id' => $user['id']
+        ];
+        $info = $model->find($condition);
+        if( $info ){
+            $model->delete($condition);
+            echo json_encode(['code' => 1, 'msg' => '已取消收藏']);die;
+        }
+        $data = [
+            'u_id' => $user['id'],
+            'u_nickname' => $user['nickname'],
+            'a_id' => $id,
+            'collected_at' => time()
+        ];
+        $model->insert($data);
+        echo json_encode(['code' => 0, 'msg' => '收藏成功']);die;
     }
 }

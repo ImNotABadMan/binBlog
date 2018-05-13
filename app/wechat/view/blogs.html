@@ -2,49 +2,57 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>博客</title>
 </head>
 <link rel="stylesheet" href="/public/home/css/basic.css">
 <link rel="stylesheet" href="/public/home/css/style2.css">
 <link rel="stylesheet" href="/public/home/css/blog.css">
-
+<style>
+    body {
+        min-width: 320px;
+        max-width: 640px;
+        font-size: 16px;
+        margin: 0 auto;
+    }
+</style>
 <body>
 <section class="bl_section">
     <!-- <div class="container">
         <h2>博客</h2>
     </div> -->
-    <div class="blog_section blog-container">
+    <div class="blog_section blog-container" style="padding-left: 20px;">
         <aside class="list_left">
             {foreach from=$rows item="row"}
+            <a href="/index.php?p=wechat&m=webWxApi&a=blog&category={$smarty.get.category}&id={$row.id}" target="_blank">
             <div class="blog_text">
                 <h3>{$row.title}</h3>
                 <div>
                     <div class="blog_img" style="display: inline-block;">
-                        <img src="{C('URL')}/{$row.cover_img}" style="width: 300px;" style="display: inline-block;">
-                    </div>
-                    <div class="blog_read" style="display: inline-block;">
-                        <p>{$row.intro}</p>
-                        <button class="more"><a href="{C('URL')}/index.php?p=home&m=blog&a=showDetails&category={$smarty.get.category}&id={$row.id}" target="_blank">阅读更多</a></button>
+                        <img src="/{$row.cover_img}" style="width: 300px;" style="display: inline-block;">
                     </div>
                 </div>
-                <div class="clearfix"></div>
-                <div class="blog_admin">
+            </a>
+            <div class="clearfix"></div>
+                <div class="blog_admin" style="min-height: 100px;">
                     <ul>
-                        <li><a href="###"><img src="{C('URL')}/public/home/images/h1.png">{$row.c_name}</a></li>
-                        <li><img src="{C('URL')}/public/home/images/h2.png">{$row.post_date|date_format:"%Y-%m-%d %H:%M"}</li>
-                        <li><a ><img src="{C('URL')}/public/home/images/h3.png">{$row.u_nickname}</a></li>
+                        <li><a href="###"><img src="/public/home/images/h1.png">{$row.c_name}</a></li>
+                        <li><img src="/public/home/images/h2.png">{$row.post_date|date_format:"%Y-%m-%d %H:%M"}</li>
+                        <li><a ><img src="/public/home/images/h3.png">{$row.u_nickname}</a></li>
                         <li><a >{$row.view_times} 浏览</a></li>
                         <li class='collect'><a style="cursor: pointer;" data-id="{$row.id}">
                             {if count($collects) > 0}
                             {foreach from=$collects item="collect"}
                             {if $row['id'] == $collect['a_id']}
-                            <img src="{C('URL')}/public/home/images/iscollect.jpg">
+                            <img src="/public/home/images/iscollect.jpg">
                             {else}
-                            <img src="{C('URL')}/public/home/images/collect.jpg">
+                            <img src="/public/home/images/collect.jpg">
                             {/if}
                             {/foreach}
                             {else}
-                            <img src="{C('URL')}/public/home/images/collect.jpg">
+                            <img src="/public/home/images/collect.jpg">
                             {/if}
                             收藏</a></li>
                     </ul>
@@ -55,60 +63,45 @@
             {/foreach}
         </aside>
 
-        <div class="list_right">
-            <div>
-                <h3>类别</h3>
-                <ul>
-                    {foreach from=$cate item="node"}
-                    <li><a href="{C('URL')}/index.php?p=home&m=blog&a=showBlog&category={$smarty.get.category}&c_id={$node.id}">{"--"|str_repeat:$node.level}{$node.name}</a></li>
-                    {/foreach}
-                </ul>
-            </div>
-        </div>
+        <!--<div class="list_right">-->
+            <!--<div>-->
+                <!--<h3>类别</h3>-->
+                <!--<ul>-->
+                    <!--{foreach from=$cate item="node"}-->
+                    <!--<li><a href="/index.php?p=home&m=blog&a=showBlog&category={$smarty.get.category}&c_id={$node.id}">{"&#45;&#45;"|str_repeat:$node.level}{$node.name}</a></li>-->
+                    <!--{/foreach}-->
+                <!--</ul>-->
+            <!--</div>-->
+        <!--</div>-->
         <div class="clearfix"></div>
     </div>
 </section>
+<script src="/public/home/js/jQuery.js"></script>
 <script>
-    var pageBtn = document.getElementsByClassName("blog_a");
-    var page = {$page};
-    var pageCount = {$pageCount};
-    var prePage = page - 1;
-    var nextPage = page + 1;
-    if(page == 1){
-        prePage = pageCount;
-    }
-    if(page == pageCount){
-        nextPage = 1;
-    }
-    pageBtn[0].onclick = function(){
-        location.href = "{C('URL')}/?p=home&m=blog&a=showBlog&c_id={$c_id}&page=" + prePage;
-    }
-    pageBtn[1].onclick = function(){
-        location.href = "{C('URL')}/?p=home&m=blog&a=showBlog&c_id={$c_id}&page=" + nextPage;
-    }
-
     $('.collect a').click(function(e){
         e.preventDefault();
         var id = $(this).data('id');
         var _this = $(this);
         $.ajax({
-            url: '{U("blog/collect")}',
+            url: '{U("wechat/webWxApi/collect", [], "")}',
             data: { id: id },
             type: 'POST',
             dataType: 'json',
             success: function(res){
                 if( res.code == 0 ){
                     // 收藏
-                    _this.children('img').attr('src', "{C('URL')}/public/home/images/iscollect.jpg");
+                    _this.children('img').attr('src', "/public/home/images/iscollect.jpg");
                 }else if( res.code == 1){
-                    _this.children('img').attr('src', "{C('URL')}/public/home/images/collect.jpg");
+                    _this.children('img').attr('src', "/public/home/images/collect.jpg");
                 }else{
                     alert(res.msg);
                 }
             }
         });
-
     });
+
+    $('*').css('max-width', document.body.clientWidth);
+
 </script>
 </body>
 </html>
