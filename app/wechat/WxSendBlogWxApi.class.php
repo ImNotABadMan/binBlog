@@ -31,14 +31,12 @@ class WxSendBlogWxApi extends \core\WeChat
             $tmp['news']['articles'] = [];
             foreach ($blogs as $key => $value) {
                 $tmp['news']['articles'][$key]['title'] = $value['title'];
-                $tmp['news']['articles'][$key]['description'] = htmlspecialchars($value['intro']);
+                $tmp['news']['articles'][$key]['description'] = $value['intro'];
                 $tmp['news']['articles'][$key]['picurl'] = 'https://www.bingeblog.xin/' . $value['cover_img'];
-                $tmp['news']['articles'][$key]['url'] = "https://www.bingeblog.xin/index.php?p=wechat&m=webWxApi&a=blog&id={$value['id']}& category={$value['c_c_name']}";
+                $tmp['news']['articles'][$key]['url'] = "https://www.bingeblog.xin/index.php?p=wechat&m=webWxApi&a=blog&id={$value['id']}&category={$value['c_c_name']}";
             }
-//            $data['news']['articles'][] = $tmp['articles'];
-            $this->CurlRequest("https://api.weixin.qq.com/cgi-bin/message/custom/send?access_token={$this->_access_token}", $tmp,'json');
+            $this->CurlRequest("https://api.weixin.qq.com/cgi-bin/message/custom/send?access_token={$this->_access_token}", json_encode($tmp, JSON_UNESCAPED_UNICODE),'json');
             echo json_encode($tmp);
-//            $this->reNews($data);
         }
     }
 
