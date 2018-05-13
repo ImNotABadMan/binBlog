@@ -43,7 +43,7 @@ $access_token = $WeChat -> GetAccessToken();
 			{
 				"type":"view",
 				"name":"个人中心",
-				"url":"https://open.weixin.qq.com/connect/oauth2/authorize?appid=wxde85cdb773c8050a&redirect_uri=https%3A%2F%2Fwww.bingeblog.xin%2Findex.php%3Fp%3Dwechat%26m%3DwebWxApi%26a%3DgetUrl&response_type=code&scope=snsapi_userinfo&state=STATE#wechat_redirect"
+				"url":"https://open.weixin.qq.com/connect/oauth2/authorize?appid=wxde85cdb773c8050a&redirect_uri=https%3A%2F%2Fwww.bingeblog.xin%2Findex.php%3Fp%3Dwechat%26m%3DwebWxApi%26a%3Dlogin&response_type=code&scope=snsapi_userinfo&state=STATE#wechat_redirect"
 			}
 			]
 	}';

@@ -31,6 +31,6 @@ class WebWxApi extends Controller
         var_dump($data);
         var_dump($userInfo);
 
-        $this->display('login.php');
+        $this->display('login.html');
     }
 }
