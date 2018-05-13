@@ -5,32 +5,60 @@
  * Date: 2018-05-13
  * Time: 20:31
  */
-//include dirname(dirname(dirname(realpath(__FILE__)))) . '/core/WeChatApi.class.php';
-//include dirname(dirname(dirname(realpath(__FILE__)))) . '/core/WeChat.class.php';
-//include dirname(dirname(dirname(realpath(__FILE__)))) . '/core/Model.class.php';
-//include dirname(dirname(dirname(realpath(__FILE__)))) . '/core/Func.php';
+include dirname(dirname(dirname(realpath(__FILE__)))) . '/core/WeChatApi.class.php';
+include dirname(dirname(dirname(realpath(__FILE__)))) . '/core/WeChat.class.php';
+include dirname(dirname(dirname(realpath(__FILE__)))) . '/config/conf.php';
+
+include dirname(dirname(dirname(realpath(__FILE__)))) . '/core/Model.class.php';
+
+include dirname(dirname(dirname(realpath(__FILE__)))) . '/core/Func.php';
 
 class WxSendBlogWxApi extends \core\WeChat
 {
+    private $_access_token;
+    private $_openids;
+    
     public function sendBlogs()
     {
         $blogModel = new \core\Model();
         $blogModel = $blogModel->table('bl_blog');
-        $blogs = $blogModel->join('bl_category on bl_category.id = bl_blog.c_c_id')->order('post_date desc, view_times desc')->limit('5')->select();
-        var_dump($blogs);
-        foreach ($blogs as $key => $value) {
-            $blogs[$key]['Title'] = $value['title'];
-            $blogs[$key]['Desc'] = htmlspecialchars( $value['intro'] );
-            $blogs[$key]['PicUrl'] = 'https://www.bingeblog.xin/' . $value['cover_img'];
-            $blogs[$key]['Url'] = U('wechat/webWxApi/blog', ['id' => $value['id'], 'category' => $value['name']]);
-        }
+        $blogs = $blogModel->order('post_date desc, view_times desc')->limit('5')->select();
 
-        $this->reNews($blogs);
+        $this->getOpenid();
+        foreach ($this->_openids as $openidkey => $openid) {
+            $tmp['touser'] = $openid;
+            $tmp['msgtype'] = 'news';
+            $tmp['news']['articles'] = [];
+            foreach ($blogs as $key => $value) {
+                $tmp['news']['articles'][$key]['title'] = $value['title'];
+                $tmp['news']['articles'][$key]['description'] = htmlspecialchars($value['intro']);
+                $tmp['news']['articles'][$key]['picurl'] = 'https://www.bingeblog.xin/' . $value['cover_img'];
+                $tmp['news']['articles'][$key]['url'] = "https://www.bingeblog.xin/index.php?p=wechat&m=webWxApi&a=blog&id={$value['id']}& category={$value['c_c_name']}";
+            }
+//            $data['news']['articles'][] = $tmp['articles'];
+            $this->CurlRequest("https://api.weixin.qq.com/cgi-bin/message/custom/send?access_token={$this->_access_token}", $tmp,'json');
+            echo json_encode($tmp);
+//            $this->reNews($data);
+        }
+    }
+
+    public function getAccessInfo()
+    {
+        $json = json_decode(file_get_contents('https://api.weixin.qq.com/cgi-bin/token?grant_type=client_credential&appid=wxde85cdb773c8050a&secret=14b509f48b4de625c7d9cc20e1bb09ff'), true);
+        $this->_access_token = $json['access_token'];
+    }
+
+    public function getOpenid()
+    {
+        $this->getAccessInfo();
+        $json = file_get_contents("https://api.weixin.qq.com/cgi-bin/user/get?access_token={$this->_access_token}&next_openid=");
+        $data = json_decode($json, true);
+        $this->_openids = $data['data']['openid'];
     }
 }
 
-//$wxSendBlog = new WxSendBlogWxApi();
-//$wxSendBlog->sendBlogs();
+$wxSendBlog = new WxSendBlogWxApi();
+$wxSendBlog->sendBlogs();
 
 
 
