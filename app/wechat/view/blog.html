@@ -1,0 +1,199 @@
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>个人中心</title>
+</head>
+<link rel="stylesheet" href="/public/home/css/basic.css">
+<link rel="stylesheet" href="/public/home/css/style2.css">
+<link rel="stylesheet" href="/public/home/css/blog.css">
+
+<link rel="stylesheet" href="/public/home/css/comment.css" />
+<style>
+    body {
+        min-width: 320px;
+        max-width: 640px;
+        font-size: 16px;
+        margin: 0 auto;
+    }
+    .breadcrumbs{
+        padding: 20px;
+        font-size: 16px;
+    }
+    .meta, .comment, .comments-count, .article-content{
+        padding: 20px;
+    }
+
+</style>
+<body>
+<div class="content details_content">
+    <div class="left">
+        <div class="breadcrumbs"> <a href="#">{$smarty.get.category}</a> <small>&gt;</small> <a href="#">{$row.c_c_name}</a> <small>&gt;</small> <span class="muted a-title">{$row.title}</span>
+        </div>
+        <header class="article-header">
+            <h1 class="article-title"></h1>
+            <div class="meta">
+                <span class="muted"><i class="fa fa-user"></i>{$row.u_nickname}</span>
+                <time class="muted"><i class="fa fa-clock-o"></i> {date("Y-m-d H:i", $row.post_date)}</time>
+                <span class="muted"><i class="fa fa-eye"></i> {$row.view_times}浏览</span>
+                <span class="muted"><i class="fa fa-comments-o"></i> <a href="#comments">5评论</a></span>
+                <span class='collect'><a style="cursor: pointer;" data-id="{$row.id}">
+                    {if $row['id'] == $collect['a_id']}
+                    <img src="/public/home/images/iscollect.jpg">
+                    {else}
+                    <img src="/public/home/images/collect.jpg">
+                    {/if}
+                    收藏</a></span>
+            </div>
+        </header>
+        <article class="article-content">
+            {htmlspecialchars_decode($row.content)}
+        </article>
+        <div class="#commets">
+            <a id="comments"></a>
+            <div class="comments-area space-top-3x">
+                <a id="comment"></a>
+                <h4 class="comments-count">共有{$comRowCount.count_num|default:0}条评论</h4>
+
+                <!-- Comment -->
+                <div class="comment">
+                    {foreach from=$comRows item="row" name="f_com"}
+                    <div style='padding-left: {$row.level * 20}px;'>
+                        <div class="comment-meta">
+                            <!-- 最后一条评论用于提交后关显示当前scroll -->
+                            {if $smarty.foreach.f_com.iteration == count($comRows)}
+                            <a id="comment{count($comRows)}"></a>
+                            {/if}
+                            <div class="column">
+                                <span class="comment-autor"><i class="icon-head"></i><a href="#">{$row.u_nickname}</a></span>
+                            </div>
+                            <div class="column">
+                                <span class="comment-date">{$row.post_date|date_format:"%Y %m %d %H:%M"}</span>
+                            </div>
+                        </div><!-- .comment-meta -->
+                        <div class="comment-body">
+                            <p>{htmlspecialchars_decode($row.content)}</p>
+
+                            <div><p class="answer" data-id="{$smarty.foreach.f_com.iteration}">回复</p></div>
+                            <div style="display: none;" class="div-answer div-answer{$smarty.foreach.f_com.iteration}" ><textarea id='anwertext{$smarty.foreach.f_com.iteration}' class='anwer-texteare'></textarea><button class="btn-answer" data-id="{$row.id}" data-index="{$smarty.foreach.f_com.iteration}" >提交</button></div>
+
+                            <br /><hr/>
+                        </div><!-- .comment-body -->
+                    </div>
+                    {foreachelse}
+                    <h3>没有内容</h3>
+                    {/foreach}
+                </div><!-- .comment -->
+
+                <!-- Comment Form -->
+                <div class="comment-respond">
+                    <h4 class="comment-reply-title">发布新评论</h4>
+                    <form method="post" id="comment-form" class="comment-form" action="?p=home&m=comment&a=addComment&last={count($comRows)}&wechat=wechat&">
+                        <input type="hidden" name="cat_title" value="{$row.title}"/>
+                        <input type="hidden" name="id" value="{$row.id}"/>
+                        <input type="hidden" name="category" value="{$smarty.get.category}">
+                        <div class="form-group">
+                            <label for="cf_comment" class="sr-only">Comment</label>
+                            <textarea name="comment" id="cf_comment" class="form-control input-alt" rows="7" placeholder="输入您的评论"></textarea>
+                        </div>
+                        <p class="form-submit">
+                            <!-- 如果用户登录后才允许发表 -->
+                            {if isset($smarty.session.user) }
+                            <input name="submit" type="submit" id="submit" class="btn" value="发布">
+                            {else}
+                            您尚未登录！
+                            {/if}
+                        </p>
+                    </form>
+                </div><!-- .comment-respond -->
+            </div><!-- .comments-area -->
+        </div>
+    </div>
+</div>
+
+
+</body>
+<script src="/public/home/js/jQuery.js"></script>
+<script src="/public/plugins/ueditor/ueditor.config.js"></script>
+<script src="/public/plugins/ueditor/ueditor.all.js"></script>
+<script>
+    $('.collect a').click(function(e){
+        e.preventDefault();
+        var id = $(this).data('id');
+        var _this = $(this);
+        $.ajax({
+            url: '{U("home/blog/collect", [], "")}',
+            data: { id: id },
+            type: 'POST',
+            dataType: 'json',
+            success: function(res){
+                if( res.code == 0 ){
+                    // 收藏
+                    _this.children('img').attr('src', "/public/home/images/iscollect.jpg");
+                }else if( res.code == 1){
+                    _this.children('img').attr('src', "/public/home/images/collect.jpg");
+                }else{
+                    alert(res.msg);
+                }
+            }
+        });
+
+    });
+    var ue;
+    $('.btn-answer').click(function(e){
+        if( '{$smarty.session.user.acc}' == '' ){
+            alert('请先登录');
+        }
+        var id = $(this).data('id');
+        var aid = $(this).data('aid');
+        $.ajax({
+            url: '{U("home/Comment/addAnswer", [], "")}',
+            type: 'POST',
+            data: { 'text':  ue.getContent(), id:  id, aid: $('input[name=id]').val() },
+            dataType: 'json',
+            success: function (res) {
+                if(res.code == 0){
+                    window.location.reload();
+                }else if(res.code == 1){
+                    alert('回复失败');
+                }
+
+            }
+        });
+    });
+
+    $('.answer').click(function(e){
+
+        // 是否已经登录
+        if( '{$smarty.session.user.acc}' == '' ){
+            if( window.confirm( '请登录' )){
+                window.location.href = '{U("login", [], "")}';
+            }
+            return false;
+        }
+
+        var id = $(this).data('id');
+
+        // 已经显示就隐藏
+        if( $(".div-answer" + id).css('display') == 'inline-block' ){
+            $(".div-answer" + id).css('display', 'none');
+            return false;
+        }
+        $('.div-answer').css('display', 'none');
+        $(".div-answer" + id).css('display', 'inline-block');
+
+        ue = UE.getEditor('anwertext' + id,{
+            initialFrameWidth: 520, //初始化编辑器宽度,默认1000
+            initialFrameHeight: 200,  //初始化编辑器高度,默认320
+            toolbars: [[
+                'bold', 'italic', 'underline', 'strikethrough', 'superscript', 'subscript', '|', 'forecolor', '|','rowspacingtop', 'rowspacingbottom', 'lineheight', '|',, 'fontfamily', 'fontsize', 'indent', '|','justifyleft', 'justifycenter', 'justifyright', 'justifyjustify', '|','horizontal', 'date', 'time'
+            ]],
+            wordCount:true,          //是否开启字数统计
+            elementPathEnabled : false,
+        });
+    });
+    $('*').css('max-width', document.body.clientWidth);
+</script>
+</html>

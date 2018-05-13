@@ -32,8 +32,7 @@ class UserController extends Controller{
         $count = count( $this->_user_article->select($condition) );
 
         $condition = ['bl_user_collect_article.u_id' => $user['id']];
-        $articles = $this->_user_article->field('bl_blog.*')->join('bl_blog on bl_blog.id = bl_user_collect_article.a_id')->limit("$offset, $page")->select($condition);
-
+        $articles = $this->_user_article->field('bl_blog.*')->join('bl_blog on bl_blog.id = bl_user_collect_article.a_id')->join('bl_cate_category on bl_cate_category.id = bl_blog.c_c_id')->limit("$offset, $page")->select($condition);
         $condition = ['a.u_id' => $user['id']];
         $follows  = $this->_user_follow->alias('a')->join('bl_user as b on b.id = a.f_u_id')->select($condition);
 

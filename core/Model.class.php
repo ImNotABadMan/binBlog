@@ -76,7 +76,7 @@ class Model{
     }
     //连接操作
     public function join($sql){
-        $this->_join = "join {$sql}  ";
+        $this->_join .= "join {$sql}  ";
         $this->sql .= " join {$sql} ";
         return $this;
     }

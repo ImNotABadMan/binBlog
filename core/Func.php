@@ -48,17 +48,17 @@ function U($args = '', $args1 = [], $type = 'all'){
     if($args != ''){
         switch(count($items)){
             case 1:
-                $url = $type ? C('URL') : '' . "/index.php?p={$plat}&m={$module}&a={$items[0]}";
+                $url = ($type ? C('URL') : '') . "/index.php?p={$plat}&m={$module}&a={$items[0]}";
                 break;
             case 2:
-                $url = $type ? C('URL') : '' . "/index.php?p={$plat}&m={$items[0]}&a={$items[1]}";
+                $url = ($type ? C('URL') : '') . "/index.php?p={$plat}&m={$items[0]}&a={$items[1]}";
                 break;
             case 3:
-                $url = $type ? C('URL') : '' . "/index.php?p={$items[0]}&m={$items[1]}&a={$items[2]}";
+                $url = ($type ? C('URL') : '') . "/index.php?p={$items[0]}&m={$items[1]}&a={$items[2]}";
                 break;
         }
     }else{
-        $url = C('URL') . "/index.php?p={$plat}&m={$module}&a={$action}";
+        $url = ($type ? C('URL') : '')  . "/index.php?p={$plat}&m={$module}&a={$action}";
     }
 
 

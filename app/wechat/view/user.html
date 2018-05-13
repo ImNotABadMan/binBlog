@@ -1,0 +1,134 @@
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>个人中心</title>
+</head>
+<body>
+
+<link href="/public/home/css/user.css" rel='stylesheet' type='text/css'/>
+<script src="/public/home/js/jQuery.js"></script>
+<div class="container">
+
+    <!-- 第一块 -->
+    <div class="content-info">
+        <div class="header box">
+            <h3>{$user.nickname}</h3>
+            <h2>账号： {$user.acc}</h2>
+            <h2>邮箱： {$user.email}</h2>
+        </div>
+        <script>
+            $(document).ready(function (c) {
+                $('.close-1').on('click', function (c) {
+                    $('.statistics').fadeOut('slow', function (c) {
+                        $('.statistics').remove();
+                    });
+                });
+            });
+        </script>
+    </div>
+    <!-- 第一块 -->
+
+    <!-- 第二块 -->
+    <div class="statistics box">
+        <div class="sap_tabs">
+            <div id="horizontalTab" style="display: block; width: 100%; margin: 0px;">
+                <ul class="resp-tabs-list">
+                    <li class="resp-tab-item" aria-controls="tab_item-0" role="tab"><span style="color: #666;font-size: 16px;">收藏文章</span></li>
+                    <!--<li class="resp-tab-item" aria-controls="tab_item-1" role="tab"><span>收藏分类</span></li>-->
+                    <div class="clear"></div>
+                </ul>
+                <div class="resp-tabs-container">
+                    <div class="tab-0" aria-labelledby="tab_item-0">
+                        <div class="facts">
+                            <ul class="tab_list">
+                                {foreach from=$articles item="article"}
+                                <li><a target="_blank" href="{U('blog', ['id' => $article['id'],'category' => $article['c_c_name']], '')}">{$article.title} ------ {$article.u_nickname}</a></li>
+                                {/foreach}
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- <script src="/public/home/js/easyResponsiveTabs.js" type="text/javascript"></script> -->
+            <script type="text/javascript">
+                $(document).ready(function () {
+                    // $('#horizontalTab').easyResponsiveTabs({
+                    //     type: 'default', //Types: default, vertical, accordion
+                    //     width: 'auto', //auto or any width like 600px
+                    //     fit: true   // 100% fit in a container
+                    // });
+                });
+            </script>
+        </div>
+        <div class="clear"></div>
+    </div>
+    <script>
+        $(document).ready(function (c) {
+            $('.close-2').on('click', function (c) {
+                $('.contact').fadeOut('slow', function (c) {
+                    $('.contact').remove();
+                });
+            });
+        });
+    </script>
+    <!-- 第二块 -->
+
+    <!-- 第三块 -->
+    <div class="wrap">
+        <div class="contact">
+            <div class="skills-info box">
+                <div id="canvas">
+                    <div class="row skill-grids text-center">
+                        <div class="grid-1">
+                            <div class="skill-grid">
+                                <div class="circle" id="circles-1"></div>
+                                <h5 class="web"><p>收藏文章数量</p></h5>
+                            </div>
+                        </div>
+                        <div class="clear"></div>
+                    </div>
+                    <script type="text/javascript" src="/public/home/js/circles.js"></script>
+                    <script>
+                        var colors = [
+                            ['#202835', '#00ae55']
+                        ];
+
+                        // for (var i = 1; i <= 3; i++) {
+                        var child = document.getElementById('circles-' + 1),
+                            percentage = {$aCount};
+
+                        Circles.create({
+                            id: child.id,
+                            percentage: percentage,
+                            radius: 80,
+                            width: 18,
+                            number: {$count},
+                            text: '%',
+                            colors: colors[0]
+                        });
+                        // }
+
+                    </script>
+                </div>
+            </div>
+        </div>
+        <script>
+            $(document).ready(function (c) {
+                $('.close-3').on('click', function (c) {
+                    $('.contact-info').fadeOut('slow', function (c) {
+                        $('.contact-info').remove();
+                    });
+                });
+            });
+        </script>
+        <script src="/public/home/js/classie.js"></script>
+    </div>
+    <!-- 第三块 -->
+</div>
+
+
+</body>
+</html>

@@ -127,21 +127,17 @@
         };
 
         $.ajax({
-            url: '{U("wechat/webWxApi/login")}',
+            url: '{U("wechat/webWxApi/login", [], "")}',
             data: data,
             type: 'POST',
             dataType: 'json',
             success:function(res){
-                alert(res);
                 if(res.code == 0){
-                    window.location.href = "{U('wechat/webWxApi/success')}";
+                    window.location.href = "{U('wechat/webWxApi/success', [], '')}";
                 }else{
                     alert('绑定失败，请重新绑定');
                 }
             },
-            error: function (res) {
-                alert(res);
-            }
         });
 
     });

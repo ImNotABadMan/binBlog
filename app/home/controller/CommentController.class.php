@@ -59,8 +59,11 @@ class CommentController extends Controller{
         ];
 
         $this->_model->insert($data);
-
-        header('location: ' . U('blog/showDetails') . "&id={$aid}");
+        if( !$_GET['wechat'] ){
+            header('location: ' . U('blog/showDetails') . "&id={$aid}");
+        }else{
+            header('location: ' . U('wechat/webWxApi/blog', [], '') . "&id={$aid}");
+        }
     }
 
 }

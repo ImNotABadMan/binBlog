@@ -42,8 +42,13 @@ $access_token = $WeChat -> GetAccessToken();
      "button":[
 			{
 				"type":"view",
-				"name":"个人中心",
+				"name":"用户绑定",
 				"url":"https://open.weixin.qq.com/connect/oauth2/authorize?appid=wxde85cdb773c8050a&redirect_uri=https%3A%2F%2Fwww.bingeblog.xin%2Findex.php%3Fp%3Dwechat%26m%3DwebWxApi%26a%3Dlogin&response_type=code&scope=snsapi_userinfo&state=STATE#wechat_redirect"
+			},
+			{
+				"type":"view",
+				"name":"个人中心",
+				"url":"https://www.bingeblog.xin/index.php?p=wechat&m=webWxApi&a=user"
 			}
 			]
 	}';

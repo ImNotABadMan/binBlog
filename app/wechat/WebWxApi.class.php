@@ -11,18 +11,32 @@ use \core\Controller as Controller;
 class WebWxApi extends Controller
 {
     private $_userModel;
+    private $_user_article;
+    private $_user_follow;
+    private $_user_cate;
+
+    private $rowNum = 5;
 
     public function __construct()
     {
         parent::__construct();
-        $this->_userModel = M('\\model\\UserModel')->table('bl_user');
+        $this->_userModel       = M('\\model\\UserModel')->table('bl_user');
+        if( session('wxData') ){
+            $user = M('\\model\\UserModel')->table('bl_user')->select(['openid' => session('wxData')['openid']])[0];
+            session('user', $user);
+        }
+        $this->_user_article    = M('\\model\\CollectArticleModel')->table('bl_user_collect_article');
+        $this->_user_follow     = M('\\model\\UserFollowModel')->table('bl_user_follow');
+        $this->_user_cate       = M('\\model\\UserFollowCateModel')->table('bl_user_follow_cate');
     }
 
     public function getUrl()
     {
         define("TOKEN", "weixin");
         $WeChat = new \core\WeChat();
-        $url = U('wechat/webWxApi/login');
+//        $url = U('wechat/webWxApi/login');
+        $url = U('wechat/webWxApi/user');
+        var_dump($url);
         $url = \core\WeChatApi::setAccess($url);
         var_dump($url);
     }
@@ -56,6 +70,11 @@ class WebWxApi extends Controller
 
         $data = $WeChat->codeTransAccessInfo($code);
         session('wxData', $data);
+
+        if( $this->_userModel->select(['openid' => $data['openid']]) ){
+            echo "<script>alert('已经绑定，不需要再次绑定');</script>";die;
+        }
+
         // 获取用户信息
 //        $userInfo = $WeChat->getUserInfo($data['access_token'], $data['openid']);
 
@@ -64,6 +83,74 @@ class WebWxApi extends Controller
 
     public function success()
     {
-        echo "<div>绑定成功</div>";die;
+        $this->display('success.html');
+    }
+
+    public function user()
+    {
+        $condition = [
+            'openid' => session('wxData')['openid'],
+        ];
+        $user = $this->_userModel->select($condition)[0];
+        if( !$user ){
+            echo "<h3 style='font-size: 5rem;text-align: center;'>未绑定用户</h3>";
+            header('Refresh:2;url=' . U('login', [], ''));die;
+        }
+
+        $condition = ['u_id' => $user['id']];
+
+        $page = isset($_GET['page']) ? $_GET['page'] : 1;
+        $offset = ($page - 1) * $this->rowNum;
+        $count = count( $this->_user_article->select($condition) );
+
+        $condition = ['bl_user_collect_article.u_id' => $user['id']];
+        $articles = $this->_user_article->field('bl_blog.*')->join('bl_blog on bl_blog.id = bl_user_collect_article.a_id')->join('bl_cate_category on bl_cate_category.id = bl_blog.c_c_id')->limit("$offset, $page")->select($condition);
+
+        $condition = ['a.u_id' => $user['id']];
+        $follows  = $this->_user_follow->alias('a')->join('bl_user as b on b.id = a.f_u_id')->select($condition);
+
+        $condition = ['u_id' => $user['id']];
+        $cates    = $this->_user_cate->select($condition);
+
+        // 收藏文章数量
+        $blogMOdel = M('\\model\\BlogModel')->table('bl_blog');
+        $aCount = count($blogMOdel->select());
+
+        $this->assign('aCount', $count ? $aCount + 55: 0);
+        $this->assign('count', $count ?  $count/ $aCount * 100 : 0);
+
+        $this->assign('articles', $articles);
+        $this->assign('follows', $follows);
+        $this->assign('cates'. $cates);
+        $this->assign('user', $user);
+        $this->display('user.html');
+    }
+
+    public function blog()
+    {
+        $id = isset($_GET["id"]) ? V($_GET["id"]) : 0;
+
+        $row = M("\\model\\BlogModel")->getRow("*", "bl_blog", "id={$id}");
+
+        M('\\model\\BlogModel')->table('bl_blog')->update(['view_times' => $row['view_times'] + 1], ['id' => $row['id']]);
+
+        $where = "article_id = {$id} and is_release = 1";
+        $comRowCount = M("\\model\\CommentModel")->getRow("count(*) as count_num", "bl_comment", $where);
+        $comRowsArr = M("\\model\\CommentModel")->order('post_date desc')->getRows('*', 'bl_comment', $where);
+        $comRows = [];
+        M("\\model\\CommentModel")->recursive($comRows, $comRowsArr);
+        if( session('user') ) {
+            $condition = [
+                'u_id' => session('user')['id']
+            ];
+            $collect = M('\\model\\CollectArticleModel')->table('bl_user_collect_article')->select($condition);
+            $this->assign('collect', $collect[0]);
+        }
+
+        $this->assign("row", $row);
+        $this->assign("comRowCount", $comRowCount);
+        $this->assign("comRows", $comRows);
+
+        $this->display("blog.html");
     }
 }
