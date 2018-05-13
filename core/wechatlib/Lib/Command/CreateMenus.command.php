@@ -38,6 +38,7 @@ $access_token = $WeChat -> GetAccessToken();
 //			}
 //		]
 //}';
+// include '';
  $data = '{
      "button":[
 			{
@@ -49,6 +50,26 @@ $access_token = $WeChat -> GetAccessToken();
 				"type":"view",
 				"name":"个人中心",
 				"url":"https://www.bingeblog.xin/index.php?p=wechat&m=webWxApi&a=user"
+			},
+			{
+				"name":"博文推荐",
+				"sub_button":[
+				    {
+				        "type":"view",
+                        "name":"烹饪",
+                        "url":"https://www.bingeblog.xin/index.php?p=wechat&m=webWxApi&a=allBlog&c_c_id=1"
+				    },
+				    {
+				        "type":"view",
+                        "name":"吃货",
+                        "url":"https://www.bingeblog.xin/index.php?p=wechat&m=webWxApi&a=allBlog&c_c_id=2"
+				    },
+				    {
+				        "type":"view",
+                        "name":"甜点",
+                        "url":"https://www.bingeblog.xin/index.php?p=wechat&m=webWxApi&a=allBlog&c_c_id=3"
+				    }
+				]
 			}
 			]
 	}';

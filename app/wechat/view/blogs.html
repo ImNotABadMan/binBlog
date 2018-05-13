@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>博客</title>
+</head>
+<link rel="stylesheet" href="/public/home/css/basic.css">
+<link rel="stylesheet" href="/public/home/css/style2.css">
+<link rel="stylesheet" href="/public/home/css/blog.css">
+
+<body>
+<section class="bl_section">
+    <!-- <div class="container">
+        <h2>博客</h2>
+    </div> -->
+    <div class="blog_section blog-container">
+        <aside class="list_left">
+            {foreach from=$rows item="row"}
+            <div class="blog_text">
+                <h3>{$row.title}</h3>
+                <div>
+                    <div class="blog_img" style="display: inline-block;">
+                        <img src="{C('URL')}/{$row.cover_img}" style="width: 300px;" style="display: inline-block;">
+                    </div>
+                    <div class="blog_read" style="display: inline-block;">
+                        <p>{$row.intro}</p>
+                        <button class="more"><a href="{C('URL')}/index.php?p=home&m=blog&a=showDetails&category={$smarty.get.category}&id={$row.id}" target="_blank">阅读更多</a></button>
+                    </div>
+                </div>
+                <div class="clearfix"></div>
+                <div class="blog_admin">
+                    <ul>
+                        <li><a href="###"><img src="{C('URL')}/public/home/images/h1.png">{$row.c_name}</a></li>
+                        <li><img src="{C('URL')}/public/home/images/h2.png">{$row.post_date|date_format:"%Y-%m-%d %H:%M"}</li>
+                        <li><a ><img src="{C('URL')}/public/home/images/h3.png">{$row.u_nickname}</a></li>
+                        <li><a >{$row.view_times} 浏览</a></li>
+                        <li class='collect'><a style="cursor: pointer;" data-id="{$row.id}">
+                            {if count($collects) > 0}
+                            {foreach from=$collects item="collect"}
+                            {if $row['id'] == $collect['a_id']}
+                            <img src="{C('URL')}/public/home/images/iscollect.jpg">
+                            {else}
+                            <img src="{C('URL')}/public/home/images/collect.jpg">
+                            {/if}
+                            {/foreach}
+                            {else}
+                            <img src="{C('URL')}/public/home/images/collect.jpg">
+                            {/if}
+                            收藏</a></li>
+                    </ul>
+                </div>
+            </div>
+            {foreachelse}
+            <h3>没有内容</h3>
+            {/foreach}
+        </aside>
+
+        <div class="list_right">
+            <div>
+                <h3>类别</h3>
+                <ul>
+                    {foreach from=$cate item="node"}
+                    <li><a href="{C('URL')}/index.php?p=home&m=blog&a=showBlog&category={$smarty.get.category}&c_id={$node.id}">{"--"|str_repeat:$node.level}{$node.name}</a></li>
+                    {/foreach}
+                </ul>
+            </div>
+        </div>
+        <div class="clearfix"></div>
+    </div>
+</section>
+<script>
+    var pageBtn = document.getElementsByClassName("blog_a");
+    var page = {$page};
+    var pageCount = {$pageCount};
+    var prePage = page - 1;
+    var nextPage = page + 1;
+    if(page == 1){
+        prePage = pageCount;
+    }
+    if(page == pageCount){
+        nextPage = 1;
+    }
+    pageBtn[0].onclick = function(){
+        location.href = "{C('URL')}/?p=home&m=blog&a=showBlog&c_id={$c_id}&page=" + prePage;
+    }
+    pageBtn[1].onclick = function(){
+        location.href = "{C('URL')}/?p=home&m=blog&a=showBlog&c_id={$c_id}&page=" + nextPage;
+    }
+
+    $('.collect a').click(function(e){
+        e.preventDefault();
+        var id = $(this).data('id');
+        var _this = $(this);
+        $.ajax({
+            url: '{U("blog/collect")}',
+            data: { id: id },
+            type: 'POST',
+            dataType: 'json',
+            success: function(res){
+                if( res.code == 0 ){
+                    // 收藏
+                    _this.children('img').attr('src', "{C('URL')}/public/home/images/iscollect.jpg");
+                }else if( res.code == 1){
+                    _this.children('img').attr('src', "{C('URL')}/public/home/images/collect.jpg");
+                }else{
+                    alert(res.msg);
+                }
+            }
+        });
+
+    });
+</script>
+</body>
+</html>

@@ -14,6 +14,7 @@ class WebWxApi extends Controller
     private $_user_article;
     private $_user_follow;
     private $_user_cate;
+    private $_blogModel;
 
     private $rowNum = 5;
 
@@ -28,6 +29,8 @@ class WebWxApi extends Controller
         $this->_user_article    = M('\\model\\CollectArticleModel')->table('bl_user_collect_article');
         $this->_user_follow     = M('\\model\\UserFollowModel')->table('bl_user_follow');
         $this->_user_cate       = M('\\model\\UserFollowCateModel')->table('bl_user_follow_cate');
+
+        $this->_blogModel       = M('\\model\\BlogModel')->table('bl_blog');
     }
 
     public function getUrl()
@@ -152,5 +155,37 @@ class WebWxApi extends Controller
         $this->assign("comRows", $comRows);
 
         $this->display("blog.html");
+    }
+
+    public function allBlog()
+    {
+        $c_id = session('c_id');
+        $c_c_id = isset($_GET['c_c_id']) ? $_GET['c_c_id'] : 0;
+
+        $this->_showBlog($c_id, $c_c_id);
+
+        $this->display('blogs.html');
+    }
+
+    private function _showBlog($c_id = '', $c_c_id = '')
+    {
+        if( $c_id && $c_c_id ){
+            $condition = [
+                'c_c_id' => $c_c_id,
+                'c_id'   => $c_id
+            ];
+            $blogs = $this->_blogModel->select($condition);
+        }else{
+            $blogs = $this->_blogModel->select(['c_id' => $c_id]);
+        }
+
+        /****************************博客******************************/
+        if(session('user') ) {
+            $condition = ['u_id' => session('user')['id']];
+            $collects = M('\\model\\CollectArticleModel')->table('bl_user_collect_article')->select($condition);
+            $this->assign("collects", $collects);
+        }
+
+        $this->assign('rows', $blogs);
     }
 }
