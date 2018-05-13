@@ -23,6 +23,7 @@ class WebWxApi extends Controller
     {
         var_dump($_GET);
 
+        $WeChat = new \core\WeChat();
         $code = $_GET['code'];
 
         $data = $WeChat->codeTransAccessInfo($code);
