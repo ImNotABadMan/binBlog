@@ -122,13 +122,13 @@
         var data = $('form').serializeArray();
 
         $.ajax({
-            url: '{U("login")}',
+            url: '{U("wechat/webWxApi/login")}',
             data: data,
             type: 'POST',
             dataType: 'json',
             success:function(res){
                 if(res.code == 0){
-                    window.location.href = "{U('success')}";
+                    window.location.href = "{U('wechat/webWxApi/success')}";
                 }else{
                     alert('绑定失败，请重新绑定');
                 }
