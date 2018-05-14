@@ -169,7 +169,7 @@
         // 是否已经登录
         if( '{$smarty.session.user.acc}' == '' ){
             if( window.confirm( '请登录' )){
-                window.location.href = '{U("login", [], "")}';
+                window.location.href = '{U("Klogin", [], "")}';
             }
             return false;
         }
