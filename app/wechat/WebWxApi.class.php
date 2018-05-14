@@ -99,7 +99,7 @@ class WebWxApi extends Controller
         $data = session('wxData');
 
         if( $this->_userModel->select(['openid' => $data['openid']]) ){
-            echo "<script>alert('已经绑定，不需要再次绑定{$data['openid']}');</script>";die;
+            echo "<script>alert('已经绑定，不需要再次绑定');</script>";die;
         }
 
         // 获取用户信息
