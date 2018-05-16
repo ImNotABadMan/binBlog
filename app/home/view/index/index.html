@@ -71,17 +71,12 @@
                 <div class="container">
                     <h2>当前省市</h2>
                     <div class="figure">
-                      {foreach from=$rows item='row' name="f_row"}
-                        <div class="figure">
-                            {foreach from=$last item='row' name="f_row"}
-                            <div style="display: inline-block;width: 33%;text-align: center;padding:10px 0px;">
-                                <a href="{U('blog/showDetails', ['id' => $row['id'], 'category' => $row['name']])}" target="_blank"><img class="last-img" src="{C('URL')}/{$row['cover_img']}"></a>
-                                <a href="{U('blog/showDetails', ['id' => $row['id'], 'category' => $row['name']])}" target="_blank"><p style="text-align: center;">{$row.title}</p></a>
-                            </div>
-                            {/foreach}
-                            <div class="clearfix"></div>
+                        {foreach from=$last item='row' name="f_row"}
+                        <div style="display: inline-block;width: 33%;text-align: center;padding:10px 0px;">
+                            <a href="{U('blog/showDetails', ['id' => $row['id'], 'category' => $row['name']])}" target="_blank"><img class="last-img" src="{C('URL')}/{$row['cover_img']}"></a>
+                            <a href="{U('blog/showDetails', ['id' => $row['id'], 'category' => $row['name']])}" target="_blank"><p style="text-align: center;">{$row.title}</p></a>
                         </div>
-                         {/foreach}
+                        {/foreach}
                         <div class="clearfix"></div>
                     </div>
                  </div>
