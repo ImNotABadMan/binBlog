@@ -1,4 +1,19 @@
 {include file="Com/header.html" title="--主页" flag=1}
+<style>
+    .last-img {
+        width: 205px;
+        height: 206px;
+        border: 1px solid #ccc;
+        border-radius: 5px;
+        transition-duration: 0.5s;
+        position: relative;
+        top: 0px;
+    }
+    .last-img:hover{
+        top: -3px;
+        box-shadow: 3px 3px 3px 3px #ccc;
+    }
+</style>
 <section id="section">
     <div class="list">
         <div class="roll_container">
@@ -32,14 +47,12 @@
             <div class="test">
                 <div class="container">
                     <h2>最新设计</h2>
-                    <div class="figure">
+                    <div>
                         {foreach from=$last item='row' name="f_row"}
-                        <a>
-                            <span><strong>"{$smarty.foreach.f_row.iteration}"/</strong>{$row.intro}</span>
-                            <a href="{U('blog/showDetails', ['id' => $row['id'], 'category' => $row['name']])}"><img style=width:205px;height:206px src="{C('URL')}/$row['cover_img']"></a>
-                            <p>{$row.title}</p>
-                            <submit><a href="{$row.net}">阅读更多</a></submit>
-                        </figcaption>
+                        <div style="display: inline-block;width: 33%;text-align: center;padding:10px 0px;">
+                            <a href="{U('blog/showDetails', ['id' => $row['id'], 'category' => $row['name']])}" target="_blank"><img class="last-img" src="{C('URL')}/{$row['cover_img']}"></a>
+                            <a href="{U('blog/showDetails', ['id' => $row['id'], 'category' => $row['name']])}" target="_blank"><p style="text-align: center;">{$row.title}</p></a>
+                        </div>
                         {/foreach}
                         <div class="clearfix"></div>
                     </div>
@@ -56,15 +69,18 @@
             </div>
             <div>
                 <div class="container">
-                    <h2>新口味</h2>
-                    <div class="fig">
+                    <h2>当前省市</h2>
+                    <div class="figure">
                       {foreach from=$rows item='row' name="f_row"}
-                        <figcaption>
-                            <span><strong>"{$smarty.foreach.f_row.iteration}"/</strong>{$row.intro}</span>
-                            <img style=width:205px;height:206px src="{C('URL')}/{$row.map}">
-                            <p>{$row.title}</p>
-                            <submit><a href="{$row.net}">阅读更多</a></submit>
-                        </figcaption>
+                        <div class="figure">
+                            {foreach from=$last item='row' name="f_row"}
+                            <div style="display: inline-block;width: 33%;text-align: center;padding:10px 0px;">
+                                <a href="{U('blog/showDetails', ['id' => $row['id'], 'category' => $row['name']])}" target="_blank"><img class="last-img" src="{C('URL')}/{$row['cover_img']}"></a>
+                                <a href="{U('blog/showDetails', ['id' => $row['id'], 'category' => $row['name']])}" target="_blank"><p style="text-align: center;">{$row.title}</p></a>
+                            </div>
+                            {/foreach}
+                            <div class="clearfix"></div>
+                        </div>
                          {/foreach}
                         <div class="clearfix"></div>
                     </div>
