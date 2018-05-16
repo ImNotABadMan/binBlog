@@ -15,7 +15,7 @@ $conf = array(
     ),
 
     #当前网站的域名
-     'URL' => 'https://www.bingeblog.xin', // 线上
+     'URL' => 'http://www.bingeblog.xin', // 线上
 //    'URL' => 'http://www.binblog.com',
     // 'URL' => 'http://www.bin.com/pro1',
 
