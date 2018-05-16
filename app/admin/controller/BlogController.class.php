@@ -62,6 +62,9 @@ class BlogController extends Controller{
         $cate = M("\\model\\CateModel")->getRows("*", "bl_category", 1);
         $tree = array();
         M("\\model\\CateModel")->recursive($tree, $cate);
+        $c_c_tree = [];
+        $c_cate = M('\\model\\CCateModel')->getRows('*', 'bl_cate_category', 1);
+        M('\\model\\CCateModel')->recursive($c_c_tree, $c_cate);
 
         //用户
         $users = M("\\model\\UserModel")->getRows("id,nickname", "bl_user", 1);
@@ -72,6 +75,7 @@ class BlogController extends Controller{
         //列
         $this->assign("cols", $cols);
         $this->assign("tree", $tree);
+        $this->assign('c_c_tree', $c_c_tree);
         $this->assign("users", $users);
 
         $this->assign("pageHtml", $pageHtml);//分页
