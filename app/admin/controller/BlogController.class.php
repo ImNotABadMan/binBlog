@@ -100,11 +100,14 @@ class BlogController extends Controller{
         $cate = M("\\model\\CateModel")->getRows("*", "bl_category", 1);
         $tree = array();
         M("\\model\\CateModel")->recursive($tree, $cate);
-        //
+        $c_c_tree = [];
+        $c_cate = M('\\model\\CCateModel')->getRows('*', 'bl_cate_category', 1);
+        M('\\model\\CCateModel')->recursive($c_c_tree, $c_cate);
 
         $this->assign("row", $row);
         $this->assign("flag", 2);
         $this->assign("tree", $tree);
+        $this->assign('c_c_tree', $c_c_tree);
         $this->assign("page", $page);
 
         $this->showList();
@@ -124,14 +127,16 @@ class BlogController extends Controller{
         $intro = isset($_POST["intro"]) ? V($_POST["intro"]) : "";
         $u_id_and_name = isset($_POST["u_id_and_name"]) ? explode("-", V($_POST["u_id_and_name"])) : 0;
         $c_id_and_name = isset($_POST["c_id_and_name"]) ? explode("-", V($_POST["c_id_and_name"])) : 0;
+        $c_c_id_and_name = isset($_POST["c_c_id_and_name"]) ? explode("-", V($_POST["c_c_id_and_name"])) : 0;
+
         $content = isset($_POST["content"]) ? htmlspecialchars(V($_POST["content"])) : " ";
         $cover_img = !empty($_FILES["cover_img"]["name"]) ? $_FILES["cover_img"] : "";
 
         if($cover_img != ''){
             $picName = FileUploadTool::fileUpload($cover_img);
-            $sql = "update bl_blog set cover_img='{$picName}',title='{$title}',content='{$content}',u_id={$u_id_and_name[0]}, u_nickname='{$u_id_and_name[1]}', c_id={$c_id_and_name[0]},c_name='{$c_id_and_name[1]}', intro='{$intro}' where id = {$id}";
+            $sql = "update bl_blog set cover_img='{$picName}',title='{$title}',content='{$content}',u_id={$u_id_and_name[0]}, u_nickname='{$u_id_and_name[1]}', c_id={$c_id_and_name[0]},c_name='{$c_id_and_name[1]}', intro='{$intro}', c_c_id= $c_c_id_and_name[0]}, c_c_name='{$c_c_id_and_name[1]}' where id = {$id}";
         }else{
-            $sql = "update bl_blog set title='{$title}',content='{$content}',u_id={$u_id_and_name[0]}, u_nickname='{$u_id_and_name[1]}',c_id={$c_id_and_name[0]},c_name='{$c_id_and_name[1]}', intro='{$intro}' where id = {$id}";
+            $sql = "update bl_blog set title='{$title}',content='{$content}',u_id={$u_id_and_name[0]}, u_nickname='{$u_id_and_name[1]}',c_id={$c_id_and_name[0]},c_name='{$c_id_and_name[1]}', intro='{$intro}', c_c_id={$c_c_id_and_name[0]}, c_c_name='{$c_c_id_and_name[1]}' where id = {$id}";
         }
 
         $re = M("\\model\\BlogModel")->setData($sql);
@@ -156,6 +161,8 @@ class BlogController extends Controller{
         $intro = isset($_POST["intro"]) ? V($_POST["intro"]) : "";
         $u_id_and_name = isset($_POST["u_id_and_name"]) ? explode("-", V($_POST["u_id_and_name"])) : 0;
         $c_id_and_name = isset($_POST["c_id_and_name"]) ? explode("-", V($_POST["c_id_and_name"])) : 0;
+        $c_c_id_and_name = isset($_POST["c_c_id_and_name"]) ? explode("-", V($_POST["c_c_id_and_name"])) : 0;
+
         $content = isset($_POST["content"]) ? htmlspecialchars(V($_POST["content"])) : " ";
 
         $cover_img = isset($_FILES["cover_img"]) ? $_FILES["cover_img"] : "";
@@ -164,7 +171,7 @@ class BlogController extends Controller{
 
         $post_date = time();
 
-        $sql = "insert into bl_blog values(null,'{$picName}','{$title}',{$u_id_and_name[0]},'{$u_id_and_name[1]}',{$post_date},'{$content}',{$c_id_and_name[0]},'{$c_id_and_name[1]}', '{$intro}',0,'0',0,0)";
+        $sql = "insert into bl_blog('id', 'cover_img', 'title', 'u_id', 'u_nickname', 'post_date', 'content', 'c_id', 'c_name', 'intro', 'c_c_id', 'c_c_name', 'view_times', 'collect_times') values(null,'{$picName}','{$title}',{$u_id_and_name[0]},'{$u_id_and_name[1]}',{$post_date},'{$content}',{$c_id_and_name[0]},'{$c_id_and_name[1]}', '{$intro}',{$c_c_id_and_name[0]},'{$c_c_id_and_name[1]}',0,0)";
 
         $re = M("\\model\\BlogModel")->setData($sql);
         $re = $re ? 11 : 10;

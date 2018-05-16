@@ -11,19 +11,19 @@
         </div>
     </div>
     <div class="form-group">
-        <label for="title_up" class="control-label col-xs-2">title:</label>
+        <label for="title_up" class="control-label col-xs-2">文章标题:</label>
         <div class="col-xs-6">
             <input id="title_up" type="text" name="title" class="form-control" value="{$row.title}" />
         </div>
     </div>
     <div class="form-group">
-        <label for="intro_up" class="control-label col-xs-2">intro:</label>
+        <label for="intro_up" class="control-label col-xs-2">文章简介:</label>
         <div class="col-xs-6">
             <textarea id="intro_up" name="intro" class="form-control">{$row.intro}</textarea>
         </div>
     </div>
     <div class="form-group">
-        <label for="u_id_and_name" class="control-label col-xs-2">u_nickname:</label>
+        <label for="u_id_and_name" class="control-label col-xs-2">用户昵称:</label>
         <div class="col-xs-6">
             <select name="u_id_and_name" id="u_id_and_name" class="form-control"class="form-control">
                 {foreach from=$users item="user"}
@@ -33,7 +33,7 @@
         </div>
     </div>
     <div class="form-group">
-        <label for="c_id_and_name_up" class="control-label col-xs-2">c_name:</label>
+        <label for="c_id_and_name_up" class="control-label col-xs-2">所属省市:</label>
         <div class="col-xs-6">
             <select name="c_id_and_name" id="c_id_and_name_up" class="form-control"class="form-control">
                 {foreach from=$tree item="node"}
@@ -43,7 +43,17 @@
         </div>
     </div>
     <div class="form-group">
-        <label for="content_up" class="control-label col-xs-2">content:</label>
+        <label for="c_id_and_name_up" class="control-label col-xs-2">所属分类:</label>
+        <div class="col-xs-6">
+            <select name="c_c_id_and_name" id="c_c_id_and_name_up" class="form-control"class="form-control">
+                {foreach from=$tree item="node"}
+                <option value="{$node.id}-{$node.name}" {if $node.id==$row.c_id} selected {/if}>{"--"|str_repeat:$node.level}{$node.name}</option>
+                {/foreach}
+            </select>
+        </div>
+    </div>
+    <div class="form-group">
+        <label for="content_up" class="control-label col-xs-2">文章内容:</label>
         <div class="col-xs-10">
             <textarea id="content_up" type="text" name="content">{$row.content}</textarea>
         </div>
