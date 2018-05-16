@@ -92,11 +92,11 @@ class WebWxApi extends Controller
 
         }
         // 微信授权
-        $WeChat = new \core\WeChat();
-        $code = $_GET['code'];
-
-        $data = $WeChat->codeTransAccessInfo($code);
-        session('wxData', $data);
+//        $WeChat = new \core\WeChat();
+//        $code = $_GET['code'];
+//
+//        $data = $WeChat->codeTransAccessInfo($code);
+        $data = session('wxData');
 
         if( $this->_userModel->select(['openid' => $data['openid']]) ){
             echo "<script>alert('已经绑定，不需要再次绑定');</script>";die;
