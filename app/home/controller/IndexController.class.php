@@ -36,8 +36,10 @@
         }
 
         $about = M('\\model\\AboutModel')->table('bl_about')->select()[0];
-        $this->assign('about', $about);
+        $last = M('\\model\\BlogModel')->table('bl_blog')->field('bl_blog.*, bl_cate_category.name')->join('bl_cate_category on bl_cate_category.id = bl_blog.c_c_id')->order('post_date decs')->limit(6)->select();
 
+        $this->assign('about', $about);
+        $this->assign('last', $last);
  	 	$this->display('index/index.html');
  	}
 
