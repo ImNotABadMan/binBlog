@@ -31,14 +31,12 @@
             setcookie('province', $province['name'], time() + 3600, '/');
             setcookie('city', $city['name'], time() + 3600, '/');
 
-            $about = M('\\model\\AboutModel')->table('bl_about')->select()[0];
-
-            $this->assign('about', $about);
             $this->assign("province", $province);
             $this->assign("city", $city);
         }
 
-        // var_dump($province, $city);die;
+        $about = M('\\model\\AboutModel')->table('bl_about')->select()[0];
+        $this->assign('about', $about);
 
  	 	$this->display('index/index.html');
  	}

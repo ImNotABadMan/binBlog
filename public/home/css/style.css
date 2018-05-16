@@ -35,7 +35,7 @@ a{text-decoration: none;}
 .picture{width:100%;height:405px;position:relative;background: url("../images/quote.jpg")}
 .picture_shadow{width:50%;height:405px;background-color:#000000;opacity:0.2}
 .picture_p{width:50%;height:405px;float: left;position:absolute;top:0;}
-.picture p{display:inline-block;font-size: 30px;color:#fafafa;padding: 150px 20px 150px 50px;text-align: left;line-height: 1.5;}
+.picture p{display:inline-block;font-size: 20px;color:#fafafa;padding: 150px 20px 150px 50px;text-align: left;line-height: 1.5;}
 .about .fig{height:440px;}
 .about figcaption{width:25%;float: left;padding:20px 0;}
 .about figcaption span{color:#8b4513;font-size:26px}

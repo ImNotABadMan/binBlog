@@ -49,13 +49,12 @@
                 <div class="container">
                     <h2>新口味</h2>
                     <div class="fig">
-                      <!--{foreach from=$rows item='row' name="f_row"}-->
+                      {foreach from=$rows item='row' name="f_row"}
                         <figcaption>
-                            <!--<span><strong>"{$smarty.foreach.f_row.iteration}"/</strong>{$row.intro}</span>-->
-                            <!--<img style=width:205px;height:206px src="{C('URL')}/{$row.map}">-->
-                            <!--<p>{$row.title}</p>-->
-
-                            <!--<submit><a href="{$row.net}">阅读更多</a></submit>-->
+                            <span><strong>"{$smarty.foreach.f_row.iteration}"/</strong>{$row.intro}</span>
+                            <img style=width:205px;height:206px src="{C('URL')}/{$row.map}">
+                            <p>{$row.title}</p>
+                            <submit><a href="{$row.net}">阅读更多</a></submit>
                         </figcaption>
                          {/foreach}
                         <div class="clearfix"></div>
