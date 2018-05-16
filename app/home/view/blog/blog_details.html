@@ -20,7 +20,7 @@
             <span class="muted"><i class="fa fa-user"></i>{$row.u_nickname}</span>
             <time class="muted"><i class="fa fa-clock-o"></i> {date("Y-m-d H:i", $row.post_date)}</time>
             <span class="muted"><i class="fa fa-eye"></i> {$row.view_times}浏览</span>
-                <span class="muted"><i class="fa fa-comments-o"></i> <a href="#comments">5评论</a></span>
+                <span class="muted"><i class="fa fa-comments-o"></i> <a href="#comments">{$comRowCount}评论</a></span>
                 <span class='collect'><a style="cursor: pointer;" data-id="{$row.id}">
                     {if $row['id'] == $collect['a_id']}
                     <img src="{C('URL')}/public/home/images/iscollect.jpg">

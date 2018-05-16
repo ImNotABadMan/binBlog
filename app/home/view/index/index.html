@@ -118,17 +118,17 @@
                             if(data.errCode != 0){
                                 return false;
                             }
-                            var html = `<ul>`;
+                            var html = ``;
                             console.log(data);
                             var url = "{C('URL')}";
                             $(data.msg).each(function(key, val){
-                                {literal}
-                                html +=
-                                `<li>
-                                <img style='width:280px;height:250px;' src="${url}/${val.cover_img}" data-index='${val.id}'>
-                                </li>`;
-                                html += `</ul>`;
-                                {/literal}
+
+                                html +=`
+                                <div style="display: inline-block;width: 33%;text-align: center;padding:10px 0px;">
+                                <a href="{U('blog/showDetails')}&id={literal}${val.id}{/literal}&category={literal}${val.name}){/literal}" target="_blank"><img class="last-img" src="{C('URL')}/{literal}${val.cover_img}{/literal}"></a>
+                                <a href="{U('blog/showDetails')}&id={literal}${val.id}{/literal}&category={literal}${val.name}){/literal}" target="_blank"><p style="text-align: center;">{literal}${val.title}{/literal}</p></a>
+                                </div>`;
+
                             });
                             $('.figure').html(html);
                         }, 'json');
