@@ -42,7 +42,7 @@ a{text-decoration: none;}
 .about figcaption strong{font-size:40px;text-align: center; color:#8b4513; }
 .about figcaption a{color:#000;font-weight: 500;border-top: 2px solid #8b4513;padding:5px 0;}
 .about figcaption p{padding:5px 10px 10px 0;text-align: left;font-size:12px;line-height: 2;}
-.footer .top{padding: 45px 0 0 0;display:block;float: left;}
+.footer .top{padding: 45px 0 0 0;display:block;}
 .footer .top figure{width:225px;float: left;}
 .footer .top h4{color: #fff;font-size:26px;padding:0 0 10px;}
 .footer .top li{line-height: 1.5;}
