@@ -34,9 +34,9 @@
                     <h2>最新设计</h2>
                     <div class="figure">
                         {foreach from=$last item='row' name="f_row"}
-                        <figcaption>
+                        <a>
                             <span><strong>"{$smarty.foreach.f_row.iteration}"/</strong>{$row.intro}</span>
-                            <img style=width:205px;height:206px src="{U('blog/showDetails', ['id' => $row['id'], 'category' => $row['name']])}">
+                            <a href="{U('blog/showDetails', ['id' => $row['id'], 'category' => $row['name']])}"><img style=width:205px;height:206px src="{C('URL')}/$row['cover_img']"></a>
                             <p>{$row.title}</p>
                             <submit><a href="{$row.net}">阅读更多</a></submit>
                         </figcaption>
