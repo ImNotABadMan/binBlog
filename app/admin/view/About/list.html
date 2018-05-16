@@ -4,7 +4,7 @@
         <div class="container">
             <div class="h5">
                 <!-- <a href="http://www.smarty.com/stuMajor/list.php?page={$page}&flag=1">添加学生</a> -->
-                <!--{*include file="About/insert.html"*}-->
+                <!--{*include file="About/insert.html"}-->
             </div>
             <table class="table table-hover table-striped">
                 <tr>
@@ -26,7 +26,8 @@
                         <td {if $row_key==3||$row_key==2}style="max-width:300px;"{/if}>{$value}</td>
                         {/if}
                     {/foreach}
-                        <!--<td><a href="{C('URL')}/index.php?p=admin&m=about&a=showUpd&page={$page}&id={$row.id}">编辑</a>&nbsp;&nbsp;<a id="del" href="javascript:isDel({$row.id})">删除</a></td>-->
+                        <td><a href="{C('URL')}/index.php?p=admin&m=about&a=showUpd&page={$page}&id={$row.id}">编辑</a>&nbsp;&nbsp;
+                            <!--<a id="del" href="javascript:isDel({$row.id})">删除</a></td>-->
                     </tr>
                 {/foreach}
             </table>
