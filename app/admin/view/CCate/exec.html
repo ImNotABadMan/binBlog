@@ -2,7 +2,7 @@
 <div class="h4">更新数据--{$row.id}</div>
 <form action="{C('URL')}/index.php?p=admin&m=ccate&a=upd&&id={$row.id}" method="post" class="form-horizontal">
     <div class="form-group">
-        <label for="name" class="control-label col-xs-2">Name:</label>
+        <label for="name" class="control-label col-xs-2">分类名称:</label>
         <div class="col-xs-6">
             <input id="name" type="text" name="name" class="form-control" value="{$row.name}" />
         </div>

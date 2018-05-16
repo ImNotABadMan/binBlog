@@ -175,7 +175,7 @@ class BlogController extends Controller{
 
         $post_date = time();
 
-        $sql = "insert into bl_blog('id', 'cover_img', 'title', 'u_id', 'u_nickname', 'post_date', 'content', 'c_id', 'c_name', 'intro', 'c_c_id', 'c_c_name', 'view_times', 'collect_times') values(null,'{$picName}','{$title}',{$u_id_and_name[0]},'{$u_id_and_name[1]}',{$post_date},'{$content}',{$c_id_and_name[0]},'{$c_id_and_name[1]}', '{$intro}',{$c_c_id_and_name[0]},'{$c_c_id_and_name[1]}',0,0)";
+        $sql = "insert into bl_blog(id, cover_img, title, u_id, u_nickname, post_date, content, c_id, c_name, intro, c_c_id, c_c_name, view_times, collect_times) values(null,'{$picName}','{$title}',{$u_id_and_name[0]},'{$u_id_and_name[1]}',{$post_date},'{$content}',{$c_id_and_name[0]},'{$c_id_and_name[1]}', '{$intro}',{$c_c_id_and_name[0]},'{$c_c_id_and_name[1]}',0,0)";
 
         $re = M("\\model\\BlogModel")->setData($sql);
         $re = $re ? 11 : 10;
