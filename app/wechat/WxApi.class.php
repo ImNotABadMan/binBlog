@@ -22,8 +22,13 @@ class WxApi extends \core\Wechat
 
             $this->reNews($blogs);
         }
+
+        if($this->sendType == 'event' && $this->Event == 'subscribe'){
+            $this->reText('请打开位置共享，仅用于为您查找当前城市下的文章');
+        }
+
 		if( !empty( $this->keyword ) ){
-			$this -> reText('欢迎使用微信公众平台开发API' . $this->lat . ' - ' . $this->lng);
+			$this -> reText('Bin客欢迎你');
 		}
 
 	}

@@ -49,25 +49,25 @@ $access_token = $WeChat -> GetAccessToken();
 			{
 				"type":"view",
 				"name":"个人中心",
-				"url":"https://www.bingeblog.xin/index.php?p=wechat&m=webWxApi&a=user"
+				"url":"http://www.bingeblog.xin/index.php?p=wechat&m=webWxApi&a=user"
 			},
 			{
 				"name":"博文推荐",
 				"sub_button":[
 				    {
 				        "type":"view",
-                        "name":"烹饪",
-                        "url":"https://www.bingeblog.xin/index.php?p=wechat&m=webWxApi&a=allBlog&c_c_id=1&category=烹饪"
+                        "name":"美食",
+                        "url":"http://www.bingeblog.xin/index.php?p=wechat&m=webWxApi&a=allBlog&c_c_id=1&category=美食"
 				    },
 				    {
 				        "type":"view",
-                        "name":"吃货",
-                        "url":"https://www.bingeblog.xin/index.php?p=wechat&m=webWxApi&a=allBlog&c_c_id=2&category=吃货"
+                        "name":"技术",
+                        "url":"http://www.bingeblog.xin/index.php?p=wechat&m=webWxApi&a=allBlog&c_c_id=2&category=技术"
 				    },
 				    {
 				        "type":"view",
-                        "name":"甜点",
-                        "url":"https://www.bingeblog.xin/index.php?p=wechat&m=webWxApi&a=allBlog&c_c_id=3&category=甜点"
+                        "name":"旅游",
+                        "url":"http://www.bingeblog.xin/index.php?p=wechat&m=webWxApi&a=allBlog&c_c_id=3&category=旅游"
 				    }
 				]
 			}
