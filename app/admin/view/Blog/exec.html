@@ -47,7 +47,7 @@
         <div class="col-xs-6">
             <select name="c_c_id_and_name" id="c_c_id_and_name_up" class="form-control"class="form-control">
                 {foreach from=$c_c_tree item="node"}
-                <option value="{$node.id}-{$node.name}" {if $node.id==$row.c_id} selected {/if}>{"--"|str_repeat:$node.level}{$node.name}</option>
+                <option value="{$node.id}-{$node.name}" {if $node.id==$row.c_c_id} selected {/if}>{"--"|str_repeat:$node.level}{$node.name}</option>
                 {/foreach}
             </select>
         </div>

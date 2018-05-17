@@ -138,7 +138,7 @@ class BlogController extends Controller{
 
         if($cover_img != ''){
             $picName = FileUploadTool::fileUpload($cover_img);
-            $sql = "update bl_blog set cover_img='{$picName}',title='{$title}',content='{$content}',u_id={$u_id_and_name[0]}, u_nickname='{$u_id_and_name[1]}', c_id={$c_id_and_name[0]},c_name='{$c_id_and_name[1]}', intro='{$intro}', c_c_id= $c_c_id_and_name[0]}, c_c_name='{$c_c_id_and_name[1]}' where id = {$id}";
+            $sql = "update bl_blog set cover_img='{$picName}', title='{$title}',content='{$content}',u_id={$u_id_and_name[0]}, u_nickname='{$u_id_and_name[1]}', c_id={$c_id_and_name[0]},c_name='{$c_id_and_name[1]}', intro='{$intro}',  c_c_id={$c_c_id_and_name[0]}, c_c_name='{$c_c_id_and_name[1]}' where id = {$id}";
         }else{
             $sql = "update bl_blog set title='{$title}',content='{$content}',u_id={$u_id_and_name[0]}, u_nickname='{$u_id_and_name[1]}',c_id={$c_id_and_name[0]},c_name='{$c_id_and_name[1]}', intro='{$intro}', c_c_id={$c_c_id_and_name[0]}, c_c_name='{$c_c_id_and_name[1]}' where id = {$id}";
         }
