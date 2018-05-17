@@ -17,7 +17,7 @@ class BlogController extends Controller{
 
     public function showBlog(){
 
-        $c_c_c_id = isset($_GET["c_id"]) ? V($_GET["c_id"]) : "";//搜索分类
+        $c_c_c_id = isset($_GET["c_c_c_id"]) ? V($_GET["c_c_c_id"]) : "";//搜索分类
         $c_c_id = isset($_GET['ccid']) ? V($_GET['ccid']) : 0;//所属分类
         $c_sql = "1";
         if($c_c_c_id != ""){
@@ -34,9 +34,9 @@ class BlogController extends Controller{
             //索引加多了，查询索引rows会变多c_id,post_date 294007和c_id 142236
             //post_date,post_date 294007 和post_date 31117
             //cover_img,title,u_id,u_nickname,post_date,content,c_id,c_name,intro
-            $sql = "c_c_c_id = {$c_c_c_id} and post_date<=(select post_date from bl_blog where c_c_c_id = {$c_c_c_id} order by post_date desc limit {$offsetRow},1) order by post_date desc limit {$pageRows}";
+            $sql = "c_c_c_id = {$c_c_c_id} and c_id = {$_COOKIE['c_id']} and post_date<=(select post_date from bl_blog where c_c_c_id = {$c_c_c_id} order by post_date desc limit {$offsetRow},1) order by post_date desc limit {$pageRows}";
         }else{
-            $sql = "1 and c_c_id = {$c_c_id} and post_date<=(select post_date from bl_blog order by post_date desc limit {$offsetRow},1) order by post_date desc limit {$pageRows}";
+            $sql = "1 and c_id = {$_COOKIE['c_id']} and c_c_id = {$c_c_id} and post_date<=(select post_date from bl_blog order by post_date desc limit {$offsetRow},1) order by post_date desc limit {$pageRows}";
         }
 
         // var_dump($sql);die;
