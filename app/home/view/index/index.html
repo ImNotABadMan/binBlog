@@ -87,7 +87,7 @@
 <script type="text/javascript" src="{C('URL')}/public/home/js/index.js"></script>
 <script type="text/javascript" src="https://api.map.baidu.com/api?v=2.0&ak=v8uxmcbjK7Q6BUIptI7pN9bvPO08V4qW"></script>
 <script type="text/javascript" >
-    if(province == '' || document.cookie.indexOf('province=') == -1){
+    if(document.cookie.indexOf('province=') == -1){
         //自动定位
         var geolocation = new BMap.Geolocation();
         // 创建地理编码实例
