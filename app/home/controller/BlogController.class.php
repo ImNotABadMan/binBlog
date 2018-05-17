@@ -18,7 +18,7 @@ class BlogController extends Controller{
     public function showBlog(){
 
         $c_c_c_id = isset($_GET["c_id"]) ? V($_GET["c_id"]) : "";//搜索分类
-        $c_c_id = isset($_GET['ccid']) ? V($_GET['ccid']) : "";//所属分类
+        $c_c_id = isset($_GET['ccid']) ? V($_GET['ccid']) : $_COOKIE['c_id'];//所属分类
         $c_sql = "1";
         if($c_c_c_id != ""){
             $c_sql .= " and c_c_c_id = {$c_c_c_id}";
