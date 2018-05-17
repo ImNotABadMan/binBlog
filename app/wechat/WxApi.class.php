@@ -24,7 +24,7 @@ class WxApi extends \core\Wechat
         }
 
         if($this->sendType == 'event' && $this->Event == 'subscribe'){
-            $this->reText("Bin客欢迎\n你请打开位置共享，仅用于为您查找当前城市下的文章");
+            $this->reText("Bin客欢迎你\n请打开位置共享，仅用于为您查找当前城市下的文章");
         }
 
 		if( !empty( $this->keyword ) ){
