@@ -31,6 +31,8 @@
             setcookie('province', $province['name'], time() + 3600, '/');
             setcookie('city', $city['name'], time() + 3600, '/');
 
+            setcookie('c_id', $city['id'], time() + 3600, '/');
+
             $this->assign("province", $province);
             $this->assign("city", $city);
         }
@@ -54,6 +56,7 @@
             'name' => $city
         ];
         $cid = M('\\model\\CateModel')->table('bl_category')->select($condition)[0]['id'];
+        var_dump($city, $cid);
 
         setcookie('c_id', $cid, time() + 3600, '/');
     }
