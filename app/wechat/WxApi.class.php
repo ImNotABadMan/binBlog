@@ -24,11 +24,19 @@ class WxApi extends \core\Wechat
         }
 
         if($this->sendType == 'event' && $this->Event == 'subscribe'){
-            $this->reText('请打开位置共享，仅用于为您查找当前城市下的文章');
+            $this->reText("Bin客欢迎\n你请打开位置共享，仅用于为您查找当前城市下的文章");
         }
 
 		if( !empty( $this->keyword ) ){
-			$this -> reText('Bin客欢迎你');
+            $data = [
+                'key'    => '94c1d68f757245a9961c76dbc4949e51',
+                'info'   => $this->keyword,
+                'userid' => '12345678'
+            ];
+            $url = 'http://www.tuling123.com/openapi/api';
+            $data = $this->CurlRequest($url, json_encode($data), 'json');
+            $data = json_decode($data);
+            $this->reText($data->text);
 		}
 
 	}
