@@ -18,7 +18,7 @@ class BlogController extends Controller{
     public function showBlog(){
 
         $c_c_c_id = isset($_GET["c_id"]) ? V($_GET["c_id"]) : "";//搜索分类
-        $c_c_id = isset($_GET['ccid']) ? V($_GET['ccid']) : $_COOKIE['c_id'];//所属分类
+        $c_c_id = isset($_GET['ccid']) ? V($_GET['ccid']) : 0;//所属分类
         $c_sql = "1";
         if($c_c_c_id != ""){
             $c_sql .= " and c_c_c_id = {$c_c_c_id}";
@@ -42,7 +42,8 @@ class BlogController extends Controller{
         // var_dump($sql);die;
         $rows = M("\\model\\BlogModel")->getRows("id,cover_img,title,u_nickname,post_date,c_name,intro,view_times", "bl_blog", $sql);
 
-        $pageHtml = PageTool::pageHtml($page, $pageCount, C("URL") . "?p=admin&m=blog&a=showList&c_c_id={$c_c_id}&c_c_c_id={$c_c_c_id}&page");
+
+        $pageHtml = PageTool::pageHtml($page, $pageCount, C("URL") . "?p=admin&m=blog&a=showList&c_id={$_COOKIE['c_id']}&ccid={$c_c_id}&c_c_c_id={$c_c_c_id}&page");
         /****************************博客******************************/
         // var_dump($rows);die;
         //分类
@@ -61,6 +62,8 @@ class BlogController extends Controller{
         $this->assign("pageCount", $pageCount);
         $this->assign("cate", $tree);
         $this->assign("c_c_c_id", $c_c_c_id);
+        $this->assign('c_id', $_COOKIE['c_id']);
+        $this->assign('ccid', $c_c_id);
         $this->assign("rows", $rows);
         $this->display("blog/blog.html");
     }

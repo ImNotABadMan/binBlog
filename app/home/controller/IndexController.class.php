@@ -47,14 +47,15 @@
         $province = isset($_GET['province']) ? trim($_GET['province']): '广东';
         $city = isset($_GET['city']) ? trim($_GET['city']): '广州';
 
+        setcookie('province', $province, time() + 3600, '/');
+        setcookie('city', $city, time() + 3600, '/');
+
         $condition = [
             'name' => $city
         ];
-        $cid = M('\\model\\CateModel')->tabel('bl_cate')->where($condition)->select()[0]['id'];
+        $cid = M('\\model\\CateModel')->table('bl_category')->select($condition)[0]['id'];
 
         setcookie('c_id', $cid, time() + 3600, '/');
-        setcookie('province', $province, time() + 3600, '/');
-        setcookie('city', $city, time() + 3600, '/');
     }
 
  }

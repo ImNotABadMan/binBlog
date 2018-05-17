@@ -99,10 +99,10 @@
         nextPage = 1;
     }
     pageBtn[0].onclick = function(){
-        location.href = "{C('URL')}/?p=home&m=blog&a=showBlog&c_id={$c_id}&page=" + prePage;
+        location.href = "{C('URL')}/?p=home&m=blog&a=showBlog&c_id={$c_id}&ccid={$ccid}&page=" + prePage;
     }
     pageBtn[1].onclick = function(){
-        location.href = "{C('URL')}/?p=home&m=blog&a=showBlog&c_id={$c_id}&page=" + nextPage;
+        location.href = "{C('URL')}/?p=home&m=blog&a=showBlog&c_id={$c_id}&ccid={$ccid}&page=" + nextPage;
     }
 
     $('.collect a').click(function(e){
