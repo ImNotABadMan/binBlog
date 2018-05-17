@@ -34,9 +34,9 @@ class BlogController extends Controller{
             //索引加多了，查询索引rows会变多c_id,post_date 294007和c_id 142236
             //post_date,post_date 294007 和post_date 31117
             //cover_img,title,u_id,u_nickname,post_date,content,c_id,c_name,intro
-            $sql = "c_c_c_id = {$c_c_c_id} and c_id = {$_COOKIE['c_id']} and post_date<=(select post_date from bl_blog where c_c_c_id = {$c_c_c_id} order by post_date desc limit {$offsetRow},1) order by post_date desc limit {$pageRows}";
+            $sql = "c_c_c_id = {$c_c_c_id} and c_id = {$_COOKIE['c_id']} order by post_date desc limit {$offsetRow},{$pageRows}";
         }else{
-            $sql = "1 and c_id = {$_COOKIE['c_id']} and c_c_id = {$c_c_id} and post_date<=(select post_date from bl_blog order by post_date desc limit {$offsetRow},1) order by post_date desc limit {$pageRows}";
+            $sql = "1 and c_id = {$_COOKIE['c_id']} and c_c_id = {$c_c_id}  order by post_date desc limit {$offsetRow}, {$pageRows}";
         }
 
         // var_dump($sql);die;
