@@ -51,7 +51,7 @@ class PublicController extends Controller
             }
 
             session('user', $user);
-            header('location: ' . U('Home/index/showList'));
+            header('location: ' . U('home/index/showList'));
             die;
         }
         $this->display("public/login.html");
