@@ -73,7 +73,26 @@ $access_token = $WeChat -> GetAccessToken();
 			}
 			]
 	}';
-$url = \core\WeChatApi::getApiUrl('api_create_menus');
+//
+$url = \core\WeChatApi::getApiUrl('api_create_menus$data = \'{
+//     "button":[
+//			{
+//				"type":"view",
+//				"name":"招生报名",
+//				"url":"https://open.weixin.qq.com/connect/oauth2/authorize?appid=wxde85cdb773c8050a&redirect_uri=https%3A%2F%2Frecruit.ixiaoyuanzhi.com%2Findex.php%3Fg%3DClient%26m%3DIndex%26a%3Dindex&response_type=code&scope=snsapi_userinfo&state=STATE#wechat_redirect"
+//			},
+//			{
+//				"type":"view",
+//				"name":"通知中心",
+//				"url":"http://recruit.ixiaoyuanzhi.com/index.php?g=Client&m=Examinee&a=register"
+//			},
+//			{
+//				"type":"view",
+//				"name":"个人中心",
+//				"url":"http://recruit.ixiaoyuanzhi.com/index.php?g=Client&a=personal"
+//			}
+//			]
+//	}\';');
 $url .= $access_token;
 $str = $WeChat -> CurlRequest( $url,$data );
 $json = json_decode($str,true);

@@ -31,5 +31,8 @@ include ROOT_CORE_PATH . 'Model.class.php';
 #引入公共应用文件
 include ROOT_CORE_PATH . 'App.class.php';
 
+#引入compose 自动加载文件
+include ROOT_VENDOR_PATH . 'autoload.php';
+
 //注册自动加载
 spl_autoload_register('\\core\\App::autoload');

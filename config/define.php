@@ -26,6 +26,8 @@ define('ROOT_APP_WECHAT_PATH', ROOT_APP_PATH . 'wechat/'); // binBlog/app/wechat
 
 define('SMARTY_DIR', ROOT_PLU_PATH.'smarty/');//     binBlog/plugins/smarty/
 
+define('ROOT_VENDOR_PATH', ROOT . '/vendor/');// binBlog/vendor
+
 // 判断请求方式
 define('IS_POST', strtolower($_SERVER['REQUEST_METHOD']) == 'post');
 define('IS_GET', strtolower($_SERVER['REQUEST_METHOD']) == 'get');

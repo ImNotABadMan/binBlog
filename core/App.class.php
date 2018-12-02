@@ -2,6 +2,9 @@
 
 namespace core;// 创建了一个  全局空间 下的 core空间
 
+use Whoops\Handler\PrettyPageHandler;
+use Whoops\Run;
+
 class App{
 
     private static $objArr=array();// 保存对象的数组静态属性
@@ -52,6 +55,7 @@ class App{
 
     //构建一个启动方法
     public static function run(){
+        self::debug();
         header("content-type:text/html;charset=utf8");
         #接收一个名为a的GET参数
         $GLOBALS['action'] = $action = isset($_GET['a']) ? $_GET['a'] : C('index.a');  //这个参数在MVC中表示需要执行的动作参数，其实就是访问类中的方法名
@@ -83,4 +87,12 @@ class App{
 
         $obj->$action();
     }
+
+    public static function debug()
+    {
+        $whoops = new Run();
+        $whoops->pushHandler(new PrettyPageHandler());
+        $whoops->register();
+    }
+
 }
